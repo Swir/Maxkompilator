@@ -23,6 +23,9 @@ import traceback
 from typing import Any
 
 
+GLYPH_SAMPLE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ĄĆĘŁŃÓŚŹŻąćęłńóśźż.,:;!?-_/()[]{}"
+
+
 def _emit(message: str, *, error: bool = False) -> None:
     """Windowed PyInstaller executables intentionally have no Python streams."""
     stream = sys.stderr if error else sys.stdout
@@ -36,6 +39,36 @@ def _write_report(path: Path, result: dict[str, Any]) -> None:
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     temporary.replace(path)
+
+
+def _prepare_offscreen_fonts(app: Any, evidence: dict[str, Any]) -> None:
+    """Register host fonts for Windows' generic offscreen font database only."""
+    if sys.platform != "win32" or app.platformName() != "offscreen":
+        evidence["status"] = "not_required"
+        return
+    from PySide6.QtGui import QFontDatabase
+
+    evidence["status"] = "registering"
+    root = os.environ.get("SystemRoot") or os.environ.get("WINDIR")
+    if not root:
+        raise RuntimeError("Windows system directory is unavailable for offscreen font registration")
+    directory = (Path(root) / "Fonts").resolve()
+    evidence["directory"] = str(directory)
+    # These fonts remain installed in Windows. Loading them into this diagnostic
+    # process does not copy or redistribute them in the portable application.
+    for filename, expected_family in (("segoeui.ttf", "Segoe UI"), ("segoeuib.ttf", "Segoe UI"), ("consola.ttf", "Consolas")):
+        path = directory / filename
+        record: dict[str, Any] = {"path": str(path), "expected_family": expected_family, "id": -1, "families": []}
+        evidence["fonts"].append(record)
+        if not path.is_file():
+            raise RuntimeError("Windows offscreen font is missing: " + str(path))
+        record["id"] = QFontDatabase.addApplicationFont(str(path))
+        if record["id"] < 0:
+            raise RuntimeError("Qt could not register Windows offscreen font: " + str(path))
+        record["families"] = QFontDatabase.applicationFontFamilies(record["id"])
+        if expected_family.casefold() not in {family.casefold() for family in record["families"]}:
+            raise RuntimeError("Registered Windows font has an unexpected family: " + str(record))
+    evidence["status"] = "registered"
 
 
 def _process_image(pid: int) -> Path:
@@ -125,7 +158,7 @@ def main(argv: list[str] | None = None) -> int:
     os.environ["QT_QPA_PLATFORM"] = "offscreen"
     try:
         from PySide6.QtCore import QObject, QProcess, QTimer, QUrl, Slot
-        from PySide6.QtGui import QDesktopServices
+        from PySide6.QtGui import QDesktopServices, QFontInfo, QFontMetrics, QRawFont
         from PySide6.QtWidgets import (
             QApplication, QCheckBox, QComboBox, QLabel, QLineEdit,
             QPlainTextEdit, QProgressBar, QPushButton,
@@ -171,6 +204,7 @@ def main(argv: list[str] | None = None) -> int:
             self.build_log = ""
             self.cancel_log = ""
             self.icon_info: dict[str, Any] | None = None
+            self.font_glyphs: dict[str, Any] = {"status": "not_run", "sample": GLYPH_SAMPLE, "controls": []}
             self.urls = UrlCapture(self)
             QDesktopServices.setUrlHandler("file", self.urls, "receive")
             self.timer = QTimer(self)
@@ -185,6 +219,49 @@ def main(argv: list[str] | None = None) -> int:
         def record(self, name: str) -> None:
             self.passed.append(name)
             _emit("PASS " + name)
+
+        def check_text_glyphs(self) -> None:
+            """Check the physical fonts selected by the actual styled widgets."""
+            self.font_glyphs["status"] = "checking"
+            roles = []
+            for name, widget in self.controls.items():
+                if not isinstance(widget, (QLabel, QLineEdit, QComboBox, QCheckBox, QPushButton, QPlainTextEdit)):
+                    continue
+                widget.ensurePolished()
+                roles.append((name, widget.font()))
+                if isinstance(widget, QPlainTextEdit):
+                    roles.append((name + ".document", widget.document().defaultFont()))
+            for name, font in roles:
+                raw = QRawFont.fromFont(font)
+                metrics = QFontMetrics(font)
+                info = QFontInfo(font)
+                glyphs = raw.glyphIndexesForString(GLYPH_SAMPLE) if raw.isValid() else []
+                missing_glyphs = [character for index, character in enumerate(GLYPH_SAMPLE)
+                                  if index >= len(glyphs) or glyphs[index] == 0 or not raw.supportsCharacter(ord(character))]
+                missing_metrics = [character for character in GLYPH_SAMPLE if not metrics.inFontUcs4(ord(character))]
+                record = {
+                    "control": name,
+                    "requested_families": font.families(),
+                    "resolved_family": info.family(),
+                    "raw_family": raw.familyName(),
+                    "raw_style": raw.styleName(),
+                    "raw_font_valid": raw.isValid(),
+                    "glyph_count": len(glyphs),
+                    "missing_glyphs": missing_glyphs,
+                    "missing_metrics": missing_metrics,
+                    "height_pixels": metrics.height(),
+                    "sample_width_pixels": metrics.horizontalAdvance(GLYPH_SAMPLE),
+                }
+                self.font_glyphs["controls"].append(record)
+                self.require(raw.isValid() and bool(record["raw_family"]) and bool(record["resolved_family"]),
+                             "No named physical font for interface control: " + name)
+                self.require(len(glyphs) == len(GLYPH_SAMPLE) and not missing_glyphs and not missing_metrics,
+                             "Interface control has missing ASCII or Polish glyphs: " + str(record))
+                self.require(record["height_pixels"] > 0 and record["sample_width_pixels"] > 0,
+                             "Interface text has invalid font metrics: " + name)
+            self.require(bool(roles), "No actual interface fonts were checked")
+            self.font_glyphs["status"] = "passed"
+            self.record("readable_interface_text_glyphs")
 
         def observe_worker(self, process: QProcess) -> None:
             """Subscribe before start; never replace the GUI's process or command."""
@@ -270,7 +347,7 @@ def main(argv: list[str] | None = None) -> int:
                 (QPushButton, "doctorButton"), (QPushButton, "buildButton"),
                 (QPushButton, "cancelButton"), (QPushButton, "openResultsButton"),
                 (QPlainTextEdit, "logView"), (QPlainTextEdit, "summaryView"),
-                (QLabel, "statusLabel"), (QProgressBar, "busyIndicator"),
+                (QLabel, "statusLabel"), (QLabel, "appTitle"), (QProgressBar, "busyIndicator"),
             ):
                 self.child(cls, name)
             self.require(not self.window.windowIcon().isNull(), "The application icon is missing")
@@ -290,6 +367,7 @@ def main(argv: list[str] | None = None) -> int:
             self.require(self.controls["outputFormat"].currentData() == "auto", "Automatic output format is not the default")
             self.check_idle_controls()
             self.record("initial_window_icon_and_controls")
+            self.check_text_glyphs()
             self.controls["projectRoot"].setText(str(self.fixture))
             self.controls["entrypoint"].setText("main.py")
             # Leave kind and format at auto to exercise the default CLI mapping.
@@ -421,6 +499,8 @@ def main(argv: list[str] | None = None) -> int:
         def fail(self, message: str) -> None:
             if self.failed is not None:
                 return
+            if self.font_glyphs["status"] == "checking":
+                self.font_glyphs["status"] = "failed"
             self.failed = f"{self.phase}: {message}"
             _emit("FAIL " + self.failed, error=True)
             self.shutdown_deadline = time.monotonic() + 20
@@ -463,6 +543,7 @@ def main(argv: list[str] | None = None) -> int:
                 self.fail(str(exc))
 
     app = QApplication(["maxkompilator-gui-smoke"])
+    font_setup: dict[str, Any] = {"status": "pending", "strategy": "host_system_fonts_for_windows_offscreen", "fonts": []}
     with tempfile.TemporaryDirectory(prefix="maxkompilator-gui-") as temporary:
         temporary_root = Path(temporary)
         fixture = temporary_root / "projekt ze spacją Łódź"
@@ -489,7 +570,14 @@ def main(argv: list[str] | None = None) -> int:
 
         sys.excepthook = exception_hook
         try:
+            _prepare_offscreen_fonts(app, font_setup)
             exit_code = launch_gui()
+        except Exception as exc:
+            if font_setup["status"] in {"pending", "registering"}:
+                font_setup["status"] = "failed"
+                font_setup["error"] = type(exc).__name__ + ": " + str(exc)
+            harness.fail("GUI setup: " + type(exc).__name__ + ": " + str(exc))
+            exit_code = 1
         finally:
             sys.excepthook = original_hook
             QDesktopServices.unsetUrlHandler("file")
@@ -509,6 +597,7 @@ def main(argv: list[str] | None = None) -> int:
             "working_directory": str(Path.cwd().resolve()),
             "qt_platform": QApplication.platformName(),
             "icon": harness.icon_info,
+            "fonts": {"setup": font_setup, "glyphs": harness.font_glyphs},
             "checks": harness.passed,
             "worker_processes": harness.processes,
             "build_report": harness.build_report,

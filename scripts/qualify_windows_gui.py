@@ -31,6 +31,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_CHECKS = {
     "frozen_gui_imports_and_portable_worker_present",
     "initial_window_icon_and_controls",
+    "readable_interface_text_glyphs",
     "inspect_and_plan_unicode_path_auto_defaults",
     "environment_doctor_and_smoke_flag_scoping",
     "zipapp_build_real_runtime_and_persisted_report",
@@ -106,6 +107,23 @@ def validate_run(report: dict[str, Any], *, run_id: str, pid: int, executable: P
     require(report.get("qt_platform") == "offscreen", "The report did not identify the requested offscreen backend")
     require(report.get("window_closed") is True, "The GUI window did not close cleanly")
     require(EXPECTED_CHECKS <= set(report.get("checks", [])), "The packaged GUI report is missing workflow checks")
+    fonts = report.get("fonts") or {}
+    setup = fonts.get("setup") or {}
+    require(setup.get("status") == "registered", "Windows offscreen system fonts were not registered")
+    system_fonts = (Path(os.environ.get("SystemRoot") or os.environ.get("WINDIR") or "") / "Fonts").resolve()
+    registered = setup.get("fonts", [])
+    require({Path(item.get("path", "")).name.casefold() for item in registered} == {"segoeui.ttf", "segoeuib.ttf", "consola.ttf"}, "Missing required Windows offscreen font registrations")
+    require(all(item.get("id", -1) >= 0 and item.get("families") and Path(item["path"]).resolve().parent == system_fonts for item in registered), "Font evidence does not identify the host's registered system fonts")
+    glyphs = fonts.get("glyphs") or {}
+    sample = glyphs.get("sample", "")
+    required_characters = set("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ĄĆĘŁŃÓŚŹŻąćęłńóśźż")
+    require(glyphs.get("status") == "passed" and required_characters <= set(sample), "The GUI did not validate ASCII and Polish text glyphs")
+    font_controls = glyphs.get("controls", [])
+    require({"appTitle", "projectRoot", "inspectButton", "buildButton", "summaryView", "summaryView.document", "logView", "logView.document", "statusLabel"} <= {item.get("control") for item in font_controls}, "The GUI did not check the actual visible widget and document fonts")
+    require(all(item.get("raw_font_valid") is True and item.get("raw_family") and item.get("glyph_count") == len(sample)
+                and item.get("missing_glyphs") == [] and item.get("missing_metrics") == []
+                and item.get("height_pixels", 0) > 0 and item.get("sample_width_pixels", 0) > 0
+                for item in font_controls), "The GUI contains invalid or missing text glyphs")
     bundle_root = executable.parent / "_internal"
     require(Path(report.get("bundle_root", "")).resolve() == bundle_root, "The GUI loaded an unexpected portable runtime")
     icon = report.get("icon") or {}
