@@ -67,7 +67,7 @@ jobs:
         with:
           name: native-example-${{ matrix.os }}
           path: |
-            examples/hello-python/dist/maxkompilator/runs/
+            examples/hello-python/dist/maxkompilator/native-example-*.tar.gz
             examples/hello-python/dist/maxkompilator/build-report.json
             examples/hello-python/dist/maxkompilator/native-qualification.json
           if-no-files-found: error

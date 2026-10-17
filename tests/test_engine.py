@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import errno
 import hashlib
 import json
 import os
+import signal
 import subprocess
 import sys
 import tempfile
@@ -10,6 +12,7 @@ import threading
 import time
 import unittest
 import zipfile
+from contextlib import contextmanager
 from pathlib import Path
 from unittest.mock import Mock, patch
 
@@ -17,7 +20,7 @@ from maxkompilator.adapters import create_plan
 from maxkompilator.config import load_config
 from maxkompilator.detection import detect_project
 from maxkompilator.engine import Cancelled, collect_artifacts, execute_build, identify_file, run_command, validate_output_directory
-from maxkompilator.environment import external_environment, probe_tool, spawn_external
+from maxkompilator.environment import external_environment, probe_tool, spawn_external, stop_process
 from maxkompilator.models import BuildPlan, BuildStep, MaxkompilatorError, Project, ToolRequirement
 
 
@@ -260,6 +263,69 @@ class CLIIntegrationTests(unittest.TestCase):
             self.assertIn("Łódź", result.stdout)
             self.assertIn("zasób łódź", report["smoke_test"]["output_tail"])
             self.assertIn("zasób łódź", result.stderr)
+
+
+class ProcessGroupTests(unittest.TestCase):
+    @contextmanager
+    def darwin_group(self, denied_signal, stdout, *, returncode=0, inspection_error=None):
+        process = Mock(pid=321)
+        process.poll.return_value = 0
+        process.wait.return_value = 0
+        denied = PermissionError(errno.EPERM, "fixture process-group permission failure")
+
+        def killpg(pgid, sig):
+            self.assertEqual(pgid, process.pid)
+            if sig == denied_signal:
+                raise denied
+
+        snapshot = subprocess.CompletedProcess(["/bin/ps"], returncode, stdout=stdout)
+        # Simulate Darwin's system calls on every CI host, including Windows.
+        with patch("maxkompilator.environment.os.name", "posix"), patch.object(sys, "platform", "darwin"), patch("maxkompilator.environment.os.killpg", side_effect=killpg, create=True), patch.object(signal, "SIGKILL", 9, create=True), patch("maxkompilator.environment.subprocess.run", return_value=snapshot, side_effect=inspection_error) as inspect:
+            yield process, denied, inspect
+
+    def test_darwin_eperm_with_only_zombies_or_absent_group_still_reaps_leader(self):
+        for denied_signal in (signal.SIGTERM, 0, 9):
+            for snapshot in ("321 321 Z 501\n400 321 Z+ 501\n456 456 S 501\n", "456 456 S 501\n"):
+                with self.subTest(signal=denied_signal, snapshot=snapshot):
+                    with self.darwin_group(denied_signal, snapshot) as (process, denied, inspect):
+                        stop_process(process, grace=1.0 if denied_signal == 0 else 0)
+                    process.wait.assert_called_once_with(timeout=5)
+                    process.kill.assert_not_called()
+                    inspect.assert_called_once()
+
+    def test_darwin_eperm_for_a_live_group_member_is_preserved(self):
+        # The live member has another UID; it must not be filtered out.
+        snapshot = "321 321 Z 501\n400 321 S 0\n456 456 S 501\n"
+        for denied_signal in (signal.SIGTERM, 0, 9):
+            with self.subTest(signal=denied_signal):
+                with self.darwin_group(denied_signal, snapshot) as (process, denied, inspect):
+                    with self.assertRaises(PermissionError) as caught:
+                        stop_process(process, grace=1.0 if denied_signal == 0 else 0)
+                    self.assertIs(caught.exception, denied)
+
+    def test_darwin_unreliable_snapshot_does_not_hide_permission_failure(self):
+        cases = (
+            ("", 0, None),
+            ("not a valid process row\n", 0, None),
+            ("pid 321 Z 501\n", 0, None),
+            ("321 321 Z 501\n", 1, None),
+            ("", 0, FileNotFoundError("fixture missing ps")),
+            ("", 0, subprocess.TimeoutExpired("/bin/ps", 1.0)),
+        )
+        for stdout, code, error in cases:
+            with self.subTest(stdout=stdout, returncode=code, error=error):
+                with self.darwin_group(signal.SIGTERM, stdout, returncode=code, inspection_error=error) as (process, denied, inspect):
+                    with self.assertRaises(PermissionError) as caught:
+                        stop_process(process, grace=0)
+                    self.assertIs(caught.exception, denied)
+
+    def test_other_platform_permission_failure_does_not_use_darwin_fallback(self):
+        with self.darwin_group(signal.SIGTERM, "321 321 Z 501\n") as (process, denied, inspect):
+            with patch.object(sys, "platform", "linux"):
+                with self.assertRaises(PermissionError) as caught:
+                    stop_process(process, grace=0)
+            self.assertIs(caught.exception, denied)
+            inspect.assert_not_called()
 
 
 class ExternalProcessTests(unittest.TestCase):

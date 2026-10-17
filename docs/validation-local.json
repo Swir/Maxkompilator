@@ -13,8 +13,8 @@
   "unit_and_integration": {
     "command": "python -m unittest discover -s tests -v",
     "status": "passed",
-    "tests": 80,
-    "duration_seconds": 2.481
+    "tests": 84,
+    "duration_seconds": 2.303
   },
   "gui": {
     "command": "python scripts/gui_smoke.py",
@@ -70,5 +70,13 @@
     "zipapp_build_and_runtime": "passed",
     "external_python_and_pyinstaller_probe": "passed",
     "command": "MaxkompilatorCLI --cli build examples/hello-python --format zipapp --smoke-test --json"
+  },
+  "native_archive": {
+    "name": "native-example-linux-x64.tar.gz",
+    "size_bytes": 11932078,
+    "sha256": "56912d1b7882ddf3c8d72e2f016765b33a4b954a120c581a6cad159053301ddd",
+    "validated": true,
+    "posix_permissions_preserved": true,
+    "symlink_fixture": "passed"
   }
 }

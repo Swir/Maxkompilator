@@ -213,7 +213,7 @@ python -m unittest discover -s tests -v
 python scripts/update_progress.py --check
 ```
 
-**Lokalnie: 80/80 testów rdzenia i integracji PASS; GUI: 7/7 grup PASS.** Opis przebiegu i ograniczeń znajduje się w [docs/VALIDATION.md](docs/VALIDATION.md). GUI można sprawdzić bez pulpitu, po zainstalowaniu dodatku `gui`:
+**Lokalnie: 84/84 testów rdzenia i integracji PASS; GUI: 7/7 grup PASS.** Opis przebiegu i ograniczeń znajduje się w [docs/VALIDATION.md](docs/VALIDATION.md). GUI można sprawdzić bez pulpitu, po zainstalowaniu dodatku `gui`:
 
 ```bash
 python scripts/gui_smoke.py --screenshot build/gui-smoke.png
@@ -226,7 +226,7 @@ python -m maxkompilator build examples/hello-python --format executable --smoke-
 python scripts/qualify_native.py examples/hello-python/dist/maxkompilator/build-report.json
 ```
 
-Kwalifikacja porównuje SHA-256 i uruchamia aplikację z innego katalogu, przy usuniętych `PYTHONPATH`/`PYTHONHOME` i ograniczonym `PATH`. To test konkretnego przykładu na bieżącym systemie.
+Kwalifikacja porównuje SHA-256 i uruchamia aplikację z innego katalogu, przy usuniętych `PYTHONPATH`/`PYTHONHOME` i ograniczonym `PATH`. To test konkretnego przykładu na bieżącym systemie. Skrypt tworzy też `native-example-TARGET.tar.gz`, zachowując uprawnienia uruchamiania i dowiązania symboliczne programu.
 
 Konfiguracja CI zawiera macierz rdzenia dla Linux/Windows/macOS z Pythonem 3.11 i 3.13, natywne budowanie Python dla trzech systemów oraz pakiet desktopowy Windows. Sam plik workflow nie potwierdza, że te zadania zostały już wykonane; wyniki weryfikujemy w [GitHub Actions](https://github.com/Swir/Maxkompilator/actions).
 

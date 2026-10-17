@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import errno
 import os
 import signal
 import subprocess
@@ -96,6 +97,51 @@ def spawn_external(command, *, env: Mapping[str, str] | None = None,
         return subprocess.Popen(command, env=child_env, **kwargs)
 
 
+def _darwin_group_has_finished(pgid: int) -> bool:
+    """Confirm a Darwin EPERM refers only to absent or zombie group members."""
+    try:
+        snapshot = subprocess.run(
+            ["/bin/ps", "-axo", "pid=,pgid=,stat=,uid="],
+            stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+            text=True, encoding="ascii", timeout=1.0, check=False,
+            env=external_environment(),
+        )
+    except (OSError, subprocess.TimeoutExpired, UnicodeError):
+        return False
+    rows = snapshot.stdout.splitlines()
+    if snapshot.returncode or not rows:
+        return False
+    for row in rows:
+        fields = row.split()
+        if len(fields) != 4:
+            return False
+        try:
+            pid, group, uid = int(fields[0]), int(fields[1]), int(fields[3])
+        except ValueError:
+            return False
+        if min(pid, group, uid) < 0:
+            return False
+        # Check every UID: an unkillable live member must remain an error.
+        if group == pgid and not fields[2].startswith("Z"):
+            return False
+    return True
+
+
+def _signal_process_group(pgid: int, sig: int) -> bool:
+    """Return false only when the group no longer contains running processes."""
+    try:
+        os.killpg(pgid, sig)
+    except ProcessLookupError:
+        return False
+    except PermissionError as exc:
+        # Darwin can report EPERM for a process group left with only zombies.
+        # A failed inspection must not conceal a real permission failure.
+        if sys.platform == "darwin" and exc.errno == errno.EPERM and _darwin_group_has_finished(pgid):
+            return False
+        raise
+    return True
+
+
 def stop_process(process: subprocess.Popen, *, grace: float = 2.0) -> None:
     """Stop the process group created for this task, including child tools."""
     if os.name == "nt":
@@ -105,24 +151,17 @@ def stop_process(process: subprocess.Popen, *, grace: float = 2.0) -> None:
         subprocess.run(["taskkill", "/PID", str(process.pid), "/T", "/F"],
                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
     else:
-        try:
-            os.killpg(process.pid, signal.SIGTERM)
-        except ProcessLookupError:
-            return
+        group_exists = _signal_process_group(process.pid, signal.SIGTERM)
         # The group can outlive its original process. Waiting only for the
         # parent would leave a compiler's child running after cancellation.
         deadline = time.monotonic() + grace
-        while time.monotonic() < deadline:
+        while group_exists and time.monotonic() < deadline:
             process.poll()
-            try:
-                os.killpg(process.pid, 0)
-            except ProcessLookupError:
-                break
-            time.sleep(0.03)
-        try:
-            os.killpg(process.pid, signal.SIGKILL)
-        except ProcessLookupError:
-            pass
+            group_exists = _signal_process_group(process.pid, 0)
+            if group_exists:
+                time.sleep(0.03)
+        if group_exists:
+            _signal_process_group(process.pid, signal.SIGKILL)
     try:
         process.wait(timeout=5)
     except subprocess.TimeoutExpired:

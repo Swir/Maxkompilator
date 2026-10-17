@@ -10,7 +10,7 @@ Skrócone wyniki zapisano również w [validation-local.json](validation-local.j
 
 | Obszar | Dowód i wynik | Co zostało sprawdzone | Granica dowodu |
 |---|---|---|---|
-| Rdzeń i integracja | **80/80 PASS**, 2,481 s; `python -m unittest discover -s tests -v` | Rozpoznawanie, plany, błędy, ścieżki, rzeczywiste PYZ, integracja CLI, raporty i generator postępu | Część testów adapterów sprawdza konstrukcję poleceń; nie jest kompilacją odpowiednim SDK |
+| Rdzeń i integracja | **84/84 PASS**, 2,303 s; `python -m unittest discover -s tests -v` | Rozpoznawanie, plany, błędy, ścieżki, rzeczywiste PYZ, integracja CLI, raporty i generator postępu | Część testów adapterów sprawdza konstrukcję poleceń; nie jest kompilacją odpowiednim SDK |
 | PYZ | **PASS**; `tests/test_engine.py` i rzeczywisty `examples/hello-python` | Budowa, import pakietu, dołączony zasób, uruchomienie poza źródłami, zapis raportu | Wymaga zgodnego Pythona; zewnętrzne zależności nie są pakowane automatycznie |
 | Natywna aplikacja Python | **PASS**; `scripts/qualify_native.py` po końcowej budowie w osobnym katalogu zadania | ELF x64, SHA-256, uruchomienie spoza źródeł i odczyt zasobu po usunięciu `PYTHONPATH`/`PYTHONHOME` i ograniczeniu `PATH` | Sprawdzony przykład na bieżącym Linux; nie jest dowodem działania na każdej dystrybucji ani na Windows/macOS |
 | GUI Qt | **7/7 grup PASS**, 1,202 s; `scripts/gui_smoke.py` | Ikona, domyślne wybory auto, ścieżka ze spacjami i Unicode, inspect/plan/doctor/build, rzeczywisty test PYZ, logi, raport, anulowanie i zakończenie potomka; anulowanie: 0,156 s | Linux offscreen; otwieranie folderu sprawdzane przez przechwycenie URL Qt, bez sterowania menedżerem plików |
