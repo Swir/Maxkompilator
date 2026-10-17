@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "project": "Maxkompilator",
+  "release": "1.0",
+  "updated": "2026-10-17",
+  "scope": "Zdefiniowana wersja v1: wspólny silnik i GUI, kwalifikowane wydania Python/Windows, Android i .NET oraz podstawy obsługi wykonawców Linux/macOS. 100% nie oznacza obsługi wszystkich istniejących języków i formatów.",
+  "milestones": [
+    {
+      "id": "foundation",
+      "title": "Fundament projektu i CI",
+      "weight": 8,
+      "items": [
+        {
+          "id": "scope",
+          "title": "Zakres v1, instrukcje i mierzalne kryteria ukończenia",
+          "weight": 2,
+          "status": "complete",
+          "evidence": [
+            "README.md i ROADMAP.md: opis zakresu, ograniczeń oraz stałych wag v1"
+          ]
+        },
+        {
+          "id": "architecture",
+          "title": "Podział silnika, adapterów i wykonawców",
+          "weight": 2,
+          "status": "complete",
+          "evidence": [
+            "docs/ARCHITECTURE.md: przepływ zadania, granice odpowiedzialności i model wyników"
+          ]
+        },
+        {
+          "id": "package",
+          "title": "Instalowalny pakiet i działające wejście CLI",
+          "weight": 2,
+          "status": "complete",
+          "evidence": [
+            "Wheel i sdist zbudowane; wheel zainstalowany bez indeksu i zależności poza repo, CLI/SVG/PYZ z zasobem oraz smoke PASS — docs/VALIDATION.md i docs/validation-local.json"
+          ]
+        },
+        {
+          "id": "ci",
+          "title": "Uruchomiony CI z kontrolą jakości i zgodności postępu",
+          "weight": 2,
+          "status": "in_progress",
+          "evidence": [
+            ".github/workflows/ci.yml: przygotowano macierze Core, Native Python oraz Windows desktop; brak potwierdzonego uruchomienia GitHub Actions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "discovery",
+      "title": "Rozpoznawanie projektu i środowiska",
+      "weight": 12,
+      "items": [
+        {
+          "id": "detection",
+          "title": "Rozpoznawanie projektów Python, Android i .NET",
+          "weight": 3,
+          "status": "complete",
+          "evidence": [
+            "tests/test_detection.py: rozpoznanie skryptów, projektu Python, Androida i konkretnych csproj; lokalny zestaw PASS — docs/VALIDATION.md"
+          ]
+        },
+        {
+          "id": "ambiguity",
+          "title": "Jawny wybór typu i punktu startowego przy niejednoznaczności",
+          "weight": 3,
+          "status": "complete",
+          "evidence": [
+            "tests/test_detection.py: test_multiple_python_scripts_need_explicit_entry, test_mixed_directory_requires_explicit_kind, test_multiple_csprojects_require_concrete_project_path — PASS"
+          ]
+        },
+        {
+          "id": "doctor",
+          "title": "Diagnostyka wymaganych narzędzi z użytecznym opisem braków",
+          "weight": 3,
+          "status": "complete",
+          "evidence": [
+            "tests/test_engine.py: test_missing_tool_yields_failed_report_without_build; scripts/gui_smoke.py: environment_doctor_and_smoke_flag_scoping — lokalnie PASS"
+          ]
+        },
+        {
+          "id": "plan",
+          "title": "Plan budowania dostępny w CLI i JSON bez uruchamiania kompilacji",
+          "weight": 3,
+          "status": "complete",
+          "evidence": [
+            "tests/test_engine.py: test_inspect_and_plan_are_read_only_and_json_is_parseable; tests/test_adapters.py: test_pyinstaller_plan_is_native_structured_and_has_no_side_effects — PASS"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python",
+      "title": "Python i wydania Windows",
+      "weight": 16,
+      "items": [
+        {
+          "id": "zipapp",
+          "title": "Rzeczywista budowa PYZ i test uruchomienia prostego projektu",
+          "weight": 4,
+          "status": "complete",
+          "evidence": [
+            "tests/test_engine.py: test_zipapp_builds_and_runs_with_resources_outside_source; rzeczywisty examples/hello-python PYZ + smoke PASS na Linux — docs/VALIDATION.md"
+          ]
+        },
+        {
+          "id": "pyinstaller",
+          "title": "Adapter natywnego budowania przez PyInstaller",
+          "weight": 2,
+          "status": "complete",
+          "evidence": [
+            "maxkompilator/adapters/python_adapter.py oraz rzeczywista budowa i uruchomienie przykładu przez PyInstaller 6.22.3 na Linux — docs/VALIDATION.md"
+          ]
+        },
+        {
+          "id": "exe",
+          "title": "Rzeczywisty EXE z poprawnym formatem, zasobami i ikoną",
+          "weight": 5,
+          "status": "in_progress",
+          "evidence": [
+            "scripts/build_windows.py przygotowuje pakiet Windows; rzeczywisty EXE i jego kwalifikacja jeszcze niepotwierdzone"
+          ]
+        },
+        {
+          "id": "windows-runtime",
+          "title": "Uruchomienie zbudowanego EXE na Windows bez instalowania Pythona",
+          "weight": 5,
+          "status": "in_progress",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "android",
+      "title": "Android: APK i AAB",
+      "weight": 14,
+      "items": [
+        {
+          "id": "gradle",
+          "title": "Recepty Gradle dla debug APK/AAB i obsługa projektu z wrapperem",
+          "weight": 2,
+          "status": "complete",
+          "evidence": [
+            "tests/test_adapters.py: test_android_debug_apk_plan_does_not_execute_wrapper i test_android_artifact_patterns_select_only_debug_outputs — PASS; przygotowano recepty, bez kwalifikacji rzeczywistego APK/AAB"
+          ]
+        },
+        {
+          "id": "apk",
+          "title": "Rzeczywisty APK: manifest, pakiet, wariant i kontrola podpisu",
+          "weight": 4,
+          "status": "in_progress",
+          "evidence": [
+            "maxkompilator/engine.py: kontrola kontenera i wywołanie apksigner; brak rzeczywistej kwalifikacji z Android SDK"
+          ]
+        },
+        {
+          "id": "device",
+          "title": "Instalacja i uruchomienie APK na emulatorze lub telefonie",
+          "weight": 5,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "id": "aab",
+          "title": "Rzeczywisty AAB oraz wyraźne rozdzielenie podpisów debug/release",
+          "weight": 3,
+          "status": "pending",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "dotnet",
+      "title": ".NET i publikacje Windows",
+      "weight": 12,
+      "items": [
+        {
+          "id": "recipe",
+          "title": "Adapter dotnet publish z właściwym projektem i celem",
+          "weight": 2,
+          "status": "complete",
+          "evidence": [
+            "tests/test_adapters.py: test_dotnet_publish_includes_runtime_and_concrete_project oraz ograniczenia WPF/NativeAOT — PASS; sprawdzona recepta bez rzeczywistej publikacji SDK .NET"
+          ]
+        },
+        {
+          "id": "publish",
+          "title": "Rzeczywista publikacja projektu .NET i sprawdzenie wyników",
+          "weight": 4,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "id": "windows-runtime",
+          "title": "Uruchomienie opublikowanej aplikacji na Windows",
+          "weight": 4,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "id": "desktop",
+          "title": "Weryfikacja zależności aplikacji desktopowej i trybu dystrybucji",
+          "weight": 2,
+          "status": "pending",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "gui",
+      "title": "Interfejs desktopowy",
+      "weight": 12,
+      "items": [
+        {
+          "id": "design",
+          "title": "Ciemny interfejs, własna ikona i oznaczenie by Swir",
+          "weight": 3,
+          "status": "complete",
+          "evidence": [
+            "maxkompilator/gui.py, assets/maxkompilator.svg; scripts/gui_smoke.py: initial_window_icon_and_controls — PASS na Linux z Qt 6.12 offscreen"
+          ]
+        },
+        {
+          "id": "workflow",
+          "title": "Wybór projektu, diagnostyka, plan i budowanie z GUI",
+          "weight": 3,
+          "status": "complete",
+          "evidence": [
+            "scripts/gui_smoke.py: inspect_and_plan_unicode_path_auto_defaults, environment_doctor_and_smoke_flag_scoping, zipapp_build_real_runtime_and_persisted_report — PASS na Linux"
+          ]
+        },
+        {
+          "id": "responsiveness",
+          "title": "Responsywne logi, praca w tle i anulowanie zadania",
+          "weight": 3,
+          "status": "complete",
+          "evidence": [
+            "scripts/gui_smoke.py: open_results_and_copy_log_buttons, cancel_button_stops_running_build, cancelled_worker_and_descendant_are_stopped — PASS na Linux"
+          ]
+        },
+        {
+          "id": "windows-test",
+          "title": "Test pełnej ścieżki GUI i ponownego uruchomienia na Windows",
+          "weight": 3,
+          "status": "in_progress",
+          "evidence": [
+            ".github/workflows/ci.yml: przygotowano zadanie Windows desktop; lokalny smoke wykonano dotąd tylko na Linux"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "profiles",
+      "title": "Profile i powtarzalność wyników",
+      "weight": 10,
+      "items": [
+        {
+          "id": "configuration",
+          "title": "Zapisane profile projektu i walidacja konfiguracji",
+          "weight": 3,
+          "status": "complete",
+          "evidence": [
+            "maxkompilator/config.py i examples/hello-python/maxkompilator.toml; tests/test_engine.py: test_invalid_config_has_actionable_error oraz rzeczywista budowa przykładu z konfiguracji — PASS"
+          ]
+        },
+        {
+          "id": "resources",
+          "title": "Ustawienia nazwy, wersji, ikony i dołączanych zasobów",
+          "weight": 2,
+          "status": "in_progress",
+          "evidence": [
+            "Konfiguracja python.data obsługuje zasoby; pełne profile nazw, wersji i ikon aplikacji pozostają do wdrożenia"
+          ]
+        },
+        {
+          "id": "repeatability",
+          "title": "Przypięte narzędzia i ponowna budowa ze wskazanego profilu",
+          "weight": 3,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "id": "reports",
+          "title": "Osobne wyniki zadania, logi i raport z sumami kontrolnymi",
+          "weight": 2,
+          "status": "complete",
+          "evidence": [
+            "maxkompilator/engine.py zapisuje raporty per run, logi i SHA-256; tests/test_engine.py: test_build_json_stdout_is_single_report i test_nonzero_exit_is_logged_and_reported — PASS"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reliability",
+      "title": "Niezawodność i kwalifikacja wydań",
+      "weight": 10,
+      "items": [
+        {
+          "id": "failures",
+          "title": "Błędy, timeout i anulowanie nie zwracają fałszywego sukcesu",
+          "weight": 3,
+          "status": "complete",
+          "evidence": [
+            "tests/test_engine.py: test_zero_exit_without_artifact_is_failure, test_running_process_can_be_cancelled, test_process_timeout, test_failed_smoke_is_not_reported_as_success — PASS"
+          ]
+        },
+        {
+          "id": "paths",
+          "title": "Ścieżki ze spacjami, Unicode i kontrola granic wejścia/wyjścia",
+          "weight": 2,
+          "status": "complete",
+          "evidence": [
+            "tests/test_detection.py: test_explicit_entry_cannot_escape_project; tests/test_engine.py: test_output_cannot_overwrite_project_root_or_parent; rzeczywisty GUI smoke ze spacjami i Unicode — PASS"
+          ]
+        },
+        {
+          "id": "integration",
+          "title": "Automatyczne testy integracyjne na znanych projektach",
+          "weight": 3,
+          "status": "complete",
+          "evidence": [
+            "tests/test_engine.py: integracja CLI, rzeczywista budowa PYZ, zasoby i test uruchomienia; scripts/gui_smoke.py: integracja GUI z podprocesami — lokalnie PASS"
+          ]
+        },
+        {
+          "id": "release-gate",
+          "title": "Wydanie Windows przechodzi obowiązkową kwalifikację w CI",
+          "weight": 2,
+          "status": "in_progress",
+          "evidence": [
+            ".github/workflows/ci.yml i scripts/build_windows.py są przygotowane; kwalifikacja wydania Windows wymaga rzeczywistego wykonania"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "runners",
+      "title": "Wykonawcy Linux i macOS",
+      "weight": 4,
+      "items": [
+        {
+          "id": "targets",
+          "title": "Jawna zgodność systemu i architektury z planem zadania",
+          "weight": 1,
+          "status": "complete",
+          "evidence": [
+            "tests/test_adapters.py: test_pyinstaller_rejects_cross_os_and_architecture oraz test_dotnet_windows_desktop_rejects_linux_target — PASS; jawny wybór celów zamiast pozornej kompilacji między systemami"
+          ]
+        },
+        {
+          "id": "linux",
+          "title": "Budowa i uruchomienie wyniku na wykonawcy Linux",
+          "weight": 1,
+          "status": "complete",
+          "evidence": [
+            "Rzeczywisty program Linux x86_64 z PyInstaller 6.22.3 zbudowany i uruchomiony z zasobem; scripts/qualify_native.py — PASS, docs/VALIDATION.md"
+          ]
+        },
+        {
+          "id": "remote-contract",
+          "title": "Zaimplementowany protokół zdalnego wykonawcy i jego możliwości",
+          "weight": 1,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "id": "macos",
+          "title": "Budowa i uruchomienie wyniku na wykonawcy macOS",
+          "weight": 1,
+          "status": "in_progress",
+          "evidence": [
+            ".github/workflows/ci.yml zawiera zadania macOS; brak potwierdzonej budowy i uruchomienia na macOS"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "extensions",
+      "title": "Rozszerzalność i kolejne architektury",
+      "weight": 2,
+      "items": [
+        {
+          "id": "adapter-api",
+          "title": "Udokumentowany i sprawdzony kontrakt dodatkowego adaptera",
+          "weight": 1,
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "id": "architectures",
+          "title": "Jawna macierz dodatkowych architektur z testem wyboru celu",
+          "weight": 1,
+          "status": "pending",
+          "evidence": []
+        }
+      ]
+    }
+  ],
+  "future": [
+    "Dodatkowe adaptery: C/C++, Rust, Go, Java, Flutter, Electron i Tauri",
+    "Rozszerzenia przeglądarek, VSIX, Godot i kolejne silniki gier",
+    "Instalatory MSI, MSIX, AppImage, DEB, RPM, DMG i PKG",
+    "Menedżer środowisk, kolejka wielu projektów, usługa API/MCP i podpisywanie wydań"
+  ]
+}

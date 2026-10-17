@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUTF8: '1'
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  core:
+    name: Core / ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ['3.11', '3.13']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install the package
+        run: python -m pip install -c constraints-ci.txt .
+      - name: Unit and integration tests
+        run: python -m unittest discover -s tests -v
+      - name: Check measurable roadmap
+        run: python scripts/update_progress.py --check
+      - name: Build and run a real PYZ
+        run: python -m maxkompilator build examples/hello-python --format zipapp --smoke-test --json
+
+  native-python:
+    name: Native Python / ${{ matrix.os }}
+    needs: core
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.12'
+      - name: Install the native builder
+        run: python -m pip install -c constraints-ci.txt ".[freeze]"
+      - name: Build and run native example with a resource
+        run: python -m maxkompilator build examples/hello-python --format executable --smoke-test --json
+      - name: Qualify runtime and checksum
+        run: python scripts/qualify_native.py examples/hello-python/dist/maxkompilator/build-report.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: native-example-${{ matrix.os }}
+          path: |
+            examples/hello-python/dist/maxkompilator/runs/
+            examples/hello-python/dist/maxkompilator/build-report.json
+            examples/hello-python/dist/maxkompilator/native-qualification.json
+          if-no-files-found: error
+          retention-days: 14
+
+  desktop-windows:
+    name: Windows desktop bundle
+    needs: core
+    runs-on: windows-latest
+    timeout-minutes: 25
+    env:
+      QT_QPA_PLATFORM: offscreen
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.12'
+      - name: Install GUI and build dependencies
+        run: python -m pip install -c constraints-ci.txt ".[gui,freeze]" build
+      - name: Exercise actual GUI and CLI processes
+        run: python scripts/gui_smoke.py --screenshot build/gui-smoke.png
+      - name: Build the Windows application and console worker
+        run: python scripts/build_windows.py
+      - name: Check packaged worker
+        run: .\dist\Maxkompilator\MaxkompilatorCLI.exe --cli inspect .\examples\hello-python --json
+      - name: Build and run PYZ through packaged worker
+        run: .\dist\Maxkompilator\MaxkompilatorCLI.exe --cli build .\examples\hello-python --format zipapp --smoke-test --json
+      - name: Build source and wheel distributions
+        run: python -m build
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: Maxkompilator-Windows-x64-dev
+          path: |
+            dist/Maxkompilator/
+            dist/*.whl
+            dist/*.tar.gz
+            build/gui-smoke.png
+          if-no-files-found: error
+          retention-days: 14

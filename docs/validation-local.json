@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-17T11:14:54.571031+00:00",
+  "version": "0.1.0.dev1",
+  "environment": {
+    "system": "Linux",
+    "machine": "x86_64",
+    "python": "3.12.14",
+    "pyinstaller": "6.22.3",
+    "pyside6": "6.12.0",
+    "qt_mode": "offscreen"
+  },
+  "unit_and_integration": {
+    "command": "python -m unittest discover -s tests -v",
+    "status": "passed",
+    "tests": 80,
+    "duration_seconds": 2.481
+  },
+  "gui": {
+    "command": "python scripts/gui_smoke.py",
+    "status": "passed",
+    "groups": 7,
+    "duration_seconds": 1.202,
+    "cancellation_seconds": 0.156,
+    "descendant_stopped": true,
+    "platform_qualification": "Linux offscreen; Windows frozen GUI not yet qualified"
+  },
+  "installed_wheel": {
+    "status": "passed",
+    "version": "Maxkompilator 0.1.0.dev1",
+    "installed_outside_source": true,
+    "icon_packaged": true,
+    "zipapp_build_and_runtime": "passed",
+    "wheel_sha256": "9853170c68fdf187f509b69df101fb1afa4e6894ad5005b61c9ed4e37b7d3635"
+  },
+  "zipapp": {
+    "status": "built",
+    "smoke_test": "passed",
+    "artifact": "hello-python.pyz",
+    "sha256": "c8d975a6ea03580a44a96301e36ff7bfe4ff76416d67b8958d0281f557c8177a",
+    "requires_python": true
+  },
+  "native_python": {
+    "status": "passed",
+    "sha256": "b0a56d501f6d26093231bd15c7cceddfe20161b27b7246c9354070ae9c56b208",
+    "format": "elf-x64",
+    "outside_source": true,
+    "python_environment_removed": true,
+    "stdout": "Maxkompilator: build and resource check OK"
+  },
+  "native_build": {
+    "run_id": "97538f31331547f09f90a5618894965c",
+    "status": "built",
+    "target": "linux-x64",
+    "artifact_directory_layout": "BASE/runs/RUN_ID",
+    "duration_seconds": 6.813
+  },
+  "not_qualified": [
+    "Windows executable or frozen GUI",
+    "Android APK/AAB on actual SDK or device",
+    "dotnet publish or runtime",
+    "macOS native build/runtime",
+    "remote runners"
+  ],
+  "frozen_cli": {
+    "status": "passed",
+    "platform": "linux-x64",
+    "worker_sha256": "43c9bbdd048722f6cb0fdbbbf2aaffab6ffbc1cf6d97bdb14e8f0189b5c2196b",
+    "frozen_worker": true,
+    "zipapp_build_and_runtime": "passed",
+    "external_python_and_pyinstaller_probe": "passed",
+    "command": "MaxkompilatorCLI --cli build examples/hello-python --format zipapp --smoke-test --json"
+  }
+}

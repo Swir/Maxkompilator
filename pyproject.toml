@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maxkompilator"
+version = "0.1.0.dev1"
+description = "Project-aware build workbench for Windows, Android, Linux and macOS, by Swir"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "Swir"}]
+dependencies = []
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development :: Build Tools",
+]
+
+[project.optional-dependencies]
+gui = ["PySide6>=6.7,<7"]
+freeze = ["pyinstaller>=6.16,<7"]
+
+[project.scripts]
+maxkompilator = "maxkompilator.cli:main"
+
+[project.gui-scripts]
+maxkompilator-gui = "maxkompilator.gui:launch_gui"
+
+[project.urls]
+Homepage = "https://github.com/Swir/Maxkompilator"
+Issues = "https://github.com/Swir/Maxkompilator/issues"
+
+[tool.setuptools.packages.find]
+include = ["maxkompilator*"]
+
+[tool.setuptools.package-data]
+maxkompilator = ["assets/*.svg"]

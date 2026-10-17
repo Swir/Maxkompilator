@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">Maxkompilator — by Swir</title>
+  <desc id="description">Oryginalny niebieski monogram M z geometrycznymi ścieżkami na ciemnym, zaokrąglonym tle.</desc>
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#163254"/>
+      <stop offset="0.52" stop-color="#0f2037"/>
+      <stop offset="1" stop-color="#080f1e"/>
+    </linearGradient>
+    <linearGradient id="monogram" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#a7e5ff"/>
+      <stop offset="0.42" stop-color="#58adff"/>
+      <stop offset="1" stop-color="#2864df"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#639ddd"/>
+      <stop offset="0.45" stop-color="#264a78"/>
+      <stop offset="1" stop-color="#173255"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="496" height="496" rx="110" fill="url(#tile)"/>
+  <rect x="21" y="21" width="470" height="470" rx="97" fill="none" stroke="url(#rim)" stroke-width="3"/>
+  <path d="M74 155V116a30 30 0 0 1 30-30h54M354 86h54a30 30 0 0 1 30 30v39M74 358v38a30 30 0 0 0 30 30h54M354 426h54a30 30 0 0 0 30-30v-38" fill="none" stroke="#2d578b" stroke-width="9" stroke-linecap="round"/>
+  <path d="M111 359V153h53l92 112 92-112h53v206h-59V247l-67 81h-38l-67-81v112z" fill="#030a15" opacity="0.38" transform="translate(0 13)"/>
+  <path d="M111 348V142h53l92 112 92-112h53v206h-59V236l-67 81h-38l-67-81v112z" fill="url(#monogram)"/>
+  <path d="M123 156h34l99 120 99-120h34" fill="none" stroke="#c1efff" stroke-width="5" stroke-linejoin="round" opacity="0.55"/>
+  <path d="M204 388h104" fill="none" stroke="#4e9bff" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="178" cy="388" r="6" fill="#78c6ff"/>
+  <circle cx="334" cy="388" r="6" fill="#78c6ff"/>
+</svg>

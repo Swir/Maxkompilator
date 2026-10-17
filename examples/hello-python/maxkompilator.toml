@@ -1,0 +1,10 @@
+[project]
+kind = "python"
+entry = "main.py"
+
+[build]
+format = "zipapp"
+target = "native"
+
+[python]
+data = ["hello/message.json"]

@@ -213,7 +213,7 @@ python -m unittest discover -s tests -v
 python scripts/update_progress.py --check
 ```
 
-**Lokalnie: 75/75 testów rdzenia i integracji PASS; GUI: 7/7 grup PASS.** Opis przebiegu i ograniczeń znajduje się w [docs/VALIDATION.md](docs/VALIDATION.md). GUI można sprawdzić bez pulpitu, po zainstalowaniu dodatku `gui`:
+**Lokalnie: 80/80 testów rdzenia i integracji PASS; GUI: 7/7 grup PASS.** Opis przebiegu i ograniczeń znajduje się w [docs/VALIDATION.md](docs/VALIDATION.md). GUI można sprawdzić bez pulpitu, po zainstalowaniu dodatku `gui`:
 
 ```bash
 python scripts/gui_smoke.py --screenshot build/gui-smoke.png
