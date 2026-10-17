@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "run_id": 39028988975,
+  "source_commit": "aea4aa811f139edab7b167ab86f1518a283a7302",
+  "url": "https://github.com/Swir/Maxkompilator/actions/runs/39028988975",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 117385484154,
+      "name": "Core / ubuntu-latest / Python 3.13",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385484154"
+    },
+    {
+      "id": 117385484318,
+      "name": "Core / macos-latest / Python 3.11",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385484318"
+    },
+    {
+      "id": 117385484353,
+      "name": "Core / macos-latest / Python 3.13",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385484353"
+    },
+    {
+      "id": 117385484391,
+      "name": "Core / windows-latest / Python 3.13",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385484391"
+    },
+    {
+      "id": 117385484411,
+      "name": "Core / ubuntu-latest / Python 3.11",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385484411"
+    },
+    {
+      "id": 117385484444,
+      "name": "Core / windows-latest / Python 3.11",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385484444"
+    },
+    {
+      "id": 117385587229,
+      "name": "Native Python / macos-latest",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587229"
+    },
+    {
+      "id": 117385587290,
+      "name": "Native Python / windows-latest",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587290"
+    },
+    {
+      "id": 117385587311,
+      "name": "Native Python / ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587311"
+    },
+    {
+      "id": 117385587321,
+      "name": "Windows desktop bundle",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587321"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12099935907,
+      "name": "native-example-ubuntu-latest",
+      "size_in_bytes": 19841977,
+      "digest": "sha256:5512c8d23602d23eafda649547c720aa32c3da2f921f602858221edbd5f5a591",
+      "expires_at": "2026-10-31T11:31:49Z",
+      "api_url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12099935907"
+    },
+    {
+      "id": 12099418546,
+      "name": "Maxkompilator-Windows-x64-dev",
+      "size_in_bytes": 54090240,
+      "digest": "sha256:4c7d50f97276e9a94551e0e565ccca5c4cd654b68fc80355808fd2b0a16d4af2",
+      "expires_at": "2026-10-31T11:32:45Z",
+      "api_url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12099418546"
+    },
+    {
+      "id": 12099412044,
+      "name": "native-example-macos-latest",
+      "size_in_bytes": 7217509,
+      "digest": "sha256:240f345ac57fd8f98569182cabff0768a60f0cb6154bd36207dc12c491ac53ab",
+      "expires_at": "2026-10-31T11:31:47Z",
+      "api_url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12099412044"
+    },
+    {
+      "id": 12099174145,
+      "name": "native-example-windows-latest",
+      "size_in_bytes": 7995708,
+      "digest": "sha256:e41c02532945d134b30f76649342fffb449d9f19d6ae8e9ff4e41b5767aa856f",
+      "expires_at": "2026-10-31T11:32:12Z",
+      "api_url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12099174145"
+    }
+  ],
+  "qualification": [
+    {
+      "job_id": 117385587229,
+      "messages": [
+        "Successfully built maxkompilator"
+      ],
+      "results": [
+        {
+          "status": "built",
+          "kind": "python",
+          "target": "macos-arm64",
+          "smoke": "passed",
+          "artifacts": 47
+        },
+        {
+          "status": "passed",
+          "sha256": "47d2993aaebf1673e81af616c23c819a01286d70c775c8a0edefbcdbe5e75cd7",
+          "format": "mach-o",
+          "outside_source": true,
+          "python_environment_removed": true,
+          "stdout": "Maxkompilator: build and resource check OK",
+          "archive": {
+            "path": "examples/hello-python/dist/maxkompilator/native-example-macos-arm64.tar.gz",
+            "sha256": "d1c1b2024316531c5344d2ea77ce06e5e7a882acad61dc03ea3e021e91d1e253",
+            "size_bytes": 7269885,
+            "validated": true,
+            "members": 59,
+            "symlinks_preserved": 4,
+            "posix_permissions_checked": true,
+            "binary_sha256_checked": true,
+            "artifact_role": "development"
+          }
+        }
+      ]
+    },
+    {
+      "job_id": 117385587290,
+      "messages": [
+        "Successfully built maxkompilator"
+      ],
+      "results": [
+        {
+          "status": "built",
+          "kind": "python",
+          "target": "win-x64",
+          "smoke": "passed",
+          "artifacts": 56
+        },
+        {
+          "status": "passed",
+          "sha256": "e9a87d7f865745f02aeca29cb6a7a98333b2692085113833218fa0a5b14222cd",
+          "format": "pe-x64",
+          "outside_source": true,
+          "python_environment_removed": true,
+          "stdout": "Maxkompilator: build and resource check OK",
+          "archive": {
+            "path": "examples\\hello-python\\dist\\maxkompilator\\native-example-win-x64.tar.gz",
+            "sha256": "594955f403a8dc6c7477e70f77d004b8ebf4a8591c32cc93a25ef1b87de522f2",
+            "size_bytes": 8029204,
+            "validated": true,
+            "members": 61,
+            "symlinks_preserved": 0,
+            "posix_permissions_checked": false,
+            "binary_sha256_checked": true,
+            "artifact_role": "development"
+          }
+        }
+      ]
+    },
+    {
+      "job_id": 117385587311,
+      "messages": [
+        "Successfully built maxkompilator"
+      ],
+      "results": [
+        {
+          "status": "built",
+          "kind": "python",
+          "target": "linux-x64",
+          "smoke": "passed",
+          "artifacts": 46
+        },
+        {
+          "status": "passed",
+          "sha256": "8a01e5e291672c832843561376381864bbc2c37a06b6ce60b375ab192458713d",
+          "format": "elf-x64",
+          "outside_source": true,
+          "python_environment_removed": true,
+          "stdout": "Maxkompilator: build and resource check OK",
+          "archive": {
+            "path": "examples/hello-python/dist/maxkompilator/native-example-linux-x64.tar.gz",
+            "sha256": "34e77c42d2ad2e0847c078bf7e18522204abae8105e8b59fcefd7e5187988415",
+            "size_bytes": 19956772,
+            "validated": true,
+            "members": 53,
+            "symlinks_preserved": 0,
+            "posix_permissions_checked": true,
+            "binary_sha256_checked": true,
+            "artifact_role": "development"
+          }
+        }
+      ]
+    },
+    {
+      "job_id": 117385587321,
+      "messages": [
+        "Successfully built maxkompilator",
+        "PASS initial_window_icon_and_controls",
+        "PASS inspect_and_plan_unicode_path_auto_defaults",
+        "PASS environment_doctor_and_smoke_flag_scoping",
+        "PASS zipapp_build_real_runtime_and_persisted_report",
+        "PASS open_results_and_copy_log_buttons",
+        "PASS cancel_button_stops_running_build",
+        "PASS cancelled_worker_and_descendant_are_stopped",
+        "Maxkompilator 0.1.0.dev1",
+        "Successfully built maxkompilator-0.1.0.dev1.tar.gz and maxkompilator-0.1.0.dev1-py3-none-any.whl"
+      ],
+      "results": [
+        {
+          "status": "passed",
+          "checks": [
+            "initial_window_icon_and_controls",
+            "inspect_and_plan_unicode_path_auto_defaults",
+            "environment_doctor_and_smoke_flag_scoping",
+            "zipapp_build_real_runtime_and_persisted_report",
+            "open_results_and_copy_log_buttons",
+            "cancel_button_stops_running_build",
+            "cancelled_worker_and_descendant_are_stopped"
+          ],
+          "duration_seconds": 1.422,
+          "cancellation_seconds": 0.156,
+          "error": null
+        },
+        {
+          "status": "built",
+          "kind": "python",
+          "target": "python",
+          "smoke": "passed",
+          "artifacts": 1
+        }
+      ]
+    },
+    {
+      "job_id": 117385484318,
+      "messages": [
+        "Successfully built maxkompilator",
+        "Ran 84 tests in 2.654s",
+        "OK (skipped=1)"
+      ],
+      "results": [
+        {
+          "status": "built",
+          "kind": "python",
+          "target": "python",
+          "smoke": "passed",
+          "artifacts": 1
+        }
+      ]
+    },
+    {
+      "job_id": 117385484444,
+      "messages": [
+        "Successfully built maxkompilator",
+        "Ran 84 tests in 3.437s",
+        "OK (skipped=2)"
+      ],
+      "results": [
+        {
+          "status": "built",
+          "kind": "python",
+          "target": "python",
+          "smoke": "passed",
+          "artifacts": 1
+        }
+      ]
+    },
+    {
+      "job_id": 117385484411,
+      "messages": [
+        "Successfully built maxkompilator",
+        "Ran 84 tests in 1.773s",
+        "OK"
+      ],
+      "results": [
+        {
+          "status": "built",
+          "kind": "python",
+          "target": "python",
+          "smoke": "passed",
+          "artifacts": 1
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Hosted runners include Python; cleaned PATH is not a pristine machine without Python.",
+    "Windows GUI was exercised from source; the packaged console worker built and ran PYZ. Packaged GUI reopen and interactive desktop qualification remain pending.",
+    "Android SDK/device and dotnet publish were not exercised by this workflow.",
+    "Archives are development artifacts, without release signing or notarization."
+  ]
+}

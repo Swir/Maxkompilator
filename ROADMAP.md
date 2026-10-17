@@ -6,19 +6,23 @@ Zakres v1: wspólny silnik CLI i GUI, lokalne budowanie Python/Windows, Android 
 
 **100% oznacza ukończenie tej listy v1, nie obsługę wszystkich języków świata.** Wagi odzwierciedlają ustalony zakres produktu; nie stanowią prognozy czasu. Zamknięcie większej liczby łatwych zadań nie zwiększa punktacji trudniejszych etapów.
 
-Potwierdzone lokalnie: rozpoznawanie i planowanie trzech technologii, rzeczywiste PYZ i natywne wydanie Linux, podstawowa konfiguracja i raporty, integracja CLI/GUI, anulowanie oraz instalowalny wheel. [Raport walidacji](docs/VALIDATION.md) rozdziela te dowody od przygotowanych recept Android/.NET i oczekującej kwalifikacji Windows/macOS.
+Potwierdzone lokalnie: rozpoznawanie i planowanie trzech technologii, rzeczywiste PYZ i natywne wydanie Linux, podstawowa konfiguracja i raporty, integracja CLI/GUI, anulowanie oraz instalowalny wheel. CI dodatkowo potwierdził natywne przykłady Windows x64, Linux x64 i macOS ARM64, źródłowe GUI Windows oraz zbudowany pakiet Windows z działającym modułem CLI. [Raport walidacji](docs/VALIDATION.md) rozdziela te dowody od otwartej pełnej kwalifikacji spakowanego GUI, komputera bez Pythona i rzeczywistego Androida/.NET.
+
+Fundament CI jest ukończony na podstawie **sześciu udanych zadań Core** dla Linux/Windows/macOS i Pythona 3.11/3.13. Każdy wynik ma odniesienie do konkretnego przebiegu w [docs/CI.md](docs/CI.md). Sam sukces Core nie zamyka oddzielnych kryteriów natywnego EXE, GUI Windows ani uruchomienia na komputerze bez Pythona.
+
+Cały przebieg CI zakończył się sukcesem **10/10 zadań**. Natywny przykład macOS ARM64 przeszedł budowanie, test zasobu, uruchomienie spoza źródeł i walidację archiwum, zamykając `runners.macos` za 1 punkt. Wynik v1 wynosi **55%**; otwarte kryteria Windows zachowują swoje pełne wymagania.
 
 ## Bieżący postęp
 
 <!-- MAXKOMPILATOR:PROGRESS:START -->
 
-**Postęp v1.0: 52% — 52 / 100 pkt.**
+**Postęp v1.0: 55% — 55 / 100 pkt.**
 
 Wynik obejmuje wyłącznie ukończone kryteria z dowodem. Prace w toku nie zwiększają procentu.
 
 | Etap | Waga v1 | Ukończono | Postęp etapu |
 |---|---:|---:|---:|
-| Fundament projektu i CI | 8 pkt | 6 / 8 pkt | 75% |
+| Fundament projektu i CI | 8 pkt | 8 / 8 pkt | 100% |
 | Rozpoznawanie projektu i środowiska | 12 pkt | 12 / 12 pkt | 100% |
 | Python i wydania Windows | 16 pkt | 6 / 16 pkt | 37,5% |
 | Android: APK i AAB | 14 pkt | 2 / 14 pkt | 14,3% |
@@ -26,9 +30,9 @@ Wynik obejmuje wyłącznie ukończone kryteria z dowodem. Prace w toku nie zwię
 | Interfejs desktopowy | 12 pkt | 9 / 12 pkt | 75% |
 | Profile i powtarzalność wyników | 10 pkt | 5 / 10 pkt | 50% |
 | Niezawodność i kwalifikacja wydań | 10 pkt | 8 / 10 pkt | 80% |
-| Wykonawcy Linux i macOS | 4 pkt | 2 / 4 pkt | 50% |
+| Wykonawcy Linux i macOS | 4 pkt | 3 / 4 pkt | 75% |
 | Rozszerzalność i kolejne architektury | 2 pkt | 0 / 2 pkt | 0% |
-| **Łącznie** | **100 pkt** | **52 / 100 pkt** | **52%** |
+| **Łącznie** | **100 pkt** | **55 / 100 pkt** | **55%** |
 
 Źródło: [docs/progress.json](docs/progress.json) · aktualizacja danych: **2026-10-17**.
 
@@ -39,7 +43,7 @@ Wynik obejmuje wyłącznie ukończone kryteria z dowodem. Prace w toku nie zwię
 - [x] **Zakres v1, instrukcje i mierzalne kryteria ukończenia — 2 pkt.** Dowód: README.md i ROADMAP.md: opis zakresu, ograniczeń oraz stałych wag v1. Identyfikator: `foundation.scope`.
 - [x] **Podział silnika, adapterów i wykonawców — 2 pkt.** Dowód: docs/ARCHITECTURE.md: przepływ zadania, granice odpowiedzialności i model wyników. Identyfikator: `foundation.architecture`.
 - [x] **Instalowalny pakiet i działające wejście CLI — 2 pkt.** Dowód: Wheel i sdist zbudowane; wheel zainstalowany bez indeksu i zależności poza repo, CLI/SVG/PYZ z zasobem oraz smoke PASS — docs/VALIDATION.md i docs/validation-local.json. Identyfikator: `foundation.package`.
-- [ ] **Uruchomiony CI z kontrolą jakości i zgodności postępu — 2 pkt.** W toku; punkty zostaną naliczone po spełnieniu kryterium. Identyfikator: `foundation.ci`.
+- [x] **Uruchomiony CI z kontrolą jakości i zgodności postępu — 2 pkt.** Dowód: GitHub Actions run 39028988975 dla commita aea4aa811f139edab7b167ab86f1518a283a7302: sześć zadań Core Linux/Windows/macOS × Python 3.11/3.13 SUCCESS, w tym testy, kontrola roadmapy i rzeczywiste PYZ ze smoke — docs/CI.md; https://github.com/Swir/Maxkompilator/actions/runs/39028988975. Identyfikator: `foundation.ci`.
 
 #### Rozpoznawanie projektu i środowiska — 12 pkt
 
@@ -95,7 +99,7 @@ Wynik obejmuje wyłącznie ukończone kryteria z dowodem. Prace w toku nie zwię
 - [x] **Jawna zgodność systemu i architektury z planem zadania — 1 pkt.** Dowód: tests/test_adapters.py: test_pyinstaller_rejects_cross_os_and_architecture oraz test_dotnet_windows_desktop_rejects_linux_target — PASS; jawny wybór celów zamiast pozornej kompilacji między systemami. Identyfikator: `runners.targets`.
 - [x] **Budowa i uruchomienie wyniku na wykonawcy Linux — 1 pkt.** Dowód: Rzeczywisty program Linux x86_64 z PyInstaller 6.22.3 zbudowany i uruchomiony z zasobem; scripts/qualify_native.py — PASS, docs/VALIDATION.md. Identyfikator: `runners.linux`.
 - [ ] **Zaimplementowany protokół zdalnego wykonawcy i jego możliwości — 1 pkt.** Planowane. Identyfikator: `runners.remote-contract`.
-- [ ] **Budowa i uruchomienie wyniku na wykonawcy macOS — 1 pkt.** W toku; punkty zostaną naliczone po spełnieniu kryterium. Identyfikator: `runners.macos`.
+- [x] **Budowa i uruchomienie wyniku na wykonawcy macOS — 1 pkt.** Dowód: GitHub Actions job 117385587229: rzeczywisty macos-arm64 Mach-O, build/resource/smoke i kwalifikacja spoza źródeł z ograniczonym PATH PASS; archiwum zachowało 4 dowiązania, docs/CI.md i docs/ci-evidence.json; https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587229. Identyfikator: `runners.macos`.
 
 #### Rozszerzalność i kolejne architektury — 2 pkt
 

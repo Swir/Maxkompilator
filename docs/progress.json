@@ -41,9 +41,9 @@
           "id": "ci",
           "title": "Uruchomiony CI z kontrolą jakości i zgodności postępu",
           "weight": 2,
-          "status": "in_progress",
+          "status": "complete",
           "evidence": [
-            ".github/workflows/ci.yml: przygotowano macierze Core, Native Python oraz Windows desktop; brak potwierdzonego uruchomienia GitHub Actions"
+            "GitHub Actions run 39028988975 dla commita aea4aa811f139edab7b167ab86f1518a283a7302: sześć zadań Core Linux/Windows/macOS × Python 3.11/3.13 SUCCESS, w tym testy, kontrola roadmapy i rzeczywiste PYZ ze smoke — docs/CI.md; https://github.com/Swir/Maxkompilator/actions/runs/39028988975"
           ]
         }
       ]
@@ -120,7 +120,7 @@
           "weight": 5,
           "status": "in_progress",
           "evidence": [
-            "scripts/build_windows.py przygotowuje pakiet Windows; rzeczywisty EXE i jego kwalifikacja jeszcze niepotwierdzone"
+            "Job 117385587290: rzeczywisty przykład Windows PE x64 z zasobem i uruchomieniem PASS; pełne kryterium obejmujące profil ikony budowanej aplikacji pozostaje otwarte — docs/CI.md"
           ]
         },
         {
@@ -128,7 +128,9 @@
           "title": "Uruchomienie zbudowanego EXE na Windows bez instalowania Pythona",
           "weight": 5,
           "status": "in_progress",
-          "evidence": []
+          "evidence": [
+            "Job 117385587290: uruchomienie EXE spoza źródeł z ograniczonym PATH PASS; wykonawca ma Pythona, test na czystej maszynie bez Pythona pozostaje otwarty — docs/CI.md"
+          ]
         }
       ]
     },
@@ -246,7 +248,7 @@
           "weight": 3,
           "status": "in_progress",
           "evidence": [
-            ".github/workflows/ci.yml: przygotowano zadanie Windows desktop; lokalny smoke wykonano dotąd tylko na Linux"
+            "Job 117385587321: źródłowe GUI 7/7 grup PASS, zbudowany pakiet EXE i działający spakowany moduł CLI; pełny scenariusz frozen GUI wraz z ponownym otwarciem pozostaje otwarty — docs/CI.md"
           ]
         }
       ]
@@ -330,7 +332,7 @@
           "weight": 2,
           "status": "in_progress",
           "evidence": [
-            ".github/workflows/ci.yml i scripts/build_windows.py są przygotowane; kwalifikacja wydania Windows wymaga rzeczywistego wykonania"
+            "CI run 39028988975: 10/10 zadań SUCCESS, dostępny rozwojowy pakiet Windows; pełna kwalifikacja interaktywnego wydania Windows pozostaje do wykonania — docs/CI.md"
           ]
         }
       ]
@@ -369,9 +371,9 @@
           "id": "macos",
           "title": "Budowa i uruchomienie wyniku na wykonawcy macOS",
           "weight": 1,
-          "status": "in_progress",
+          "status": "complete",
           "evidence": [
-            ".github/workflows/ci.yml zawiera zadania macOS; brak potwierdzonej budowy i uruchomienia na macOS"
+            "GitHub Actions job 117385587229: rzeczywisty macos-arm64 Mach-O, build/resource/smoke i kwalifikacja spoza źródeł z ograniczonym PATH PASS; archiwum zachowało 4 dowiązania, docs/CI.md i docs/ci-evidence.json; https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587229"
           ]
         }
       ]

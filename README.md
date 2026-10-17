@@ -12,21 +12,23 @@ Maxkompilator ma prowadzić od folderu ze źródłami do gotowego programu: rozp
 
 **Status: `0.1.0.dev1` — działający rdzeń i eksperymentalny interfejs desktopowy.** Lokalnie przeszły rzeczywista budowa i uruchomienie PYZ, natywnego programu Linux z zasobem oraz test GUI Qt w trybie offscreen. Pakiet wheel został zainstalowany i sprawdzony poza repozytorium. Szczegóły i granice dowodów opisuje [walidacja](docs/VALIDATION.md).
 
-**Windows EXE, APK/AAB z Android SDK, publikacja .NET oraz wydanie macOS wymagają jeszcze rzeczywistej kwalifikacji.** Implementacja adaptera oznacza możliwość sterowania narzędziem; poprawne działanie jego wyników sprawdzamy osobno na docelowym systemie.
+**CI: 10/10 zadań zakończonych sukcesem.** Sześć sprawdziło rdzeń na Linux/Windows/macOS z Pythonem 3.11 oraz 3.13. Trzy kolejne rzeczywiście zbudowały i uruchomiły natywny przykład z zasobem na **Windows x64, Linux x64 i macOS ARM64**. Zadanie desktopowe zbudowało **pakiet Maxkompilatora dla Windows** i sprawdziło jego spakowany moduł CLI — [wyniki CI](docs/CI.md).
 
-[Roadmapa i procenty](ROADMAP.md) · [Architektura](docs/ARCHITECTURE.md) · [Wyniki walidacji](docs/VALIDATION.md) · [CI i artefakty](https://github.com/Swir/Maxkompilator/actions)
+**Do dalszych testów pozostają:** pełna ścieżka spakowanego GUI Windows wraz z ponownym otwarciem, komputer bez Pythona, APK/AAB z Android SDK oraz rzeczywista publikacja .NET. Wyniki natywne dotyczą sprawdzonego przykładu na wskazanych wykonawcach CI.
+
+[Roadmapa i procenty](ROADMAP.md) · [Architektura](docs/ARCHITECTURE.md) · [Wyniki walidacji](docs/VALIDATION.md) · [Potwierdzone zadania CI](docs/CI.md) · [GitHub Actions](https://github.com/Swir/Maxkompilator/actions)
 
 ## Postęp v1
 
 <!-- MAXKOMPILATOR:PROGRESS:START -->
 
-**Postęp v1.0: 52% — 52 / 100 pkt.**
+**Postęp v1.0: 55% — 55 / 100 pkt.**
 
 Wynik obejmuje wyłącznie ukończone kryteria z dowodem. Prace w toku nie zwiększają procentu.
 
 | Etap | Waga v1 | Ukończono | Postęp etapu |
 |---|---:|---:|---:|
-| Fundament projektu i CI | 8 pkt | 6 / 8 pkt | 75% |
+| Fundament projektu i CI | 8 pkt | 8 / 8 pkt | 100% |
 | Rozpoznawanie projektu i środowiska | 12 pkt | 12 / 12 pkt | 100% |
 | Python i wydania Windows | 16 pkt | 6 / 16 pkt | 37,5% |
 | Android: APK i AAB | 14 pkt | 2 / 14 pkt | 14,3% |
@@ -34,15 +36,26 @@ Wynik obejmuje wyłącznie ukończone kryteria z dowodem. Prace w toku nie zwię
 | Interfejs desktopowy | 12 pkt | 9 / 12 pkt | 75% |
 | Profile i powtarzalność wyników | 10 pkt | 5 / 10 pkt | 50% |
 | Niezawodność i kwalifikacja wydań | 10 pkt | 8 / 10 pkt | 80% |
-| Wykonawcy Linux i macOS | 4 pkt | 2 / 4 pkt | 50% |
+| Wykonawcy Linux i macOS | 4 pkt | 3 / 4 pkt | 75% |
 | Rozszerzalność i kolejne architektury | 2 pkt | 0 / 2 pkt | 0% |
-| **Łącznie** | **100 pkt** | **52 / 100 pkt** | **52%** |
+| **Łącznie** | **100 pkt** | **55 / 100 pkt** | **55%** |
 
 Źródło: [docs/progress.json](docs/progress.json) · aktualizacja danych: **2026-10-17**.
 
 <!-- MAXKOMPILATOR:PROGRESS:END -->
 
 **100% oznacza ukończenie opisanej wersji v1.** Dodatkowe języki, instalatory i integracje mają osobne plany rozwoju. Procent nie jest oceną czasu pozostałego do premiery.
+
+## Pobierz Maxkompilator dla Windows do testów
+
+1. Otwórz [zielony przebieg CI 39028988975](https://github.com/Swir/Maxkompilator/actions/runs/39028988975) w **Actions**.
+2. W sekcji **Artifacts** wybierz **`Maxkompilator-Windows-x64-dev`**.
+3. Wypakuj całe pobrane archiwum i przejdź do folderu `dist/Maxkompilator` zawierającego oba EXE.
+4. Zachowaj razem **`Maxkompilator.exe`, `MaxkompilatorCLI.exe` i `_internal`**. Uruchom **`Maxkompilator.exe`**.
+
+Rozmiar artefaktu zgłoszony przez GitHub: **54 090 240 bajtów, około 51,6 MiB**. Termin przechowywania tego artefaktu: **2026-10-31**. Artefakty `native-example-*` zawierają małe aplikacje testowe; do uruchomienia samego narzędzia wybierz `Maxkompilator-Windows-x64-dev`.
+
+Pakiet powstał w rzeczywistym zadaniu Windows. Źródłowe GUI zaliczyło 7 grup testów, a spakowany moduł konsolowy rozpoznał projekt, zbudował PYZ i uruchomił wynik. Interaktywna próba pełnego spakowanego okna i jego ponownego otwarcia pozostaje następnym testem.
 
 ## Zakres pierwszej implementacji
 
@@ -51,7 +64,7 @@ Wynik obejmuje wyłącznie ukończone kryteria z dowodem. Prace w toku nie zwię
 | Python | Skrypt `.py` lub folder projektu | `.pyz` przez zipapp; natywna aplikacja przez PyInstaller | Python 3.11+; PyInstaller i zależności aplikacji dla pakowania natywnego |
 | Android | Projekt Gradle z konfiguracją aplikacji | Debug `.apk` lub `.aab` | Zgodne JDK, Android SDK, konfiguracja Gradle i dostępne zależności projektu |
 | .NET | Projekt `.csproj` | Katalog wynikowy `dotnet publish` | SDK .NET zgodne z projektem i jego biblioteki |
-| GUI Maxkompilatora | Opcjonalny interfejs desktopowy | Wybór projektu, diagnostyka, plan, budowanie, logi i anulowanie | PySide6; test offscreen na Linux zaliczony, Windows oczekuje kwalifikacji |
+| GUI Maxkompilatora | Opcjonalny interfejs desktopowy | Wybór projektu, diagnostyka, plan, budowanie, logi i anulowanie | Źródłowe GUI sprawdzone offscreen na Linux i Windows; pełny test spakowanego okna pozostaje otwarty |
 
 Kompletna obsługa C/C++, Rust, Go, Java, Flutter, Electron/Tauri, rozszerzeń i silników gier jest **planowana**. Własny protokół zdalnych wykonawców Linux/macOS również należy do dalszych prac. Docelowy wspólny interfejs będzie sterował środowiskami rzeczywiście podłączonymi do programu.
 
@@ -77,7 +90,7 @@ Powyższe polecenia instalują Maxkompilator. SDK Androida, SDK .NET oraz zależ
 
 ![Maxkompilator — działające GUI po budowie PYZ](docs/images/gui.png)
 
-Rzeczywiste okno po budowie i uruchomieniu PYZ podczas testu **Linux, Qt 6.12, offscreen**. Test Windows pozostaje do wykonania.
+Rzeczywiste okno po budowie i uruchomieniu PYZ podczas testu **Linux, Qt 6.12, offscreen**. Wyniki odrębnego testu źródłowego GUI na Windows są zapisane w [docs/CI.md](docs/CI.md).
 
 ### Rozpoznanie i sprawdzenie projektu
 
@@ -124,7 +137,7 @@ python -m maxkompilator build ./projekt --kind python --entry main.py --target n
 
 Pierwszy adapter PyInstaller tworzy **katalog aplikacji**. Zachowaj całą jego zawartość, łącznie z bibliotekami. Na Windows wynik zawiera EXE, na Linux program natywny; wybranie rozszerzenia pliku nie zmienia systemu budowania.
 
-`--python` pozwala wskazać interpreter przeznaczony do budowania. Diagnostyka sprawdza jego system i architekturę; cel musi odpowiadać interpreterowi i wykonawcy. Działający natywny przykład został dotąd zakwalifikowany na Linux x86_64.
+`--python` pozwala wskazać interpreter przeznaczony do budowania. Diagnostyka sprawdza jego system i architekturę; cel musi odpowiadać interpreterowi i wykonawcy. Natywny przykład przeszedł budowanie, test zasobu i uruchomienie spoza źródeł na Linux x64, Windows x64 oraz macOS ARM64 w CI.
 
 Początkowy adapter Android wymaga modułu aplikacji o nazwie `app` i wrappera Gradle w katalogu projektu:
 
@@ -213,7 +226,7 @@ python -m unittest discover -s tests -v
 python scripts/update_progress.py --check
 ```
 
-**Lokalnie: 84/84 testów rdzenia i integracji PASS; GUI: 7/7 grup PASS.** Opis przebiegu i ograniczeń znajduje się w [docs/VALIDATION.md](docs/VALIDATION.md). GUI można sprawdzić bez pulpitu, po zainstalowaniu dodatku `gui`:
+**Lokalnie na Linux: 84/84 testów rdzenia i integracji PASS; GUI: 7/7 grup PASS.** Wszystkie dziesięć zadań CI również przeszło. Odczytane logi Core z Pythonem 3.11 wykazały: Linux 84 zaliczone, macOS 83 zaliczone i 1 pominięty, Windows 82 zaliczone i 2 pominięte testy. Wyniki i reguły pomijania opisują [docs/VALIDATION.md](docs/VALIDATION.md) oraz [docs/CI.md](docs/CI.md). GUI można sprawdzić bez pulpitu, po zainstalowaniu dodatku `gui`:
 
 ```bash
 python scripts/gui_smoke.py --screenshot build/gui-smoke.png
@@ -228,7 +241,7 @@ python scripts/qualify_native.py examples/hello-python/dist/maxkompilator/build-
 
 Kwalifikacja porównuje SHA-256 i uruchamia aplikację z innego katalogu, przy usuniętych `PYTHONPATH`/`PYTHONHOME` i ograniczonym `PATH`. To test konkretnego przykładu na bieżącym systemie. Skrypt tworzy też `native-example-TARGET.tar.gz`, zachowując uprawnienia uruchamiania i dowiązania symboliczne programu.
 
-Konfiguracja CI zawiera macierz rdzenia dla Linux/Windows/macOS z Pythonem 3.11 i 3.13, natywne budowanie Python dla trzech systemów oraz pakiet desktopowy Windows. Sam plik workflow nie potwierdza, że te zadania zostały już wykonane; wyniki weryfikujemy w [GitHub Actions](https://github.com/Swir/Maxkompilator/actions).
+CI obejmuje macierz rdzenia dla Linux/Windows/macOS z Pythonem 3.11 i 3.13, natywne budowanie Python dla trzech systemów oraz pakiet desktopowy Windows. Cały [przebieg 39028988975](https://github.com/Swir/Maxkompilator/actions/runs/39028988975) zakończył się sukcesem: **10/10 zadań**. [docs/CI.md](docs/CI.md) zapisuje wynik każdej grupy dla konkretnego commita i rozróżnia testy źródłowego GUI, zbudowanego modułu konsolowego oraz aplikacji na czystym komputerze.
 
 ### Przygotowanie pakietu Maxkompilatora dla Windows
 
@@ -239,7 +252,7 @@ python -m pip install -c constraints-ci.txt ".[gui,freeze]"
 python scripts/build_windows.py
 ```
 
-Przygotowany format dystrybucji to folder `dist/Maxkompilator` zawierający **`Maxkompilator.exe`, `MaxkompilatorCLI.exe` oraz wspólny katalog `_internal`**. Cały folder musi pozostać razem. Pierwszy plik otwiera GUI, drugi obsługuje zadania konsolowe. Pakiet Windows oczekuje rzeczywistej budowy i kwalifikacji; bieżący lokalny test Linux go nie zastępuje.
+Zbudowany format dystrybucji to folder `dist/Maxkompilator` zawierający **`Maxkompilator.exe`, `MaxkompilatorCLI.exe` oraz wspólny katalog `_internal`**. Cały folder musi pozostać razem. Pierwszy plik otwiera GUI, drugi obsługuje zadania konsolowe. Pakiet Windows powstał w CI, a jego moduł CLI zaliczył rozpoznawanie projektu i prawdziwe budowanie PYZ ze smoke. Pełny scenariusz spakowanego GUI i jego ponownego otwarcia pozostaje do sprawdzenia.
 
 SDK używane do budowania cudzych projektów pozostają odrębnymi narzędziami. Przykładowo budowanie aplikacji Python przez zapakowanego Maxkompilatora wymaga dostępnego interpretera budowania i PyInstallera, wskazywanego w razie potrzeby przez `--python`.
 
