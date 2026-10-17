@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "version": "0.1.0.dev2",
+  "date": "2026-10-17",
+  "environment": {
+    "os": "Linux",
+    "architecture": "x64",
+    "python": "3.12.14",
+    "qt": "6.12.0",
+    "qt_platform": "offscreen"
+  },
+  "unit_tests": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "status": "passed",
+    "tests_run": 84,
+    "failures": 0,
+    "skipped": 0,
+    "duration_seconds": 2.631
+  },
+  "source_gui": {
+    "status": "passed",
+    "checks": [
+      "initial_window_icon_and_controls",
+      "inspect_and_plan_unicode_path_auto_defaults",
+      "environment_doctor_and_smoke_flag_scoping",
+      "zipapp_build_real_runtime_and_persisted_report",
+      "open_results_and_copy_log_buttons",
+      "cancel_button_stops_running_build",
+      "cancelled_worker_and_descendant_are_stopped"
+    ],
+    "duration_seconds": 1.051,
+    "cancellation_seconds": 0.15,
+    "note": "Source GUI test used the original high-resolution artwork before its desktop-size export."
+  },
+  "installed_wheel_gui": {
+    "status": "passed",
+    "checks": [
+      "initial_window_icon_and_controls",
+      "inspect_and_plan_unicode_path_auto_defaults",
+      "environment_doctor_and_smoke_flag_scoping",
+      "zipapp_build_real_runtime_and_persisted_report",
+      "open_results_and_copy_log_buttons",
+      "cancel_button_stops_running_build",
+      "cancelled_worker_and_descendant_are_stopped"
+    ],
+    "duration_seconds": 1.003,
+    "cancellation_seconds": 0.15,
+    "worker_count": 5,
+    "worker_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      130
+    ],
+    "imported_from_installed_wheel_outside_checkout": true,
+    "unrelated_working_directory": true,
+    "window_closed": true
+  },
+  "icon": {
+    "path": "assets/maxkompilator.png",
+    "width": 512,
+    "height": 512,
+    "transparent": true,
+    "sha256": "03ee456da8263cf1ed476a05c60d719948aaf41f8d81316798b73717893f381a",
+    "package_copy_identical": true,
+    "ico_sizes": [
+      16,
+      24,
+      32,
+      48,
+      64,
+      128,
+      256
+    ],
+    "ico_frames_validated": true
+  },
+  "distributions": [
+    {
+      "filename": "maxkompilator-0.1.0.dev2-py3-none-any.whl",
+      "sha256": "0fd99c2202802836973994bf933ebd0501a4bec10ac40fe0ff5d6cbcd92afdfa",
+      "size_bytes": 389222
+    },
+    {
+      "filename": "maxkompilator-0.1.0.dev2.tar.gz",
+      "sha256": "faec81c3ca51adea9b0154ba50f7b9f76dffeb65016decf191bbccf0bebb528d",
+      "size_bytes": 770890
+    }
+  ],
+  "distribution_checks": {
+    "wheel_contains_png": true,
+    "sdist_contains_root_and_runtime_png": true,
+    "bundled_qualification_module_present": true
+  },
+  "screenshot": {
+    "path": "docs/images/gui.png",
+    "sha256": "48d7786b48e74a8dc82acbc0f1e2d16f388fbe5584e0c9d36768168263ba1d2b",
+    "scope": "Actual installed-wheel GUI on Linux after a PYZ build and runtime check."
+  },
+  "limitations": [
+    "This record does not qualify the Windows GUI executable.",
+    "Actual Windows CI evidence is tracked separately in docs/CI.md.",
+    "The runner has Python installed; a clean Windows machine without Python is a separate gate."
+  ]
+}

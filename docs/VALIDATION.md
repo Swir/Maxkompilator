@@ -1,59 +1,77 @@
-# Walidacja — 0.1.0.dev1
+# Validation records
 
-**Data: 2026-10-17.** Ten zapis rozdziela lokalną kwalifikację Linux od wyników GitHub Actions. Cały [przebieg 39028988975](https://github.com/Swir/Maxkompilator/actions/runs/39028988975) dla commita `aea4aa811f139edab7b167ab86f1518a283a7302` zakończył się sukcesem: **10/10 zadań**. Obejmuje sześć zadań Core, trzy natywne przykłady i pakiet desktopowy Windows. Bezpośrednie dowody i granice sprawdzeń są zapisane w [CI.md](CI.md) i [ci-evidence.json](ci-evidence.json).
+## Current local validation — 0.1.0.dev2
 
-Środowisko lokalnej kwalifikacji: **Linux x86_64, glibc 2.39, Python 3.12.14**. Natywne pakowanie wykonano przez **PyInstaller 6.22.3**; GUI sprawdzono z **PySide6/Qt 6.12.0** w trybie `offscreen`. Test offscreen uruchamia rzeczywiste okno, jego logikę i podprocesy, ale nie zastępuje interaktywnej kwalifikacji zbudowanego GUI na Windows.
+**Checked on 2026-10-17.** The refreshed application, English documentation and rebuilt Python distribution were checked locally on Linux. The detailed record is [validation-dev2.json](validation-dev2.json).
 
-Skrócone wyniki zapisano również w [validation-local.json](validation-local.json). Źródła testów i skrypty znajdują się w repozytorium; wygenerowane ścieżki robocze nie są wymagane do odtworzenia opisanych komend.
+| Check | Result | Scope |
+|---|---|---|
+| Engine and integration suite | **84/84 PASS**, 2.631 s | Current source revision, including the English progress generator |
+| Source GUI | **7/7 groups PASS**, 1.051 s; cancellation 0.150 s | Actual Qt window, CLI subprocesses and build workflow in Linux offscreen mode |
+| Installed wheel GUI | **7/7 groups PASS**, 1.003 s; cancellation 0.150 s | Rebuilt `0.1.0.dev2` wheel installed outside the checkout and launched from `/tmp` |
+| Real CLI subprocesses in the installed-wheel test | **PASS**; exit codes `0`, `0`, `0`, `0`, `130` | Four successful operations and the expected cancellation exit code `130` |
+| Python distribution | **Wheel and sdist built successfully** | Installed wheel reports `0.1.0.dev2` and contains the exact application PNG |
 
-## Wyniki lokalne i ich zakres
+The desktop icon export is a **512 × 512 PNG**, **334,341 bytes**, with SHA-256 `03ee456da8263cf1ed476a05c60d719948aaf41f8d81316798b73717893f381a`. The original larger 3D master is preserved separately. The repository screenshot shows the installed-wheel GUI after its real PYZ build and runtime check, outside the checkout.
 
-| Obszar | Dowód i wynik | Co zostało sprawdzone | Granica dowodu |
+These checks qualify the local Linux source and installed wheel. The new complete packaged Windows GUI workflow and reopening gate is still pending CI verification. They do not complete the Windows-without-Python, Android or .NET runtime criteria, and the roadmap remains at **55%**.
+
+## Historical baseline — 0.1.0.dev1
+
+**Recorded on 2026-10-17.** This document separates local Linux qualification from GitHub Actions results for the `0.1.0.dev1` baseline. [Run 39028988975](https://github.com/Swir/Maxkompilator/actions/runs/39028988975), at commit `aea4aa811f139edab7b167ab86f1518a283a7302`, completed **10/10 jobs successfully**: six Core jobs, three native examples and a Windows desktop bundle. Direct evidence and test boundaries are recorded in [CI.md](CI.md) and [ci-evidence.json](ci-evidence.json). Later revisions need their own checks.
+
+The local qualification environment was **Linux x86_64, glibc 2.39, Python 3.12.14**. Native packaging used **PyInstaller 6.22.3**, and the GUI was tested with **PySide6/Qt 6.12.0** in `offscreen` mode. The source-GUI test exercises a real window, its logic and subprocesses. Packaged Windows GUI execution is a separate gate.
+
+A machine-readable summary is in [validation-local.json](validation-local.json). Test sources and scripts are in the repository; the original temporary paths are not required to reproduce the documented commands.
+
+### Local results and their scope
+
+| Area | Evidence and result | What was checked | Evidence boundary |
 |---|---|---|---|
-| Rdzeń i integracja | **84/84 PASS**, 2,303 s; `python -m unittest discover -s tests -v` | Rozpoznawanie, plany, błędy, ścieżki, rzeczywiste PYZ, integracja CLI, raporty i generator postępu | Część testów adapterów sprawdza konstrukcję poleceń; nie jest kompilacją odpowiednim SDK |
-| PYZ | **PASS**; `tests/test_engine.py` i rzeczywisty `examples/hello-python` | Budowa, import pakietu, dołączony zasób, uruchomienie poza źródłami, zapis raportu | Wymaga zgodnego Pythona; zewnętrzne zależności nie są pakowane automatycznie |
-| Natywna aplikacja Python | **PASS**; `scripts/qualify_native.py` po końcowej budowie w osobnym katalogu zadania | ELF x64, SHA-256, uruchomienie spoza źródeł i odczyt zasobu po usunięciu `PYTHONPATH`/`PYTHONHOME` i ograniczeniu `PATH` | Sprawdzony przykład na bieżącym Linux; nie jest dowodem działania na każdej dystrybucji ani na Windows/macOS |
-| GUI Qt | **7/7 grup PASS**, 1,202 s; `scripts/gui_smoke.py` | Ikona, domyślne wybory auto, ścieżka ze spacjami i Unicode, inspect/plan/doctor/build, rzeczywisty test PYZ, logi, raport, anulowanie i zakończenie potomka; anulowanie: 0,156 s | Linux offscreen; otwieranie folderu sprawdzane przez przechwycenie URL Qt, bez sterowania menedżerem plików |
-| Pakiet Python | **PASS**; wheel i sdist zbudowane, wheel zainstalowany z `--no-index --no-deps` poza repozytorium | Import/wersja CLI, SVG w zainstalowanym pakiecie, prawdziwe PYZ z zasobem i smoke z zainstalowanego modułu | Sdist został zbudowany; ten przebieg instalował wheel. Nie kwalifikuje pakietu desktopowego EXE |
-| Android | **Recepty sprawdzone; rzeczywisty APK/AAB niezakwalifikowany** | Plan debug, clean przed build, odrzucanie nieobsługiwanych formatów i katalogów, kod kontroli kontenera i podpisu APK | Brak potwierdzonej kompilacji przez Android SDK, instalacji, uruchomienia i wydania sklepowego |
-| .NET | **Recepty sprawdzone; rzeczywista publikacja niezakwalifikowana** | `dotnet publish`, tryb self-contained, wybór projektu i ograniczenia celu | Brak potwierdzonej publikacji SDK .NET i uruchomienia jej wyniku |
-| Platformy poza Linuxem | **Wyniki zdalne opisane osobno w CI.md** | Lokalny test nie wykonuje aplikacji Windows ani macOS | Stan konkretnego zdalnego zadania wynika z jego logów, a nie z lokalnej kwalifikacji |
+| Engine and integration | **84/84 PASS**, 2.303 s; `python -m unittest discover -s tests -v` | Detection, plans, errors, paths, real PYZ output, CLI integration, reports and progress generation | Some adapter tests inspect command construction without invoking the relevant SDK |
+| PYZ | **PASS**; `tests/test_engine.py` and real `examples/hello-python` | Build, package import, bundled resource, execution outside sources and report writing | Requires compatible Python; external dependencies are not automatically bundled |
+| Native Python application | **PASS**; `scripts/qualify_native.py` after the final build in a separate job directory | ELF x64, SHA-256, execution outside sources and resource reading with `PYTHONPATH`/`PYTHONHOME` removed and restricted `PATH` | Covers the example on this Linux host, not every distribution or Windows/macOS |
+| Qt GUI | **7/7 groups PASS**, 1.202 s; `scripts/gui_smoke.py` | Icon, automatic defaults, paths with spaces and Unicode, inspect/plan/doctor/build, real PYZ runtime check, logs, report, cancellation and descendant termination; cancellation: 0.156 s | Linux offscreen; opening the output folder is checked by intercepting a Qt URL rather than driving a file manager |
+| Python package | **PASS**; wheel and sdist built, wheel installed with `--no-index --no-deps` outside the repository | Import/CLI version, packaged icon resources, real PYZ with data and smoke from the installed module | This run installed the wheel; the sdist was built. It does not qualify the desktop EXE bundle |
+| Android | **Recipes checked; real APK/AAB unqualified** | Debug plans, clean before build, unsupported format/directory rejection, APK container and signature-checking code | No verified Android SDK build, installation, launch or store release |
+| .NET | **Recipes checked; real publishing unqualified** | `dotnet publish`, self-contained mode, concrete project selection and target restrictions | No verified .NET SDK publish or execution of its output |
+| Platforms outside Linux | **Remote results recorded separately in CI.md** | Local qualification does not execute Windows or macOS applications | A remote job's status comes from its own logs |
 
-## GitHub Actions
+### GitHub Actions
 
-**Core: 6/6 zadań SUCCESS**. W każdym z nich sprawdzono instalację pakietu, zestaw testów, zgodność wygenerowanej roadmapy i prawdziwe PYZ z uruchomieniem przykładu. Bezpośrednie linki do zadań znajdują się w [CI.md](CI.md).
+**Core: 6/6 jobs SUCCESS.** Each job checked package installation, the test suite, generated roadmap consistency and a real PYZ example with a runtime test. Direct job links are in [CI.md](CI.md).
 
-Wynik **84/84 bez pominięć** odnosi się do lokalnego przebiegu Linux. W odczytanych logach Core **Python 3.11** było: Linux **84 zaliczone, 0 pominiętych**, macOS **83 zaliczone, 1 pominięty**, Windows **82 zaliczone, 2 pominięte**. Wszystkie trzy zadania z Pythonem 3.13 również zakończyły się sukcesem; zapis szczegółowych liczników pochodzi z logów 3.11.
+The **84/84 result without skips** belongs to the local Linux run. Detailed Core **Python 3.11** logs showed Linux with **84 passed and 0 skipped**, macOS with **83 passed and 1 skipped**, and Windows with **82 passed and 2 skipped**. All three Python 3.13 jobs also succeeded; the detailed counters recorded here come from the 3.11 logs.
 
-`unittest` uwzględnia w liczbie `Ran` również testy oznaczone jako `skipped`; pominiętego przypadku nie liczymy jako sprawdzonego na danym systemie. Regresja grup procesów POSIX jest pomijana na Windows, a integracja środowiska bibliotek zamrożonego procesu Linux jest pomijana poza Linuxem. Testy dowiązań mogą zostać pominięte, gdy użytkownik wykonawcy nie może ich utworzyć.
+`unittest` includes skipped tests in its `Ran` count. A skipped case is not qualified on that system. The POSIX process-group regression is skipped on Windows, and the frozen Linux library-environment integration is skipped outside Linux. Symlink tests may be skipped when the runner account cannot create them.
 
-**Natywne przykłady: 3/3 SUCCESS.** Windows x64 (`pe-x64`), Linux x64 (`elf-x64`) i macOS ARM64 (`mach-o`) przeszły budowanie, test zasobu oraz uruchomienie spoza źródeł z ograniczonym `PATH` i usuniętymi `PYTHONPATH`/`PYTHONHOME`. Walidacja wszystkich trzech archiwów zakończyła się pozytywnie; paczka macOS zachowała cztery dowiązania symboliczne. Wykonawcy CI mieli zainstalowanego Pythona, dlatego ten dowód nie kończy testu na czystej maszynie bez interpretera.
+**Native examples: 3/3 SUCCESS.** Windows x64 (`pe-x64`), Linux x64 (`elf-x64`) and macOS ARM64 (`mach-o`) passed builds, resource checks and execution outside the sources with restricted `PATH` and removed `PYTHONPATH`/`PYTHONHOME`. All three archives passed validation; the macOS archive preserved four symbolic links. The CI runners had Python installed, so these results do not complete the clean-machine test without an interpreter.
 
-**Windows desktop bundle: SUCCESS.** Źródłowe GUI przeszło **7/7 grup testów w 1,422 s**, z anulowaniem w **0,156 s**. Zbudowano oba EXE i wspólny runtime; spakowany `MaxkompilatorCLI.exe` rozpoznał projekt oraz rzeczywiście zbudował PYZ z pozytywnym smoke. Pełna próba interaktywnego, spakowanego GUI i jego ponownego otwarcia pozostaje do wykonania.
+**Windows desktop bundle: SUCCESS.** The source GUI passed **7/7 test groups in 1.422 s**, with cancellation in **0.156 s**. Both executables and the shared runtime were built. The packaged `MaxkompilatorCLI.exe` detected a project, built a real PYZ and passed its smoke test. A complete packaged-GUI workflow, including closing and reopening the window, was still pending at this baseline.
 
-## Spakowany moduł CLI na Linuxie
+### Packaged CLI worker on Linux
 
-Rzeczywisty program `MaxkompilatorCLI` zbudowany przez PyInstaller uruchomił własny silnik, utworzył PYZ i uruchomił je przez zewnętrznego Pythona. Osobne sprawdzenie środowiska potwierdziło wywołanie zewnętrznego interpretera i PyInstaller. Odczyt i zapis JSON oraz zasoby przeszły test. Wynik i suma programu są zapisane w `validation-local.json`. Ten test dotyczy konsolowego modułu Linux; kwalifikacja zamrożonego GUI Windows pozostaje oddzielnym zadaniem.
+A real `MaxkompilatorCLI` executable built by PyInstaller ran its own engine, created a PYZ and executed it through an external Python interpreter. A separate environment check confirmed external Python and PyInstaller invocation. JSON input/output and resource checks passed. The result and executable checksum are recorded in `validation-local.json`. This covers the Linux console worker; frozen Windows GUI qualification remains a separate task.
 
-## Końcowy natywny wynik Linux
+### Final local native Linux output
 
-- Identyfikator zadania: `97538f31331547f09f90a5618894965c`.
-- Wykryty format: `elf-x64`.
-- SHA-256 pliku wejściowego aplikacji: `b0a56d501f6d26093231bd15c7cceddfe20161b27b7246c9354070ae9c56b208`.
-- Potwierdzony komunikat aplikacji: `Maxkompilator: build and resource check OK`.
-- Kwalifikacja uruchomiła program w katalogu tymczasowym, z systemowym `PATH` oraz bez `PYTHONPATH` i `PYTHONHOME`.
+- Job ID: `97538f31331547f09f90a5618894965c`.
+- Detected format: `elf-x64`.
+- Application entry-point SHA-256: `b0a56d501f6d26093231bd15c7cceddfe20161b27b7246c9354070ae9c56b208`.
+- Verified application output: `Maxkompilator: build and resource check OK`.
+- Qualification launched the program in a temporary directory with a system-only `PATH` and without `PYTHONPATH` or `PYTHONHOME`.
 
-Test odbył się na tym samym hoście Linux, na którym wykonano budowanie. Nie oznacza instalacji i testu na oddzielnym czystym komputerze. Hash identyfikuje sprawdzony plik wykonywalny; aplikacja zachowuje zależności w swoim katalogu dystrybucji.
+This ran on the same Linux host that built the application. It does not establish installation and execution on a separate clean machine. The checksum identifies the tested executable; the application retains its dependencies in its distribution directory.
 
-### Archiwum natywnego wyniku
+#### Native output archive
 
-`scripts/qualify_native.py` tworzy `native-example-TARGET.tar.gz` z całym katalogiem aplikacji, raportem budowania i raportem kwalifikacji. Skrypt ponownie odczytuje archiwum, porównuje listę elementów, typy dowiązań i ich cele, uprawnienia POSIX oraz sumy pliku wykonywalnego i raportów. Pozwala to zachować dane wymagane do uruchomienia programu po pobraniu artefaktu CI.
+`scripts/qualify_native.py` creates `native-example-TARGET.tar.gz` containing the entire application directory, build report and qualification report. The script reopens the archive and compares its member list, symlink types and targets, POSIX permissions, and checksums of the executable and reports. This preserves the files needed to run the program after downloading a CI artifact.
 
-Lokalnie sprawdzone archiwum `native-example-linux-x64.tar.gz` ma rozmiar **11 932 078 bajtów** i SHA-256 `56912d1b7882ddf3c8d72e2f016765b33a4b954a120c581a6cad159053301ddd`. Jest artefaktem rozwojowym; kontrola archiwum nie oznacza podpisania wydania ani testu na wszystkich systemach docelowych.
+The locally verified `native-example-linux-x64.tar.gz` is **11,932,078 bytes**, with SHA-256 `56912d1b7882ddf3c8d72e2f016765b33a4b954a120c581a6cad159053301ddd`. It is a development artifact. Archive validation does not establish release signing or compatibility with every target system.
 
-## Odtworzenie najważniejszych sprawdzeń
+### Reproduce the main checks
 
-Po zainstalowaniu Maxkompilatora i odpowiednich dodatków:
+After installing Maxkompilator and the appropriate extras:
 
 ```bash
 python -m unittest discover -s tests -v
@@ -61,7 +79,7 @@ python scripts/update_progress.py --check
 python -m maxkompilator build examples/hello-python --format zipapp --smoke-test --json
 ```
 
-Pakowanie natywne wymaga PyInstallera i odbywa się na wybranym systemie:
+Native packaging requires PyInstaller and runs on the selected operating system:
 
 ```bash
 python -m pip install -c constraints-ci.txt ".[freeze]"
@@ -69,17 +87,17 @@ python -m maxkompilator build examples/hello-python --format executable --smoke-
 python scripts/qualify_native.py examples/hello-python/dist/maxkompilator/build-report.json
 ```
 
-Test GUI sam wybiera platformę Qt `offscreen`:
+The GUI test selects Qt's `offscreen` platform:
 
 ```bash
 python -m pip install -c constraints-ci.txt ".[gui]"
 python scripts/gui_smoke.py --screenshot build/gui-smoke.png
 ```
 
-Testy negatywne obejmują m.in. brak narzędzia, kod wyjścia różny od zera, pozornie udaną komendę bez artefaktu, stary wynik z poprzedniego zadania, fałszywy plik wykonywalny, timeout, anulowanie, próbę nadpisania źródeł i błędny punkt startowy. Są to sprawdzenia konkretnych scenariuszy, nie gwarancja obsługi dowolnego projektu.
+Negative tests cover missing tools, nonzero exits, a successful command producing no artifact, stale output from a previous job, invalid executables, timeouts, cancellation, attempts to overwrite sources and invalid entry points. They verify concrete scenarios rather than every possible project.
 
-## Kolejna kwalifikacja
+### Remaining qualification at this baseline
 
-Do zamknięcia pozostają niepotwierdzone jeszcze scenariusze z [CI.md](CI.md), pełny przebieg zbudowanego GUI Windows wraz z ponownym uruchomieniem, test na komputerze bez Pythona, Android z właściwym SDK i urządzeniem oraz publikacja .NET. Windows jest przygotowywany jako cały katalog z `Maxkompilator.exe`, `MaxkompilatorCLI.exe` i `_internal`; sprawdzenie samego modułu konsolowego nie kwalifikuje pełnej ścieżki GUI.
+Open scenarios include the complete built Windows GUI workflow with reopening, a computer without Python, Android with the proper SDK and a device, and real .NET publishing. The Windows distribution is the complete folder containing `Maxkompilator.exe`, `MaxkompilatorCLI.exe` and `_internal`. Testing its console worker alone does not qualify its full GUI workflow. Current acceptance status is tracked in [ROADMAP.md](../ROADMAP.md).
 
-[Roadmapa z punktacją](../ROADMAP.md) · [Wyniki CI](CI.md) · [Architektura](ARCHITECTURE.md)
+[Scored roadmap](../ROADMAP.md) · [CI results](CI.md) · [Architecture](ARCHITECTURE.md)

@@ -1,136 +1,136 @@
-# Roadmapa Maxkompilatora
+# Maxkompilator roadmap
 
-**Wersja v1 ma stały budżet 100 punktów.** Każdy etap dzieli się na kryteria o jawnej wadze; punkty otrzymuje wyłącznie ukończone kryterium ze wskazanym dowodem. Liczba plików, commitów ani przygotowanych planów nie zastępuje testu rzeczywistej funkcji.
+**v1 has a fixed budget of 100 points.** Each milestone contains criteria with explicit weights. A criterion earns points only when it is complete and has recorded evidence. File counts, commits and prepared plans do not replace a test of the actual feature.
 
-Zakres v1: wspólny silnik CLI i GUI, lokalne budowanie Python/Windows, Android i .NET, kwalifikacja rzeczywistych wyników oraz pierwsza obsługa wykonawców Linux/macOS. Kryteria zdalnych wykonawców pozostają planowane do czasu wdrożenia i rzeczywistego sprawdzenia ich działania.
+The v1 scope includes a shared CLI/GUI engine, local Python/Windows, Android and .NET builds, qualification of real output, and initial Linux/macOS runner support. Remote runner criteria remain planned until their protocol is implemented and tested.
 
-**100% oznacza ukończenie tej listy v1, nie obsługę wszystkich języków świata.** Wagi odzwierciedlają ustalony zakres produktu; nie stanowią prognozy czasu. Zamknięcie większej liczby łatwych zadań nie zwiększa punktacji trudniejszych etapów.
+**100% means completion of this v1 checklist.** Additional languages and formats have a separate roadmap. Weights describe the agreed product scope rather than elapsed or remaining development time. Completing easy criteria does not award points to unfinished difficult ones.
 
-Potwierdzone lokalnie: rozpoznawanie i planowanie trzech technologii, rzeczywiste PYZ i natywne wydanie Linux, podstawowa konfiguracja i raporty, integracja CLI/GUI, anulowanie oraz instalowalny wheel. CI dodatkowo potwierdził natywne przykłady Windows x64, Linux x64 i macOS ARM64, źródłowe GUI Windows oraz zbudowany pakiet Windows z działającym modułem CLI. [Raport walidacji](docs/VALIDATION.md) rozdziela te dowody od otwartej pełnej kwalifikacji spakowanego GUI, komputera bez Pythona i rzeczywistego Androida/.NET.
+The recorded local baseline covers detection and planning for three technologies, a real PYZ and native Linux build, basic configuration and reports, CLI/GUI integration, cancellation and an installable wheel. CI additionally verified native examples on Windows x64, Linux x64 and macOS ARM64, the Windows source GUI, and a Windows bundle with a working packaged CLI. The [validation report](docs/VALIDATION.md) separates these results from the open full packaged-GUI, Python-free Windows, Android and .NET qualification gates.
 
-Fundament CI jest ukończony na podstawie **sześciu udanych zadań Core** dla Linux/Windows/macOS i Pythona 3.11/3.13. Każdy wynik ma odniesienie do konkretnego przebiegu w [docs/CI.md](docs/CI.md). Sam sukces Core nie zamyka oddzielnych kryteriów natywnego EXE, GUI Windows ani uruchomienia na komputerze bez Pythona.
+The CI foundation is complete based on **six successful Core jobs** for Linux/Windows/macOS and Python 3.11/3.13. Each result refers to a specific run in [docs/CI.md](docs/CI.md). Separate criteria require a real native EXE, the packaged Windows GUI and execution on a machine without Python.
 
-Cały przebieg CI zakończył się sukcesem **10/10 zadań**. Natywny przykład macOS ARM64 przeszedł budowanie, test zasobu, uruchomienie spoza źródeł i walidację archiwum, zamykając `runners.macos` za 1 punkt. Wynik v1 wynosi **55%**; otwarte kryteria Windows zachowują swoje pełne wymagania.
+The recorded baseline run completed **10/10 jobs successfully**. Its native macOS ARM64 example passed a build, resource check, execution outside the sources and archive validation, completing `runners.macos` for one point. The generated table below is the source for the current v1 percentage. English documentation and refreshed branding do not, by themselves, complete any remaining runtime qualification gate.
 
-## Bieżący postęp
+## Current progress
 
 <!-- MAXKOMPILATOR:PROGRESS:START -->
 
-**Postęp v1.0: 55% — 55 / 100 pkt.**
+**v1.0 progress: 55% — 55 / 100 points.**
 
-Wynik obejmuje wyłącznie ukończone kryteria z dowodem. Prace w toku nie zwiększają procentu.
+Only completed criteria with recorded evidence earn points. Work in progress does not increase the percentage.
 
-| Etap | Waga v1 | Ukończono | Postęp etapu |
+| Milestone | v1 weight | Earned | Milestone progress |
 |---|---:|---:|---:|
-| Fundament projektu i CI | 8 pkt | 8 / 8 pkt | 100% |
-| Rozpoznawanie projektu i środowiska | 12 pkt | 12 / 12 pkt | 100% |
-| Python i wydania Windows | 16 pkt | 6 / 16 pkt | 37,5% |
-| Android: APK i AAB | 14 pkt | 2 / 14 pkt | 14,3% |
-| .NET i publikacje Windows | 12 pkt | 2 / 12 pkt | 16,7% |
-| Interfejs desktopowy | 12 pkt | 9 / 12 pkt | 75% |
-| Profile i powtarzalność wyników | 10 pkt | 5 / 10 pkt | 50% |
-| Niezawodność i kwalifikacja wydań | 10 pkt | 8 / 10 pkt | 80% |
-| Wykonawcy Linux i macOS | 4 pkt | 3 / 4 pkt | 75% |
-| Rozszerzalność i kolejne architektury | 2 pkt | 0 / 2 pkt | 0% |
-| **Łącznie** | **100 pkt** | **55 / 100 pkt** | **55%** |
+| Project foundation and CI | 8 pts | 8 / 8 pts | 100% |
+| Project and environment discovery | 12 pts | 12 / 12 pts | 100% |
+| Python and Windows builds | 16 pts | 6 / 16 pts | 37.5% |
+| Android: APK and AAB | 14 pts | 2 / 14 pts | 14.3% |
+| .NET and Windows publishing | 12 pts | 2 / 12 pts | 16.7% |
+| Desktop interface | 12 pts | 9 / 12 pts | 75% |
+| Profiles and repeatable output | 10 pts | 5 / 10 pts | 50% |
+| Reliability and release qualification | 10 pts | 8 / 10 pts | 80% |
+| Linux and macOS runners | 4 pts | 3 / 4 pts | 75% |
+| Extensibility and additional architectures | 2 pts | 0 / 2 pts | 0% |
+| **Total** | **100 pts** | **55 / 100 pts** | **55%** |
 
-Źródło: [docs/progress.json](docs/progress.json) · aktualizacja danych: **2026-10-17**.
+Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-17**.
 
-### Kryteria i dowody
+### Criteria and evidence
 
-#### Fundament projektu i CI — 8 pkt
+#### Project foundation and CI — 8 points
 
-- [x] **Zakres v1, instrukcje i mierzalne kryteria ukończenia — 2 pkt.** Dowód: README.md i ROADMAP.md: opis zakresu, ograniczeń oraz stałych wag v1. Identyfikator: `foundation.scope`.
-- [x] **Podział silnika, adapterów i wykonawców — 2 pkt.** Dowód: docs/ARCHITECTURE.md: przepływ zadania, granice odpowiedzialności i model wyników. Identyfikator: `foundation.architecture`.
-- [x] **Instalowalny pakiet i działające wejście CLI — 2 pkt.** Dowód: Wheel i sdist zbudowane; wheel zainstalowany bez indeksu i zależności poza repo, CLI/SVG/PYZ z zasobem oraz smoke PASS — docs/VALIDATION.md i docs/validation-local.json. Identyfikator: `foundation.package`.
-- [x] **Uruchomiony CI z kontrolą jakości i zgodności postępu — 2 pkt.** Dowód: GitHub Actions run 39028988975 dla commita aea4aa811f139edab7b167ab86f1518a283a7302: sześć zadań Core Linux/Windows/macOS × Python 3.11/3.13 SUCCESS, w tym testy, kontrola roadmapy i rzeczywiste PYZ ze smoke — docs/CI.md; https://github.com/Swir/Maxkompilator/actions/runs/39028988975. Identyfikator: `foundation.ci`.
+- [x] **v1 scope, instructions and measurable completion criteria — 2 points.** Evidence: README.md and ROADMAP.md: scope, limitations and fixed v1 weights. ID: `foundation.scope`.
+- [x] **Engine, adapter and runner boundaries — 2 points.** Evidence: docs/ARCHITECTURE.md: job workflow, responsibilities and result model. ID: `foundation.architecture`.
+- [x] **Installable package and working CLI entry point — 2 points.** Evidence: Wheel and sdist built; wheel installed without an index or dependencies outside the repository; CLI, packaged icon resources, real PYZ with data and smoke test PASS — docs/VALIDATION.md and docs/validation-local.json. ID: `foundation.package`.
+- [x] **Working CI with quality and progress consistency checks — 2 points.** Evidence: GitHub Actions run 39028988975 for commit aea4aa811f139edab7b167ab86f1518a283a7302: six Core jobs across Linux/Windows/macOS and Python 3.11/3.13 SUCCESS, including tests, roadmap validation and a real PYZ with a smoke test — docs/CI.md; https://github.com/Swir/Maxkompilator/actions/runs/39028988975. ID: `foundation.ci`.
 
-#### Rozpoznawanie projektu i środowiska — 12 pkt
+#### Project and environment discovery — 12 points
 
-- [x] **Rozpoznawanie projektów Python, Android i .NET — 3 pkt.** Dowód: tests/test_detection.py: rozpoznanie skryptów, projektu Python, Androida i konkretnych csproj; lokalny zestaw PASS — docs/VALIDATION.md. Identyfikator: `discovery.detection`.
-- [x] **Jawny wybór typu i punktu startowego przy niejednoznaczności — 3 pkt.** Dowód: tests/test_detection.py: test_multiple_python_scripts_need_explicit_entry, test_mixed_directory_requires_explicit_kind, test_multiple_csprojects_require_concrete_project_path — PASS. Identyfikator: `discovery.ambiguity`.
-- [x] **Diagnostyka wymaganych narzędzi z użytecznym opisem braków — 3 pkt.** Dowód: tests/test_engine.py: test_missing_tool_yields_failed_report_without_build; scripts/gui_smoke.py: environment_doctor_and_smoke_flag_scoping — lokalnie PASS. Identyfikator: `discovery.doctor`.
-- [x] **Plan budowania dostępny w CLI i JSON bez uruchamiania kompilacji — 3 pkt.** Dowód: tests/test_engine.py: test_inspect_and_plan_are_read_only_and_json_is_parseable; tests/test_adapters.py: test_pyinstaller_plan_is_native_structured_and_has_no_side_effects — PASS. Identyfikator: `discovery.plan`.
+- [x] **Detect Python, Android and .NET projects — 3 points.** Evidence: tests/test_detection.py: scripts, Python projects, Android projects and concrete csproj detection; local suite PASS — docs/VALIDATION.md. ID: `discovery.detection`.
+- [x] **Explicit project type and entry point selection when ambiguous — 3 points.** Evidence: tests/test_detection.py: test_multiple_python_scripts_need_explicit_entry, test_mixed_directory_requires_explicit_kind, test_multiple_csprojects_require_concrete_project_path — PASS. ID: `discovery.ambiguity`.
+- [x] **Required tool diagnostics with actionable missing-tool messages — 3 points.** Evidence: tests/test_engine.py: test_missing_tool_yields_failed_report_without_build; scripts/gui_smoke.py: environment_doctor_and_smoke_flag_scoping — local PASS. ID: `discovery.doctor`.
+- [x] **CLI and JSON build plans without running the build — 3 points.** Evidence: tests/test_engine.py: test_inspect_and_plan_are_read_only_and_json_is_parseable; tests/test_adapters.py: test_pyinstaller_plan_is_native_structured_and_has_no_side_effects — PASS. ID: `discovery.plan`.
 
-#### Python i wydania Windows — 16 pkt
+#### Python and Windows builds — 16 points
 
-- [x] **Rzeczywista budowa PYZ i test uruchomienia prostego projektu — 4 pkt.** Dowód: tests/test_engine.py: test_zipapp_builds_and_runs_with_resources_outside_source; rzeczywisty examples/hello-python PYZ + smoke PASS na Linux — docs/VALIDATION.md. Identyfikator: `python.zipapp`.
-- [x] **Adapter natywnego budowania przez PyInstaller — 2 pkt.** Dowód: maxkompilator/adapters/python_adapter.py oraz rzeczywista budowa i uruchomienie przykładu przez PyInstaller 6.22.3 na Linux — docs/VALIDATION.md. Identyfikator: `python.pyinstaller`.
-- [ ] **Rzeczywisty EXE z poprawnym formatem, zasobami i ikoną — 5 pkt.** W toku; punkty zostaną naliczone po spełnieniu kryterium. Identyfikator: `python.exe`.
-- [ ] **Uruchomienie zbudowanego EXE na Windows bez instalowania Pythona — 5 pkt.** W toku; punkty zostaną naliczone po spełnieniu kryterium. Identyfikator: `python.windows-runtime`.
+- [x] **Build and run a real PYZ from a simple project — 4 points.** Evidence: tests/test_engine.py: test_zipapp_builds_and_runs_with_resources_outside_source; real examples/hello-python PYZ and smoke test PASS on Linux — docs/VALIDATION.md. ID: `python.zipapp`.
+- [x] **Native build adapter using PyInstaller — 2 points.** Evidence: maxkompilator/adapters/python_adapter.py and a real example built and run with PyInstaller 6.22.3 on Linux — docs/VALIDATION.md. ID: `python.pyinstaller`.
+- [ ] **Real EXE with a valid format, resources and the built application's icon — 5 points.** In progress; points are awarded after the full criterion is met. ID: `python.exe`.
+- [ ] **Run a built EXE on Windows without installing Python — 5 points.** In progress; points are awarded after the full criterion is met. ID: `python.windows-runtime`.
 
-#### Android: APK i AAB — 14 pkt
+#### Android: APK and AAB — 14 points
 
-- [x] **Recepty Gradle dla debug APK/AAB i obsługa projektu z wrapperem — 2 pkt.** Dowód: tests/test_adapters.py: test_android_debug_apk_plan_does_not_execute_wrapper i test_android_artifact_patterns_select_only_debug_outputs — PASS; przygotowano recepty, bez kwalifikacji rzeczywistego APK/AAB. Identyfikator: `android.gradle`.
-- [ ] **Rzeczywisty APK: manifest, pakiet, wariant i kontrola podpisu — 4 pkt.** W toku; punkty zostaną naliczone po spełnieniu kryterium. Identyfikator: `android.apk`.
-- [ ] **Instalacja i uruchomienie APK na emulatorze lub telefonie — 5 pkt.** Planowane. Identyfikator: `android.device`.
-- [ ] **Rzeczywisty AAB oraz wyraźne rozdzielenie podpisów debug/release — 3 pkt.** Planowane. Identyfikator: `android.aab`.
+- [x] **Gradle recipes for debug APK/AAB and wrapper-based projects — 2 points.** Evidence: tests/test_adapters.py: test_android_debug_apk_plan_does_not_execute_wrapper and test_android_artifact_patterns_select_only_debug_outputs — PASS; recipes checked, real APK/AAB qualification pending. ID: `android.gradle`.
+- [ ] **Real APK: manifest, package, variant and signature verification — 4 points.** In progress; points are awarded after the full criterion is met. ID: `android.apk`.
+- [ ] **Install and launch an APK on an emulator or phone — 5 points.** Planned. ID: `android.device`.
+- [ ] **Real AAB and explicit debug/release signing distinction — 3 points.** Planned. ID: `android.aab`.
 
-#### .NET i publikacje Windows — 12 pkt
+#### .NET and Windows publishing — 12 points
 
-- [x] **Adapter dotnet publish z właściwym projektem i celem — 2 pkt.** Dowód: tests/test_adapters.py: test_dotnet_publish_includes_runtime_and_concrete_project oraz ograniczenia WPF/NativeAOT — PASS; sprawdzona recepta bez rzeczywistej publikacji SDK .NET. Identyfikator: `dotnet.recipe`.
-- [ ] **Rzeczywista publikacja projektu .NET i sprawdzenie wyników — 4 pkt.** Planowane. Identyfikator: `dotnet.publish`.
-- [ ] **Uruchomienie opublikowanej aplikacji na Windows — 4 pkt.** Planowane. Identyfikator: `dotnet.windows-runtime`.
-- [ ] **Weryfikacja zależności aplikacji desktopowej i trybu dystrybucji — 2 pkt.** Planowane. Identyfikator: `dotnet.desktop`.
+- [x] **dotnet publish adapter with an explicit project and target — 2 points.** Evidence: tests/test_adapters.py: test_dotnet_publish_includes_runtime_and_concrete_project and WPF/NativeAOT restrictions — PASS; recipe verified, real .NET SDK publishing pending. ID: `dotnet.recipe`.
+- [ ] **Publish a real .NET project and verify its output — 4 points.** Planned. ID: `dotnet.publish`.
+- [ ] **Run the published application on Windows — 4 points.** Planned. ID: `dotnet.windows-runtime`.
+- [ ] **Verify desktop application dependencies and distribution mode — 2 points.** Planned. ID: `dotnet.desktop`.
 
-#### Interfejs desktopowy — 12 pkt
+#### Desktop interface — 12 points
 
-- [x] **Ciemny interfejs, własna ikona i oznaczenie by Swir — 3 pkt.** Dowód: maxkompilator/gui.py, assets/maxkompilator.svg; scripts/gui_smoke.py: initial_window_icon_and_controls — PASS na Linux z Qt 6.12 offscreen. Identyfikator: `gui.design`.
-- [x] **Wybór projektu, diagnostyka, plan i budowanie z GUI — 3 pkt.** Dowód: scripts/gui_smoke.py: inspect_and_plan_unicode_path_auto_defaults, environment_doctor_and_smoke_flag_scoping, zipapp_build_real_runtime_and_persisted_report — PASS na Linux. Identyfikator: `gui.workflow`.
-- [x] **Responsywne logi, praca w tle i anulowanie zadania — 3 pkt.** Dowód: scripts/gui_smoke.py: open_results_and_copy_log_buttons, cancel_button_stops_running_build, cancelled_worker_and_descendant_are_stopped — PASS na Linux. Identyfikator: `gui.responsiveness`.
-- [ ] **Test pełnej ścieżki GUI i ponownego uruchomienia na Windows — 3 pkt.** W toku; punkty zostaną naliczone po spełnieniu kryterium. Identyfikator: `gui.windows-test`.
+- [x] **Dark interface, original icon and by Swir attribution — 3 points.** Evidence: maxkompilator/gui.py; scripts/gui_smoke.py: initial_window_icon_and_controls — PASS on Linux with Qt 6.12 offscreen in the 0.1.0.dev1 qualification. ID: `gui.design`.
+- [x] **Project selection, diagnostics, planning and building from the GUI — 3 points.** Evidence: scripts/gui_smoke.py: inspect_and_plan_unicode_path_auto_defaults, environment_doctor_and_smoke_flag_scoping, zipapp_build_real_runtime_and_persisted_report — PASS on Linux. ID: `gui.workflow`.
+- [x] **Responsive logs, background work and job cancellation — 3 points.** Evidence: scripts/gui_smoke.py: open_results_and_copy_log_buttons, cancel_button_stops_running_build, cancelled_worker_and_descendant_are_stopped — PASS on Linux. ID: `gui.responsiveness`.
+- [ ] **Complete Windows GUI workflow and relaunch test — 3 points.** In progress; points are awarded after the full criterion is met. ID: `gui.windows-test`.
 
-#### Profile i powtarzalność wyników — 10 pkt
+#### Profiles and repeatable output — 10 points
 
-- [x] **Zapisane profile projektu i walidacja konfiguracji — 3 pkt.** Dowód: maxkompilator/config.py i examples/hello-python/maxkompilator.toml; tests/test_engine.py: test_invalid_config_has_actionable_error oraz rzeczywista budowa przykładu z konfiguracji — PASS. Identyfikator: `profiles.configuration`.
-- [ ] **Ustawienia nazwy, wersji, ikony i dołączanych zasobów — 2 pkt.** W toku; punkty zostaną naliczone po spełnieniu kryterium. Identyfikator: `profiles.resources`.
-- [ ] **Przypięte narzędzia i ponowna budowa ze wskazanego profilu — 3 pkt.** Planowane. Identyfikator: `profiles.repeatability`.
-- [x] **Osobne wyniki zadania, logi i raport z sumami kontrolnymi — 2 pkt.** Dowód: maxkompilator/engine.py zapisuje raporty per run, logi i SHA-256; tests/test_engine.py: test_build_json_stdout_is_single_report i test_nonzero_exit_is_logged_and_reported — PASS. Identyfikator: `profiles.reports`.
+- [x] **Saved project profiles and configuration validation — 3 points.** Evidence: maxkompilator/config.py and examples/hello-python/maxkompilator.toml; tests/test_engine.py: test_invalid_config_has_actionable_error and a real build using the example configuration — PASS. ID: `profiles.configuration`.
+- [ ] **Application name, version, icon and bundled resource settings — 2 points.** In progress; points are awarded after the full criterion is met. ID: `profiles.resources`.
+- [ ] **Pinned tools and repeat builds from a selected profile — 3 points.** Planned. ID: `profiles.repeatability`.
+- [x] **Separate job output, logs and reports with checksums — 2 points.** Evidence: maxkompilator/engine.py writes per-run reports, logs and SHA-256 checksums; tests/test_engine.py: test_build_json_stdout_is_single_report and test_nonzero_exit_is_logged_and_reported — PASS. ID: `profiles.reports`.
 
-#### Niezawodność i kwalifikacja wydań — 10 pkt
+#### Reliability and release qualification — 10 points
 
-- [x] **Błędy, timeout i anulowanie nie zwracają fałszywego sukcesu — 3 pkt.** Dowód: tests/test_engine.py: test_zero_exit_without_artifact_is_failure, test_running_process_can_be_cancelled, test_process_timeout, test_failed_smoke_is_not_reported_as_success — PASS. Identyfikator: `reliability.failures`.
-- [x] **Ścieżki ze spacjami, Unicode i kontrola granic wejścia/wyjścia — 2 pkt.** Dowód: tests/test_detection.py: test_explicit_entry_cannot_escape_project; tests/test_engine.py: test_output_cannot_overwrite_project_root_or_parent; rzeczywisty GUI smoke ze spacjami i Unicode — PASS. Identyfikator: `reliability.paths`.
-- [x] **Automatyczne testy integracyjne na znanych projektach — 3 pkt.** Dowód: tests/test_engine.py: integracja CLI, rzeczywista budowa PYZ, zasoby i test uruchomienia; scripts/gui_smoke.py: integracja GUI z podprocesami — lokalnie PASS. Identyfikator: `reliability.integration`.
-- [ ] **Wydanie Windows przechodzi obowiązkową kwalifikację w CI — 2 pkt.** W toku; punkty zostaną naliczone po spełnieniu kryterium. Identyfikator: `reliability.release-gate`.
+- [x] **Errors, timeouts and cancellation never report false success — 3 points.** Evidence: tests/test_engine.py: test_zero_exit_without_artifact_is_failure, test_running_process_can_be_cancelled, test_process_timeout, test_failed_smoke_is_not_reported_as_success — PASS. ID: `reliability.failures`.
+- [x] **Spaces, Unicode and input/output path boundary checks — 2 points.** Evidence: tests/test_detection.py: test_explicit_entry_cannot_escape_project; tests/test_engine.py: test_output_cannot_overwrite_project_root_or_parent; real GUI smoke with spaces and Unicode — PASS. ID: `reliability.paths`.
+- [x] **Automated integration tests using known projects — 3 points.** Evidence: tests/test_engine.py: CLI integration, a real PYZ build, resources and runtime checks; scripts/gui_smoke.py: GUI integration with subprocesses — local PASS. ID: `reliability.integration`.
+- [ ] **Windows release passes mandatory CI qualification — 2 points.** In progress; points are awarded after the full criterion is met. ID: `reliability.release-gate`.
 
-#### Wykonawcy Linux i macOS — 4 pkt
+#### Linux and macOS runners — 4 points
 
-- [x] **Jawna zgodność systemu i architektury z planem zadania — 1 pkt.** Dowód: tests/test_adapters.py: test_pyinstaller_rejects_cross_os_and_architecture oraz test_dotnet_windows_desktop_rejects_linux_target — PASS; jawny wybór celów zamiast pozornej kompilacji między systemami. Identyfikator: `runners.targets`.
-- [x] **Budowa i uruchomienie wyniku na wykonawcy Linux — 1 pkt.** Dowód: Rzeczywisty program Linux x86_64 z PyInstaller 6.22.3 zbudowany i uruchomiony z zasobem; scripts/qualify_native.py — PASS, docs/VALIDATION.md. Identyfikator: `runners.linux`.
-- [ ] **Zaimplementowany protokół zdalnego wykonawcy i jego możliwości — 1 pkt.** Planowane. Identyfikator: `runners.remote-contract`.
-- [x] **Budowa i uruchomienie wyniku na wykonawcy macOS — 1 pkt.** Dowód: GitHub Actions job 117385587229: rzeczywisty macos-arm64 Mach-O, build/resource/smoke i kwalifikacja spoza źródeł z ograniczonym PATH PASS; archiwum zachowało 4 dowiązania, docs/CI.md i docs/ci-evidence.json; https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587229. Identyfikator: `runners.macos`.
+- [x] **Explicit OS and architecture compatibility in build plans — 1 point.** Evidence: tests/test_adapters.py: test_pyinstaller_rejects_cross_os_and_architecture and test_dotnet_windows_desktop_rejects_linux_target — PASS; target selection enforces supported build environments. ID: `runners.targets`.
+- [x] **Build and run output on a Linux runner — 1 point.** Evidence: Real Linux x86_64 application built with PyInstaller 6.22.3 and run with its resource; scripts/qualify_native.py — PASS, docs/VALIDATION.md. ID: `runners.linux`.
+- [ ] **Implemented remote runner protocol and capability reporting — 1 point.** Planned. ID: `runners.remote-contract`.
+- [x] **Build and run output on a macOS runner — 1 point.** Evidence: GitHub Actions job 117385587229: real macos-arm64 Mach-O, build/resource/smoke and qualification outside the sources with a restricted PATH PASS; archive preserved 4 symlinks, docs/CI.md and docs/ci-evidence.json; https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587229. ID: `runners.macos`.
 
-#### Rozszerzalność i kolejne architektury — 2 pkt
+#### Extensibility and additional architectures — 2 points
 
-- [ ] **Udokumentowany i sprawdzony kontrakt dodatkowego adaptera — 1 pkt.** Planowane. Identyfikator: `extensions.adapter-api`.
-- [ ] **Jawna macierz dodatkowych architektur z testem wyboru celu — 1 pkt.** Planowane. Identyfikator: `extensions.architectures`.
+- [ ] **Documented and tested contract for an additional adapter — 1 point.** Planned. ID: `extensions.adapter-api`.
+- [ ] **Explicit additional-architecture matrix with target selection tests — 1 point.** Planned. ID: `extensions.architectures`.
 
 <!-- MAXKOMPILATOR:PROGRESS:END -->
 
-## Zasady aktualizacji
+## Update rules
 
-1. Zrealizuj całe kryterium i uruchom odpowiedni test.
-2. Zapisz trwały dowód: plik testu i wynik, raport budowania, identyfikator uruchomienia CI albo opis testu na docelowym urządzeniu wraz z wersją artefaktu.
-3. W `docs/progress.json` ustaw `status: "complete"`, uzupełnij `evidence` oraz datę `updated`.
-4. Uruchom `python scripts/update_progress.py` i dołącz wygenerowane zmiany do tej samej aktualizacji.
-5. Uruchom `python scripts/update_progress.py --check`; CI powinno odrzucić niespójne dane albo zmieniony ręcznie procent.
+1. Implement the entire criterion and run the relevant test.
+2. Record durable evidence: a test file and outcome, build report, CI run ID, or a target-device test record with its artifact version.
+3. Set `status: "complete"` in `docs/progress.json`, fill in `evidence`, and update the `updated` date.
+4. Run `python scripts/update_progress.py` and include the generated documentation in the same change.
+5. Run `python scripts/update_progress.py --check`; CI must reject inconsistent data or a manually altered percentage.
 
-Stan `in_progress` nie przyznaje częściowych punktów. Jeśli pojawi się regresja unieważniająca dowód, kryterium wraca do `in_progress` lub `pending`, a wynik spada. Zmiana zakresu lub wag wymaga jawnego opisania zmiany wersji planu; nie przeliczamy wag w celu podwyższenia wyniku.
+`in_progress` earns no partial points. If a regression invalidates the evidence, return the criterion to `in_progress` or `pending`; its points are removed. A change to scope or weights requires an explicit revision of the plan. Weights must not be adjusted to inflate completion.
 
-Zielony CI oznacza wyłącznie przejście uruchomionych zadań. Przy oznaczaniu etapów Windows, Android i macOS dowód musi obejmować odpowiedni system lub urządzenie. Symulowane wywołanie narzędzia wystarcza do testu planowania, ale nie do uznania EXE albo APK za działający.
+A green CI run proves that its executed jobs passed. Windows, Android and macOS criteria need evidence from the relevant system or device. A mocked tool invocation can test planning; a real build and runtime check are required to qualify an EXE or APK as working.
 
-## Kolejne etapy po podstawach v1
+## Further development after the v1 foundations
 
-| Obszar | Kierunek | Status |
+| Area | Direction | Status |
 |---|---|---|
-| Dodatkowe języki | C/C++, Rust, Go, Java, Swift i kolejne adaptery | Planowane |
-| Aplikacje wieloplatformowe | Flutter, Electron i Tauri | Planowane |
-| Rozszerzenia | Przeglądarki, VSIX i dodatki z własnym SDK | Planowane |
-| Gry | Godot, następnie wybrane integracje Unity/Unreal | Planowane |
-| Dystrybucja | MSI, MSIX, AppImage, DEB, RPM, DMG, PKG i profile podpisów | Planowane |
-| Automatyzacja | Kolejka wielu projektów, menedżer środowisk, API/MCP | Planowane |
+| Additional languages | C/C++, Rust, Go, Java, Swift and further adapters | Planned |
+| Cross-platform applications | Flutter, Electron and Tauri | Planned |
+| Extensions | Browsers, VSIX and extensions with their own SDKs | Planned |
+| Games | Godot, followed by selected Unity/Unreal integrations | Planned |
+| Distribution | MSI, MSIX, AppImage, DEB, RPM, DMG, PKG and signing profiles | Planned |
+| Automation | Multi-project queue, environment manager and API/MCP | Planned |
 
-Te pozycje nie otrzymują punktów z puli v1. Szczegółowe kryteria i wagi kolejnego wydania powstaną przy ustalaniu jego zakresu.
+These items do not earn points from the v1 budget. Detailed criteria and weights for the next release will be defined when its scope is agreed.
 
-[Powrót do README](README.md) · [Architektura](docs/ARCHITECTURE.md)
+[Back to README](README.md) · [Architecture](docs/ARCHITECTURE.md)

@@ -90,13 +90,23 @@ jobs:
       - name: Install GUI and build dependencies
         run: python -m pip install -c constraints-ci.txt ".[gui,freeze]" build
       - name: Exercise actual GUI and CLI processes
-        run: python scripts/gui_smoke.py --screenshot build/gui-smoke.png
+        run: python scripts/gui_smoke.py --screenshot build/gui-smoke.png --report build/gui-smoke.json
       - name: Build the Windows application and console worker
         run: python scripts/build_windows.py
       - name: Check packaged worker
         run: .\dist\Maxkompilator\MaxkompilatorCLI.exe --cli inspect .\examples\hello-python --json
       - name: Build and run PYZ through packaged worker
         run: .\dist\Maxkompilator\MaxkompilatorCLI.exe --cli build .\examples\hello-python --format zipapp --smoke-test --json
+      - name: Qualify the packaged Windows GUI and reopen it
+        run: python scripts/qualify_windows_gui.py dist/Maxkompilator/Maxkompilator.exe --output build/packaged-gui
+      - name: Upload packaged GUI qualification evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: Maxkompilator-Windows-GUI-qualification
+          path: build/packaged-gui/
+          if-no-files-found: warn
+          retention-days: 14
       - name: Build source and wheel distributions
         run: python -m build
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
@@ -107,5 +117,7 @@ jobs:
             dist/*.whl
             dist/*.tar.gz
             build/gui-smoke.png
+            build/gui-smoke.json
+            build/packaged-gui/
           if-no-files-found: error
           retention-days: 14

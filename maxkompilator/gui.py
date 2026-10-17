@@ -160,7 +160,7 @@ def _report_text(report: dict[str, Any], action: str) -> str:
 def launch_gui() -> int:
     """Launch the optional Qt GUI, returning an exit code for the CLI."""
     try:
-        from PySide6.QtCore import QPoint, QProcess, QProcessEnvironment, QSize, Qt, QTimer, QUrl
+        from PySide6.QtCore import QPoint, QProcess, QProcessEnvironment, QSize, Qt, QTimer, QUrl, Signal
         from PySide6.QtGui import QColor, QDesktopServices, QFont, QFontDatabase, QIcon, QPainter, QPolygon
         from PySide6.QtWidgets import (
             QApplication,
@@ -203,6 +203,10 @@ def launch_gui() -> int:
             painter.drawPolygon(QPolygon([QPoint(x - 4, y - 2), QPoint(x + 4, y - 2), QPoint(x, y + 3)]))
 
     class MaxkompilatorWindow(QMainWindow):
+        # Expose the real process lifecycle to diagnostics before start() can
+        # emit started() synchronously on Windows. No commands are substituted.
+        task_process_created = Signal(object)
+
         def __init__(self) -> None:
             super().__init__()
             self.setObjectName("maxkompilatorWindow")
@@ -231,8 +235,8 @@ def launch_gui() -> int:
             self._cleanup_timer.timeout.connect(self._cleanup_timeout)
 
             icon_candidates = (
-                Path(__file__).resolve().parents[1] / "assets" / "maxkompilator.svg",
-                Path(__file__).resolve().parent / "assets" / "maxkompilator.svg",
+                Path(__file__).resolve().parent / "assets" / "maxkompilator.png",
+                Path(__file__).resolve().parents[1] / "assets" / "maxkompilator.png",
             )
             icon_path = next((path for path in icon_candidates if path.is_file()), None)
             self._icon = QIcon(str(icon_path)) if icon_path else QIcon()
@@ -248,8 +252,8 @@ def launch_gui() -> int:
 
             header = QHBoxLayout()
             logo = QLabel()
-            logo.setPixmap(self._icon.pixmap(QSize(62, 62)))
-            logo.setFixedSize(64, 64)
+            logo.setPixmap(self._icon.pixmap(QSize(76, 76)))
+            logo.setFixedSize(80, 80)
             header.addWidget(logo)
             headings = QVBoxLayout()
             headings.setSpacing(2)
@@ -261,12 +265,16 @@ def launch_gui() -> int:
             headings.addWidget(subtitle)
             header.addLayout(headings)
             header.addStretch()
-            signature = QLabel('by <a href="https://github.com/Swir" style="color:#76b4ff; text-decoration:none;">Swir ↗</a>')
+            signature = QLabel('by <a href="https://github.com/Swir" style="color:#69f1e7; text-decoration:none;">Swir ↗</a>')
             signature.setObjectName("signature")
             signature.setOpenExternalLinks(True)
             signature.setToolTip("Otwórz profil Swir na GitHubie")
             header.addWidget(signature)
             layout.addLayout(header)
+            spectrum = QFrame()
+            spectrum.setObjectName("spectrumLine")
+            spectrum.setFixedHeight(3)
+            layout.addWidget(spectrum)
 
             main_splitter = QSplitter(Qt.Orientation.Vertical)
             main_splitter.setChildrenCollapsible(False)
@@ -366,7 +374,7 @@ def launch_gui() -> int:
             upper_layout.addWidget(form, 6)
 
             summary_card = QFrame()
-            summary_card.setObjectName("card")
+            summary_card.setObjectName("summaryCard")
             summary_layout = QVBoxLayout(summary_card)
             summary_layout.setContentsMargins(20, 18, 20, 16)
             summary_heading = QLabel("Projekt i wynik")
@@ -386,7 +394,7 @@ def launch_gui() -> int:
             main_splitter.addWidget(upper)
 
             log_card = QFrame()
-            log_card.setObjectName("card")
+            log_card.setObjectName("logCard")
             log_layout = QVBoxLayout(log_card)
             log_layout.setContentsMargins(18, 14, 18, 16)
             log_layout.setSpacing(10)
@@ -479,52 +487,69 @@ def launch_gui() -> int:
             self.project_edit.returnPressed.connect(self._inspect)
 
             self.setStyleSheet("""
-                QMainWindow, QWidget { background: #0c121d; color: #e7eef9;
+                QMainWindow, QWidget { background: #090d19; color: #edf0fc;
                     font-family: "Segoe UI", "Noto Sans", sans-serif; font-size: 13px; }
-                QFrame#card { background: #111c2c; border: 1px solid #23344d; border-radius: 13px; }
-                QFrame#card QLabel, QFrame#card QCheckBox { background: transparent; }
-                QLabel#appTitle { font-size: 30px; font-weight: 700; color: #f1f6ff; }
-                QLabel#sectionTitle { font-size: 16px; font-weight: 600; color: #dceaff; }
-                QLabel#muted { color: #94a6c1; font-size: 12px; }
-                QLabel#signature { color: #97a9c2; font-size: 14px; }
-                QLabel#statusLabel { color: #9eb3d1; font-size: 12px; }
+                QFrame#card, QFrame#summaryCard, QFrame#logCard {
+                    background: #11182a; border: 1px solid #343250; border-radius: 13px; }
+                QFrame#card { border-top: 2px solid #b779ff; }
+                QFrame#summaryCard { border-top: 2px solid #52ded9; }
+                QFrame#logCard { border-top: 2px solid #ff9873; }
+                QFrame#card QLabel, QFrame#card QCheckBox,
+                QFrame#summaryCard QLabel, QFrame#logCard QLabel,
+                QFrame#logCard QCheckBox { background: transparent; }
+                QFrame#spectrumLine { border: none; border-radius: 1px;
+                    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                        stop:0 #4be8e0, stop:0.3 #8472ff, stop:0.6 #eb53d3,
+                        stop:0.82 #ff956b, stop:1 #dcf586); }
+                QLabel#appTitle { font-size: 31px; font-weight: 700; color: #f8f6ff; }
+                QLabel#sectionTitle { font-size: 16px; font-weight: 600; color: #eae3ff; }
+                QLabel#muted { color: #a3afc8; font-size: 12px; }
+                QLabel#signature { color: #ada7c8; font-size: 14px; }
+                QLabel#statusLabel { color: #aebbd8; font-size: 12px; }
                 QLineEdit, QComboBox { min-height: 24px; padding: 7px 10px;
-                    background: #0b1422; border: 1px solid #314663; border-radius: 7px;
-                    selection-background-color: #225a9f; }
-                QLineEdit:focus, QComboBox:focus { border: 1px solid #589eff; }
-                QLineEdit:disabled, QComboBox:disabled { color: #7889a1; border-color: #26364d; }
+                    background: #0b1121; border: 1px solid #3c4564; border-radius: 7px;
+                    selection-background-color: #6641a8; }
+                QLineEdit:focus, QComboBox:focus { border: 1px solid #62dfdb; }
+                QLineEdit:disabled, QComboBox:disabled { color: #858ca7; border-color: #303650; }
                 QComboBox::drop-down { border: 0; width: 22px; }
-                QComboBox QAbstractItemView { background: #152338; color: #e7eef9;
-                    selection-background-color: #214d83; border: 1px solid #3d587b; outline: 0; }
-                QPushButton { background: #1b2c43; border: 1px solid #345170;
+                QComboBox QAbstractItemView { background: #182039; color: #edf0fc;
+                    selection-background-color: #573a86; border: 1px solid #706396; outline: 0; }
+                QPushButton { background: #202940; border: 1px solid #4b5576;
                     border-radius: 8px; padding: 10px 17px; font-weight: 600; }
-                QPushButton:hover { background: #253d5c; border-color: #5782b1; }
-                QPushButton:pressed { background: #12253e; }
-                QPushButton:disabled { background: #131e2f; border-color: #25364b; color: #64768f; }
-                QPushButton#buildButton { background: #2563c9; border-color: #478bf0; color: white; }
-                QPushButton#buildButton:hover { background: #3078e5; }
-                QPushButton#buildButton:pressed { background: #1d4e9f; }
-                QPushButton#buildButton:disabled { background: #183257; border-color: #284b78; color: #829bbc; }
-                QPushButton#cancelButton:enabled { border-color: #a86c63; color: #f4c3b8; }
+                QPushButton:hover { background: #303653; border-color: #9b82df; }
+                QPushButton:pressed { background: #171d35; }
+                QPushButton:disabled { background: #171e30; border-color: #30374f; color: #7a839e; }
+                QPushButton#inspectButton:hover, QPushButton#openResultsButton:hover { border-color: #53dcd5; }
+                QPushButton#buildButton { color: white; border-color: #df90f0;
+                    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                        stop:0 #7134cf, stop:0.55 #a629ad, stop:1 #b8276a); }
+                QPushButton#buildButton:hover { border-color: #83fff0;
+                    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                        stop:0 #8142dd, stop:0.55 #b638be, stop:1 #ce357e); }
+                QPushButton#buildButton:pressed { background: #632982; }
+                QPushButton#buildButton:disabled { background: #302345; border-color: #564061; color: #b1a0bb; }
+                QPushButton#cancelButton:enabled { border-color: #f19b7d; color: #ffd1be; }
                 QPushButton#smallButton { padding: 5px 10px; border-radius: 6px; font-size: 11px; }
-                QPlainTextEdit { background: #09111d; border: 1px solid #21334b;
-                    border-radius: 8px; padding: 8px; color: #c4d5ed;
-                    selection-background-color: #255998; }
-                QPlainTextEdit#summaryView { background: #111c2c; border: none; padding: 2px; }
-                QScrollBar:vertical { background: #0c1624; width: 11px; margin: 0; }
-                QScrollBar::handle:vertical { background: #334c6a; min-height: 28px; border-radius: 5px; }
-                QScrollBar:horizontal { background: #0c1624; height: 11px; margin: 0; }
-                QScrollBar::handle:horizontal { background: #334c6a; min-width: 28px; border-radius: 5px; }
+                QPlainTextEdit { background: #090f1e; border: 1px solid #303a55;
+                    border-radius: 8px; padding: 8px; color: #ced9f0;
+                    selection-background-color: #64439b; }
+                QPlainTextEdit#summaryView { background: #11182a; border: none; padding: 2px; }
+                QScrollBar:vertical { background: #0d1425; width: 11px; margin: 0; }
+                QScrollBar::handle:vertical { background: #65547e; min-height: 28px; border-radius: 5px; }
+                QScrollBar:horizontal { background: #0d1425; height: 11px; margin: 0; }
+                QScrollBar::handle:horizontal { background: #65547e; min-width: 28px; border-radius: 5px; }
                 QScrollBar::add-line, QScrollBar::sub-line { width: 0; height: 0; }
                 QScrollBar::add-page, QScrollBar::sub-page { background: none; }
-                QSplitter::handle { background: #0c121d; height: 10px; }
-                QCheckBox { color: #9eb1cd; font-size: 11px; spacing: 6px; }
-                QCheckBox::indicator { width: 13px; height: 13px; border: 1px solid #547197;
-                    border-radius: 3px; background: #0c1727; }
-                QCheckBox::indicator:checked { background: #3b82e9; border-color: #7bb4ff; }
-                QProgressBar { background: #1d3150; border: none; border-radius: 3px; }
-                QProgressBar::chunk { background: #509cff; border-radius: 3px; }
-                QToolTip { color: #e9f1ff; background: #1c2d45; border: 1px solid #4f7098; padding: 5px; }
+                QSplitter::handle { background: #090d19; height: 10px; }
+                QCheckBox { color: #abb8d3; font-size: 11px; spacing: 6px; }
+                QCheckBox::indicator { width: 13px; height: 13px; border: 1px solid #81709e;
+                    border-radius: 3px; background: #0d1426; }
+                QCheckBox::indicator:checked { background: #9d52cb; border-color: #eea7ff; }
+                QProgressBar { background: #272039; border: none; border-radius: 3px; }
+                QProgressBar::chunk { border-radius: 3px;
+                    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                        stop:0 #52e4da, stop:0.5 #bf79f9, stop:1 #fb8aab); }
+                QToolTip { color: #f3edff; background: #29273e; border: 1px solid #9380b6; padding: 5px; }
             """)
 
         def _configuration_changed(self, *_args: Any) -> None:
@@ -673,6 +698,7 @@ def launch_gui() -> int:
             process.finished.connect(lambda code, status: self._process_finished(process, code, status))
             process.errorOccurred.connect(lambda error: self._process_error(process, error))
             process.started.connect(lambda: self._process_started(process))
+            self.task_process_created.emit(process)
             process.start()
 
         def _process_started(self, process: QProcess) -> None:

@@ -3,68 +3,68 @@
   "project": "Maxkompilator",
   "release": "1.0",
   "updated": "2026-10-17",
-  "scope": "Zdefiniowana wersja v1: wspólny silnik i GUI, kwalifikowane wydania Python/Windows, Android i .NET oraz podstawy obsługi wykonawców Linux/macOS. 100% nie oznacza obsługi wszystkich istniejących języków i formatów.",
+  "scope": "Defined v1: a shared engine and GUI, qualified Python/Windows, Android and .NET builds, and foundations for Linux/macOS runners. 100% covers this release scope; support for additional languages and formats has a separate roadmap.",
   "milestones": [
     {
       "id": "foundation",
-      "title": "Fundament projektu i CI",
+      "title": "Project foundation and CI",
       "weight": 8,
       "items": [
         {
           "id": "scope",
-          "title": "Zakres v1, instrukcje i mierzalne kryteria ukończenia",
+          "title": "v1 scope, instructions and measurable completion criteria",
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "README.md i ROADMAP.md: opis zakresu, ograniczeń oraz stałych wag v1"
+            "README.md and ROADMAP.md: scope, limitations and fixed v1 weights"
           ]
         },
         {
           "id": "architecture",
-          "title": "Podział silnika, adapterów i wykonawców",
+          "title": "Engine, adapter and runner boundaries",
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "docs/ARCHITECTURE.md: przepływ zadania, granice odpowiedzialności i model wyników"
+            "docs/ARCHITECTURE.md: job workflow, responsibilities and result model"
           ]
         },
         {
           "id": "package",
-          "title": "Instalowalny pakiet i działające wejście CLI",
+          "title": "Installable package and working CLI entry point",
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "Wheel i sdist zbudowane; wheel zainstalowany bez indeksu i zależności poza repo, CLI/SVG/PYZ z zasobem oraz smoke PASS — docs/VALIDATION.md i docs/validation-local.json"
+            "Wheel and sdist built; wheel installed without an index or dependencies outside the repository; CLI, packaged icon resources, real PYZ with data and smoke test PASS — docs/VALIDATION.md and docs/validation-local.json"
           ]
         },
         {
           "id": "ci",
-          "title": "Uruchomiony CI z kontrolą jakości i zgodności postępu",
+          "title": "Working CI with quality and progress consistency checks",
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "GitHub Actions run 39028988975 dla commita aea4aa811f139edab7b167ab86f1518a283a7302: sześć zadań Core Linux/Windows/macOS × Python 3.11/3.13 SUCCESS, w tym testy, kontrola roadmapy i rzeczywiste PYZ ze smoke — docs/CI.md; https://github.com/Swir/Maxkompilator/actions/runs/39028988975"
+            "GitHub Actions run 39028988975 for commit aea4aa811f139edab7b167ab86f1518a283a7302: six Core jobs across Linux/Windows/macOS and Python 3.11/3.13 SUCCESS, including tests, roadmap validation and a real PYZ with a smoke test — docs/CI.md; https://github.com/Swir/Maxkompilator/actions/runs/39028988975"
           ]
         }
       ]
     },
     {
       "id": "discovery",
-      "title": "Rozpoznawanie projektu i środowiska",
+      "title": "Project and environment discovery",
       "weight": 12,
       "items": [
         {
           "id": "detection",
-          "title": "Rozpoznawanie projektów Python, Android i .NET",
+          "title": "Detect Python, Android and .NET projects",
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "tests/test_detection.py: rozpoznanie skryptów, projektu Python, Androida i konkretnych csproj; lokalny zestaw PASS — docs/VALIDATION.md"
+            "tests/test_detection.py: scripts, Python projects, Android projects and concrete csproj detection; local suite PASS — docs/VALIDATION.md"
           ]
         },
         {
           "id": "ambiguity",
-          "title": "Jawny wybór typu i punktu startowego przy niejednoznaczności",
+          "title": "Explicit project type and entry point selection when ambiguous",
           "weight": 3,
           "status": "complete",
           "evidence": [
@@ -73,16 +73,16 @@
         },
         {
           "id": "doctor",
-          "title": "Diagnostyka wymaganych narzędzi z użytecznym opisem braków",
+          "title": "Required tool diagnostics with actionable missing-tool messages",
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "tests/test_engine.py: test_missing_tool_yields_failed_report_without_build; scripts/gui_smoke.py: environment_doctor_and_smoke_flag_scoping — lokalnie PASS"
+            "tests/test_engine.py: test_missing_tool_yields_failed_report_without_build; scripts/gui_smoke.py: environment_doctor_and_smoke_flag_scoping — local PASS"
           ]
         },
         {
           "id": "plan",
-          "title": "Plan budowania dostępny w CLI i JSON bez uruchamiania kompilacji",
+          "title": "CLI and JSON build plans without running the build",
           "weight": 3,
           "status": "complete",
           "evidence": [
@@ -93,80 +93,80 @@
     },
     {
       "id": "python",
-      "title": "Python i wydania Windows",
+      "title": "Python and Windows builds",
       "weight": 16,
       "items": [
         {
           "id": "zipapp",
-          "title": "Rzeczywista budowa PYZ i test uruchomienia prostego projektu",
+          "title": "Build and run a real PYZ from a simple project",
           "weight": 4,
           "status": "complete",
           "evidence": [
-            "tests/test_engine.py: test_zipapp_builds_and_runs_with_resources_outside_source; rzeczywisty examples/hello-python PYZ + smoke PASS na Linux — docs/VALIDATION.md"
+            "tests/test_engine.py: test_zipapp_builds_and_runs_with_resources_outside_source; real examples/hello-python PYZ and smoke test PASS on Linux — docs/VALIDATION.md"
           ]
         },
         {
           "id": "pyinstaller",
-          "title": "Adapter natywnego budowania przez PyInstaller",
+          "title": "Native build adapter using PyInstaller",
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "maxkompilator/adapters/python_adapter.py oraz rzeczywista budowa i uruchomienie przykładu przez PyInstaller 6.22.3 na Linux — docs/VALIDATION.md"
+            "maxkompilator/adapters/python_adapter.py and a real example built and run with PyInstaller 6.22.3 on Linux — docs/VALIDATION.md"
           ]
         },
         {
           "id": "exe",
-          "title": "Rzeczywisty EXE z poprawnym formatem, zasobami i ikoną",
+          "title": "Real EXE with a valid format, resources and the built application's icon",
           "weight": 5,
           "status": "in_progress",
           "evidence": [
-            "Job 117385587290: rzeczywisty przykład Windows PE x64 z zasobem i uruchomieniem PASS; pełne kryterium obejmujące profil ikony budowanej aplikacji pozostaje otwarte — docs/CI.md"
+            "Job 117385587290: real Windows PE x64 example with a resource and runtime check PASS; the full criterion includes an icon profile for the application being built and remains open — docs/CI.md"
           ]
         },
         {
           "id": "windows-runtime",
-          "title": "Uruchomienie zbudowanego EXE na Windows bez instalowania Pythona",
+          "title": "Run a built EXE on Windows without installing Python",
           "weight": 5,
           "status": "in_progress",
           "evidence": [
-            "Job 117385587290: uruchomienie EXE spoza źródeł z ograniczonym PATH PASS; wykonawca ma Pythona, test na czystej maszynie bez Pythona pozostaje otwarty — docs/CI.md"
+            "Job 117385587290: EXE ran outside the sources with a restricted PATH; the runner has Python installed, so qualification on a clean machine without Python remains open — docs/CI.md"
           ]
         }
       ]
     },
     {
       "id": "android",
-      "title": "Android: APK i AAB",
+      "title": "Android: APK and AAB",
       "weight": 14,
       "items": [
         {
           "id": "gradle",
-          "title": "Recepty Gradle dla debug APK/AAB i obsługa projektu z wrapperem",
+          "title": "Gradle recipes for debug APK/AAB and wrapper-based projects",
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "tests/test_adapters.py: test_android_debug_apk_plan_does_not_execute_wrapper i test_android_artifact_patterns_select_only_debug_outputs — PASS; przygotowano recepty, bez kwalifikacji rzeczywistego APK/AAB"
+            "tests/test_adapters.py: test_android_debug_apk_plan_does_not_execute_wrapper and test_android_artifact_patterns_select_only_debug_outputs — PASS; recipes checked, real APK/AAB qualification pending"
           ]
         },
         {
           "id": "apk",
-          "title": "Rzeczywisty APK: manifest, pakiet, wariant i kontrola podpisu",
+          "title": "Real APK: manifest, package, variant and signature verification",
           "weight": 4,
           "status": "in_progress",
           "evidence": [
-            "maxkompilator/engine.py: kontrola kontenera i wywołanie apksigner; brak rzeczywistej kwalifikacji z Android SDK"
+            "maxkompilator/engine.py: container checks and apksigner invocation; real qualification with Android SDK is still pending"
           ]
         },
         {
           "id": "device",
-          "title": "Instalacja i uruchomienie APK na emulatorze lub telefonie",
+          "title": "Install and launch an APK on an emulator or phone",
           "weight": 5,
           "status": "pending",
           "evidence": []
         },
         {
           "id": "aab",
-          "title": "Rzeczywisty AAB oraz wyraźne rozdzielenie podpisów debug/release",
+          "title": "Real AAB and explicit debug/release signing distinction",
           "weight": 3,
           "status": "pending",
           "evidence": []
@@ -175,35 +175,35 @@
     },
     {
       "id": "dotnet",
-      "title": ".NET i publikacje Windows",
+      "title": ".NET and Windows publishing",
       "weight": 12,
       "items": [
         {
           "id": "recipe",
-          "title": "Adapter dotnet publish z właściwym projektem i celem",
+          "title": "dotnet publish adapter with an explicit project and target",
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "tests/test_adapters.py: test_dotnet_publish_includes_runtime_and_concrete_project oraz ograniczenia WPF/NativeAOT — PASS; sprawdzona recepta bez rzeczywistej publikacji SDK .NET"
+            "tests/test_adapters.py: test_dotnet_publish_includes_runtime_and_concrete_project and WPF/NativeAOT restrictions — PASS; recipe verified, real .NET SDK publishing pending"
           ]
         },
         {
           "id": "publish",
-          "title": "Rzeczywista publikacja projektu .NET i sprawdzenie wyników",
+          "title": "Publish a real .NET project and verify its output",
           "weight": 4,
           "status": "pending",
           "evidence": []
         },
         {
           "id": "windows-runtime",
-          "title": "Uruchomienie opublikowanej aplikacji na Windows",
+          "title": "Run the published application on Windows",
           "weight": 4,
           "status": "pending",
           "evidence": []
         },
         {
           "id": "desktop",
-          "title": "Weryfikacja zależności aplikacji desktopowej i trybu dystrybucji",
+          "title": "Verify desktop application dependencies and distribution mode",
           "weight": 2,
           "status": "pending",
           "evidence": []
@@ -212,96 +212,96 @@
     },
     {
       "id": "gui",
-      "title": "Interfejs desktopowy",
+      "title": "Desktop interface",
       "weight": 12,
       "items": [
         {
           "id": "design",
-          "title": "Ciemny interfejs, własna ikona i oznaczenie by Swir",
+          "title": "Dark interface, original icon and by Swir attribution",
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "maxkompilator/gui.py, assets/maxkompilator.svg; scripts/gui_smoke.py: initial_window_icon_and_controls — PASS na Linux z Qt 6.12 offscreen"
+            "maxkompilator/gui.py; scripts/gui_smoke.py: initial_window_icon_and_controls — PASS on Linux with Qt 6.12 offscreen in the 0.1.0.dev1 qualification"
           ]
         },
         {
           "id": "workflow",
-          "title": "Wybór projektu, diagnostyka, plan i budowanie z GUI",
+          "title": "Project selection, diagnostics, planning and building from the GUI",
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "scripts/gui_smoke.py: inspect_and_plan_unicode_path_auto_defaults, environment_doctor_and_smoke_flag_scoping, zipapp_build_real_runtime_and_persisted_report — PASS na Linux"
+            "scripts/gui_smoke.py: inspect_and_plan_unicode_path_auto_defaults, environment_doctor_and_smoke_flag_scoping, zipapp_build_real_runtime_and_persisted_report — PASS on Linux"
           ]
         },
         {
           "id": "responsiveness",
-          "title": "Responsywne logi, praca w tle i anulowanie zadania",
+          "title": "Responsive logs, background work and job cancellation",
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "scripts/gui_smoke.py: open_results_and_copy_log_buttons, cancel_button_stops_running_build, cancelled_worker_and_descendant_are_stopped — PASS na Linux"
+            "scripts/gui_smoke.py: open_results_and_copy_log_buttons, cancel_button_stops_running_build, cancelled_worker_and_descendant_are_stopped — PASS on Linux"
           ]
         },
         {
           "id": "windows-test",
-          "title": "Test pełnej ścieżki GUI i ponownego uruchomienia na Windows",
+          "title": "Complete Windows GUI workflow and relaunch test",
           "weight": 3,
           "status": "in_progress",
           "evidence": [
-            "Job 117385587321: źródłowe GUI 7/7 grup PASS, zbudowany pakiet EXE i działający spakowany moduł CLI; pełny scenariusz frozen GUI wraz z ponownym otwarciem pozostaje otwarty — docs/CI.md"
+            "Job 117385587321: source GUI 7/7 groups PASS, EXE bundle built and packaged CLI working; the complete frozen GUI scenario including reopening remains open — docs/CI.md"
           ]
         }
       ]
     },
     {
       "id": "profiles",
-      "title": "Profile i powtarzalność wyników",
+      "title": "Profiles and repeatable output",
       "weight": 10,
       "items": [
         {
           "id": "configuration",
-          "title": "Zapisane profile projektu i walidacja konfiguracji",
+          "title": "Saved project profiles and configuration validation",
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "maxkompilator/config.py i examples/hello-python/maxkompilator.toml; tests/test_engine.py: test_invalid_config_has_actionable_error oraz rzeczywista budowa przykładu z konfiguracji — PASS"
+            "maxkompilator/config.py and examples/hello-python/maxkompilator.toml; tests/test_engine.py: test_invalid_config_has_actionable_error and a real build using the example configuration — PASS"
           ]
         },
         {
           "id": "resources",
-          "title": "Ustawienia nazwy, wersji, ikony i dołączanych zasobów",
+          "title": "Application name, version, icon and bundled resource settings",
           "weight": 2,
           "status": "in_progress",
           "evidence": [
-            "Konfiguracja python.data obsługuje zasoby; pełne profile nazw, wersji i ikon aplikacji pozostają do wdrożenia"
+            "The python.data setting supports resources; complete application name, version and icon profiles still need implementation"
           ]
         },
         {
           "id": "repeatability",
-          "title": "Przypięte narzędzia i ponowna budowa ze wskazanego profilu",
+          "title": "Pinned tools and repeat builds from a selected profile",
           "weight": 3,
           "status": "pending",
           "evidence": []
         },
         {
           "id": "reports",
-          "title": "Osobne wyniki zadania, logi i raport z sumami kontrolnymi",
+          "title": "Separate job output, logs and reports with checksums",
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "maxkompilator/engine.py zapisuje raporty per run, logi i SHA-256; tests/test_engine.py: test_build_json_stdout_is_single_report i test_nonzero_exit_is_logged_and_reported — PASS"
+            "maxkompilator/engine.py writes per-run reports, logs and SHA-256 checksums; tests/test_engine.py: test_build_json_stdout_is_single_report and test_nonzero_exit_is_logged_and_reported — PASS"
           ]
         }
       ]
     },
     {
       "id": "reliability",
-      "title": "Niezawodność i kwalifikacja wydań",
+      "title": "Reliability and release qualification",
       "weight": 10,
       "items": [
         {
           "id": "failures",
-          "title": "Błędy, timeout i anulowanie nie zwracają fałszywego sukcesu",
+          "title": "Errors, timeouts and cancellation never report false success",
           "weight": 3,
           "status": "complete",
           "evidence": [
@@ -310,89 +310,89 @@
         },
         {
           "id": "paths",
-          "title": "Ścieżki ze spacjami, Unicode i kontrola granic wejścia/wyjścia",
+          "title": "Spaces, Unicode and input/output path boundary checks",
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "tests/test_detection.py: test_explicit_entry_cannot_escape_project; tests/test_engine.py: test_output_cannot_overwrite_project_root_or_parent; rzeczywisty GUI smoke ze spacjami i Unicode — PASS"
+            "tests/test_detection.py: test_explicit_entry_cannot_escape_project; tests/test_engine.py: test_output_cannot_overwrite_project_root_or_parent; real GUI smoke with spaces and Unicode — PASS"
           ]
         },
         {
           "id": "integration",
-          "title": "Automatyczne testy integracyjne na znanych projektach",
+          "title": "Automated integration tests using known projects",
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "tests/test_engine.py: integracja CLI, rzeczywista budowa PYZ, zasoby i test uruchomienia; scripts/gui_smoke.py: integracja GUI z podprocesami — lokalnie PASS"
+            "tests/test_engine.py: CLI integration, a real PYZ build, resources and runtime checks; scripts/gui_smoke.py: GUI integration with subprocesses — local PASS"
           ]
         },
         {
           "id": "release-gate",
-          "title": "Wydanie Windows przechodzi obowiązkową kwalifikację w CI",
+          "title": "Windows release passes mandatory CI qualification",
           "weight": 2,
           "status": "in_progress",
           "evidence": [
-            "CI run 39028988975: 10/10 zadań SUCCESS, dostępny rozwojowy pakiet Windows; pełna kwalifikacja interaktywnego wydania Windows pozostaje do wykonania — docs/CI.md"
+            "CI run 39028988975: 10/10 jobs SUCCESS and a development Windows bundle available; complete interactive Windows release qualification remains open — docs/CI.md"
           ]
         }
       ]
     },
     {
       "id": "runners",
-      "title": "Wykonawcy Linux i macOS",
+      "title": "Linux and macOS runners",
       "weight": 4,
       "items": [
         {
           "id": "targets",
-          "title": "Jawna zgodność systemu i architektury z planem zadania",
+          "title": "Explicit OS and architecture compatibility in build plans",
           "weight": 1,
           "status": "complete",
           "evidence": [
-            "tests/test_adapters.py: test_pyinstaller_rejects_cross_os_and_architecture oraz test_dotnet_windows_desktop_rejects_linux_target — PASS; jawny wybór celów zamiast pozornej kompilacji między systemami"
+            "tests/test_adapters.py: test_pyinstaller_rejects_cross_os_and_architecture and test_dotnet_windows_desktop_rejects_linux_target — PASS; target selection enforces supported build environments"
           ]
         },
         {
           "id": "linux",
-          "title": "Budowa i uruchomienie wyniku na wykonawcy Linux",
+          "title": "Build and run output on a Linux runner",
           "weight": 1,
           "status": "complete",
           "evidence": [
-            "Rzeczywisty program Linux x86_64 z PyInstaller 6.22.3 zbudowany i uruchomiony z zasobem; scripts/qualify_native.py — PASS, docs/VALIDATION.md"
+            "Real Linux x86_64 application built with PyInstaller 6.22.3 and run with its resource; scripts/qualify_native.py — PASS, docs/VALIDATION.md"
           ]
         },
         {
           "id": "remote-contract",
-          "title": "Zaimplementowany protokół zdalnego wykonawcy i jego możliwości",
+          "title": "Implemented remote runner protocol and capability reporting",
           "weight": 1,
           "status": "pending",
           "evidence": []
         },
         {
           "id": "macos",
-          "title": "Budowa i uruchomienie wyniku na wykonawcy macOS",
+          "title": "Build and run output on a macOS runner",
           "weight": 1,
           "status": "complete",
           "evidence": [
-            "GitHub Actions job 117385587229: rzeczywisty macos-arm64 Mach-O, build/resource/smoke i kwalifikacja spoza źródeł z ograniczonym PATH PASS; archiwum zachowało 4 dowiązania, docs/CI.md i docs/ci-evidence.json; https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587229"
+            "GitHub Actions job 117385587229: real macos-arm64 Mach-O, build/resource/smoke and qualification outside the sources with a restricted PATH PASS; archive preserved 4 symlinks, docs/CI.md and docs/ci-evidence.json; https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587229"
           ]
         }
       ]
     },
     {
       "id": "extensions",
-      "title": "Rozszerzalność i kolejne architektury",
+      "title": "Extensibility and additional architectures",
       "weight": 2,
       "items": [
         {
           "id": "adapter-api",
-          "title": "Udokumentowany i sprawdzony kontrakt dodatkowego adaptera",
+          "title": "Documented and tested contract for an additional adapter",
           "weight": 1,
           "status": "pending",
           "evidence": []
         },
         {
           "id": "architectures",
-          "title": "Jawna macierz dodatkowych architektur z testem wyboru celu",
+          "title": "Explicit additional-architecture matrix with target selection tests",
           "weight": 1,
           "status": "pending",
           "evidence": []
@@ -401,9 +401,9 @@
     }
   ],
   "future": [
-    "Dodatkowe adaptery: C/C++, Rust, Go, Java, Flutter, Electron i Tauri",
-    "Rozszerzenia przeglądarek, VSIX, Godot i kolejne silniki gier",
-    "Instalatory MSI, MSIX, AppImage, DEB, RPM, DMG i PKG",
-    "Menedżer środowisk, kolejka wielu projektów, usługa API/MCP i podpisywanie wydań"
+    "Additional adapters: C/C++, Rust, Go, Java, Flutter, Electron and Tauri",
+    "Browser extensions, VSIX, Godot and additional game engines",
+    "MSI, MSIX, AppImage, DEB, RPM, DMG and PKG installers",
+    "Environment manager, multi-project queue, API/MCP service and release signing"
   ]
 }

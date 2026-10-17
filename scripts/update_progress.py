@@ -30,24 +30,24 @@ class ProgressError(ValueError):
 
 def _text(value: Any, label: str) -> str:
     if not isinstance(value, str) or not value.strip():
-        raise ProgressError(f"{label}: oczekiwano niepustego tekstu")
+        raise ProgressError(f"{label}: expected nonempty text")
     if "\n" in value or "\r" in value or START in value or END in value:
-        raise ProgressError(f"{label}: tekst musi być jednoliniowy, bez znaczników")
+        raise ProgressError(f"{label}: text must be one line without progress markers")
     return value
 
 
 def _weight(value: Any, label: str) -> int:
     if type(value) is not int or not 0 < value <= 100:
-        raise ProgressError(f"{label}: waga musi być liczbą całkowitą 1–100")
+        raise ProgressError(f"{label}: weight must be an integer from 1 to 100")
     return value
 
 
 def validate_progress(data: Any) -> dict[str, Any]:
     """Reject unsupported schemas, unbalanced weights and unsupported claims."""
     if not isinstance(data, dict) or type(data.get("schema_version")) is not int:
-        raise ProgressError("Oczekiwano obiektu ze schema_version = 1")
+        raise ProgressError("Expected an object with schema_version = 1")
     if data["schema_version"] != 1:
-        raise ProgressError("Obsługiwana jest wyłącznie schema_version = 1")
+        raise ProgressError("Only schema_version = 1 is supported")
     for key in ("project", "release", "scope"):
         _text(data.get(key), key)
     try:
@@ -55,55 +55,55 @@ def validate_progress(data: Any) -> dict[str, Any]:
         if dt.date.fromisoformat(date).isoformat() != date:
             raise ValueError
     except ValueError as exc:
-        raise ProgressError("updated musi mieć format YYYY-MM-DD") from exc
+        raise ProgressError("updated must use YYYY-MM-DD format") from exc
 
     milestones = data.get("milestones")
     if not isinstance(milestones, list) or not milestones:
-        raise ProgressError("milestones musi zawierać co najmniej jeden etap")
+        raise ProgressError("milestones must contain at least one milestone")
     seen_milestones: set[str] = set()
     total = 0
     for milestone in milestones:
         if not isinstance(milestone, dict):
-            raise ProgressError("Etap musi być obiektem")
+            raise ProgressError("A milestone must be an object")
         mid = _text(milestone.get("id"), "milestone.id")
         if not IDENTIFIER.fullmatch(mid) or mid in seen_milestones:
-            raise ProgressError(f"Nieprawidłowy lub powtórzony identyfikator etapu: {mid}")
+            raise ProgressError(f"Invalid or duplicate milestone identifier: {mid}")
         seen_milestones.add(mid)
         _text(milestone.get("title"), f"{mid}.title")
         weight = _weight(milestone.get("weight"), f"{mid}.weight")
         total += weight
         items = milestone.get("items")
         if not isinstance(items, list) or not items:
-            raise ProgressError(f"{mid}: etap musi zawierać kryteria")
+            raise ProgressError(f"{mid}: a milestone must contain criteria")
         seen_items: set[str] = set()
         subtotal = 0
         for item in items:
             if not isinstance(item, dict):
-                raise ProgressError(f"{mid}: kryterium musi być obiektem")
+                raise ProgressError(f"{mid}: a criterion must be an object")
             iid = _text(item.get("id"), f"{mid}.item.id")
             label = f"{mid}.{iid}"
             if not IDENTIFIER.fullmatch(iid) or iid in seen_items:
-                raise ProgressError(f"Nieprawidłowy lub powtórzony identyfikator: {label}")
+                raise ProgressError(f"Invalid or duplicate identifier: {label}")
             seen_items.add(iid)
             _text(item.get("title"), f"{label}.title")
             subtotal += _weight(item.get("weight"), f"{label}.weight")
             status = item.get("status")
             if not isinstance(status, str) or status not in STATUSES:
-                raise ProgressError(f"{label}: status musi być pending, in_progress lub complete")
+                raise ProgressError(f"{label}: status must be pending, in_progress or complete")
             evidence = item.get("evidence")
             if not isinstance(evidence, list):
-                raise ProgressError(f"{label}: evidence musi być listą")
+                raise ProgressError(f"{label}: evidence must be a list")
             for entry in evidence:
                 _text(entry, f"{label}.evidence")
             if status == "complete" and not evidence:
-                raise ProgressError(f"{label}: ukończone kryterium wymaga dowodu w evidence")
+                raise ProgressError(f"{label}: a completed criterion requires evidence")
         if subtotal != weight:
-            raise ProgressError(f"{mid}: suma wag kryteriów {subtotal} różni się od wagi etapu {weight}")
+            raise ProgressError(f"{mid}: criterion weights total {subtotal}, but the milestone weight is {weight}")
     if total != 100:
-        raise ProgressError(f"Suma wag etapów musi wynosić 100, otrzymano {total}")
+        raise ProgressError(f"Milestone weights must total 100; received {total}")
     future = data.get("future", [])
     if not isinstance(future, list):
-        raise ProgressError("future musi być listą")
+        raise ProgressError("future must be a list")
     for entry in future:
         _text(entry, "future")
     return data
@@ -113,7 +113,7 @@ def load_progress(path: Path) -> dict[str, Any]:
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
-        raise ProgressError(f"Nieprawidłowy JSON: {path}: {exc.msg}") from exc
+        raise ProgressError(f"Invalid JSON: {path}: {exc.msg}") from exc
     return validate_progress(data)
 
 
@@ -127,7 +127,7 @@ def total_progress(data: dict[str, Any]) -> int:
 
 
 def _percentage(earned: int, weight: int) -> str:
-    return f"{earned * 100 / weight:.1f}".removesuffix(".0").replace(".", ",") + "%"
+    return f"{earned * 100 / weight:.1f}".removesuffix(".0") + "%"
 
 
 def _table_text(value: str) -> str:
@@ -137,40 +137,41 @@ def _table_text(value: str) -> str:
 def render_progress(data: dict[str, Any], *, details: bool = False) -> str:
     progress = total_progress(data)
     lines = [
-        f"**Postęp v{data['release']}: {progress}% — {progress} / 100 pkt.**",
+        f"**v{data['release']} progress: {progress}% — {progress} / 100 points.**",
         "",
-        "Wynik obejmuje wyłącznie ukończone kryteria z dowodem. "
-        "Prace w toku nie zwiększają procentu.",
+        "Only completed criteria with recorded evidence earn points. "
+        "Work in progress does not increase the percentage.",
         "",
-        "| Etap | Waga v1 | Ukończono | Postęp etapu |",
+        "| Milestone | v1 weight | Earned | Milestone progress |",
         "|---|---:|---:|---:|",
     ]
     for milestone in data["milestones"]:
         earned = earned_weight(milestone)
         weight = milestone["weight"]
         lines.append(
-            f"| {_table_text(milestone['title'])} | {weight} pkt | {earned} / {weight} pkt "
+            f"| {_table_text(milestone['title'])} | {weight} pts | {earned} / {weight} pts "
             f"| {_percentage(earned, weight)} |"
         )
     lines += [
-        f"| **Łącznie** | **100 pkt** | **{progress} / 100 pkt** | **{progress}%** |",
+        f"| **Total** | **100 pts** | **{progress} / 100 pts** | **{progress}%** |",
         "",
-        f"Źródło: [docs/progress.json](docs/progress.json) · aktualizacja danych: **{data['updated']}**.",
+        f"Source: [docs/progress.json](docs/progress.json) · last updated: **{data['updated']}**.",
     ]
     if details:
-        lines += ["", "### Kryteria i dowody", ""]
+        lines += ["", "### Criteria and evidence", ""]
         for milestone in data["milestones"]:
-            lines += [f"#### {milestone['title']} — {milestone['weight']} pkt", ""]
+            lines += [f"#### {milestone['title']} — {milestone['weight']} points", ""]
             for item in milestone["items"]:
                 mark = "x" if item["status"] == "complete" else " "
-                line = f"- [{mark}] **{item['title']} — {item['weight']} pkt.**"
+                unit = "point" if item["weight"] == 1 else "points"
+                line = f"- [{mark}] **{item['title']} — {item['weight']} {unit}.**"
                 if item["status"] == "complete":
-                    line += " Dowód: " + "; ".join(item["evidence"]) + "."
+                    line += " Evidence: " + "; ".join(item["evidence"]) + "."
                 elif item["status"] == "in_progress":
-                    line += " W toku; punkty zostaną naliczone po spełnieniu kryterium."
+                    line += " In progress; points are awarded after the full criterion is met."
                 else:
-                    line += " Planowane."
-                line += f" Identyfikator: `{milestone['id']}.{item['id']}`."
+                    line += " Planned."
+                line += f" ID: `{milestone['id']}.{item['id']}`."
                 lines.append(line)
             lines.append("")
     return "\n".join(lines).rstrip() + "\n"
@@ -178,11 +179,11 @@ def render_progress(data: dict[str, Any], *, details: bool = False) -> str:
 
 def replace_block(content: str, generated: str, filename: str) -> str:
     if content.count(START) != 1 or content.count(END) != 1:
-        raise ProgressError(f"{filename}: wymagany jest dokładnie jeden komplet znaczników postępu")
+        raise ProgressError(f"{filename}: exactly one pair of progress markers is required")
     start = content.index(START) + len(START)
     end = content.index(END)
     if end < start:
-        raise ProgressError(f"{filename}: znacznik końcowy występuje przed początkowym")
+        raise ProgressError(f"{filename}: the end marker appears before the start marker")
     return content[:start] + "\n\n" + generated + "\n" + content[end:]
 
 
@@ -204,20 +205,20 @@ def sync_progress(root: Path, *, check: bool = False) -> list[str]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--check", action="store_true", help="Sprawdź zgodność bez zmiany plików")
+    parser.add_argument("--check", action="store_true", help="Check consistency without changing files")
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1],
-                        help="Katalog główny repozytorium")
+                        help="Repository root directory")
     args = parser.parse_args(argv)
     try:
         changes = sync_progress(args.root, check=args.check)
     except (OSError, UnicodeError, ProgressError) as exc:
-        print(f"Błąd postępu: {exc}", file=sys.stderr)
+        print(f"Progress error: {exc}", file=sys.stderr)
         return 2
     if changes and args.check:
-        print("Nieaktualny blok postępu: " + ", ".join(changes), file=sys.stderr)
-        print("Uruchom: python scripts/update_progress.py", file=sys.stderr)
+        print("Outdated progress block: " + ", ".join(changes), file=sys.stderr)
+        print("Run: python scripts/update_progress.py", file=sys.stderr)
         return 1
-    print("Zaktualizowano: " + ", ".join(changes) if changes else "Postęp jest aktualny.")
+    print("Updated: " + ", ".join(changes) if changes else "Progress is up to date.")
     return 0
 
 

@@ -1,7 +1,7 @@
 include README.md ROADMAP.md constraints-ci.txt launcher.py
 recursive-include docs *.md *.json
 recursive-include scripts *.py
-recursive-include assets *.svg
+recursive-include assets *.png
 recursive-include examples *.py *.json *.toml
 recursive-include tests *.py
 prune examples/hello-python/dist

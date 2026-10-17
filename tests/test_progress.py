@@ -52,15 +52,15 @@ class ProgressScoringTests(unittest.TestCase):
         data = example()
         self.assertEqual(progress.total_progress(data), 10)
         generated = progress.render_progress(data, details=True)
-        self.assertIn("10% — 10 / 100 pkt", generated)
-        self.assertIn("12,5%", generated)
+        self.assertIn("10% — 10 / 100 points", generated)
+        self.assertIn("12.5%", generated)
         self.assertIn("tests/test_recipe.py: PASS", generated)
         self.assertIn("[ ] **Real execution", generated)
 
     def test_complete_requires_evidence(self):
         data = example()
         data["milestones"][0]["items"][1]["status"] = "complete"
-        with self.assertRaisesRegex(progress.ProgressError, "wymaga dowodu"):
+        with self.assertRaisesRegex(progress.ProgressError, "requires evidence"):
             progress.total_progress(data)
         data["milestones"][0]["items"][1]["evidence"] = ["CI #42: real build PASS"]
         self.assertEqual(progress.total_progress(data), 80)
@@ -87,13 +87,13 @@ class ProgressScoringTests(unittest.TestCase):
     def test_duplicate_criteria_cannot_inflate_completion(self):
         data = example()
         data["milestones"][0]["items"][1]["id"] = "recipe"
-        with self.assertRaisesRegex(progress.ProgressError, "powtórzony"):
+        with self.assertRaisesRegex(progress.ProgressError, "duplicate"):
             progress.validate_progress(data)
 
     def test_scope_cannot_silently_drop_a_whole_milestone(self):
         data = example()
         data["milestones"].pop()
-        with self.assertRaisesRegex(progress.ProgressError, "musi wynosić 100"):
+        with self.assertRaisesRegex(progress.ProgressError, "must total 100"):
             progress.validate_progress(data)
 
     def test_rejects_malformed_status_date_and_evidence(self):

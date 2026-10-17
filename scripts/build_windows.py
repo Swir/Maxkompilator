@@ -13,20 +13,19 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def create_icon(destination: Path) -> None:
-    from PySide6.QtCore import QByteArray, QBuffer, QIODevice
-    from PySide6.QtGui import QImage, QPainter
-    from PySide6.QtSvg import QSvgRenderer
+    from PySide6.QtCore import QByteArray, QBuffer, QIODevice, Qt
+    from PySide6.QtGui import QImage
 
-    renderer = QSvgRenderer(str(ROOT / "assets" / "maxkompilator.svg"))
-    if not renderer.isValid():
-        raise RuntimeError("Invalid source SVG icon")
+    source = QImage(str(ROOT / "assets" / "maxkompilator.png"))
+    if source.isNull() or source.width() != source.height() or source.width() < 256:
+        raise RuntimeError("The source icon must be a square PNG of at least 256 pixels")
+    if not source.hasAlphaChannel():
+        raise RuntimeError("The source icon must preserve its transparent background")
     images = []
     for size in (16, 24, 32, 48, 64, 128, 256):
-        image = QImage(size, size, QImage.Format.Format_ARGB32)
-        image.fill(0)
-        painter = QPainter(image)
-        renderer.render(painter)
-        painter.end()
+        image = source.scaled(size, size, Qt.AspectRatioMode.KeepAspectRatio,
+                              Qt.TransformationMode.SmoothTransformation)
+        image = image.convertToFormat(QImage.Format.Format_ARGB32)
         data = QByteArray()
         buffer = QBuffer(data)
         buffer.open(QIODevice.OpenModeFlag.WriteOnly)
@@ -55,14 +54,14 @@ def main() -> int:
     create_icon(icon)
     assets = ROOT / "maxkompilator" / "assets"
     assets.mkdir(exist_ok=True)
-    shutil.copy2(ROOT / "assets" / "maxkompilator.svg", assets / "maxkompilator.svg")
+    shutil.copy2(ROOT / "assets" / "maxkompilator.png", assets / "maxkompilator.png")
     # Both entry points share one PYZ and one runtime directory. The worker has
     # a console subsystem so QProcess receives real stdout/stderr pipes, while
     # the desktop executable opens without a console window.
     spec = work / "Maxkompilator.spec"
     spec.write_text(
         "a = Analysis([" + repr(str(ROOT / "launcher.py")) + "], pathex=[" + repr(str(ROOT)) + "], "
-        "binaries=[], datas=[(" + repr(str(ROOT / "assets" / "maxkompilator.svg")) + ", 'maxkompilator/assets')], "
+        "binaries=[], datas=[(" + repr(str(ROOT / "assets" / "maxkompilator.png")) + ", 'maxkompilator/assets')], "
         "hiddenimports=[], hookspath=[], hooksconfig={}, runtime_hooks=[], excludes=['PySide6.QtWebEngineCore', 'PySide6.QtWebEngineWidgets', 'PySide6.QtPdf'], noarchive=False)\n"
         "pyz = PYZ(a.pure)\n"
         "desktop = EXE(pyz, a.scripts, [], exclude_binaries=True, name='Maxkompilator', debug=False, strip=False, upx=False, console=False, icon=" + repr(str(icon)) + ")\n"
