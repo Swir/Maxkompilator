@@ -12,9 +12,9 @@ Maxkompilator takes a project from its source folder through detection, environm
 
 **Development version: `0.1.0.dev2` — working engine and experimental desktop interface.** This iteration introduces English documentation and a vivid, futuristic 3D visual identity. The interface keeps its Polish labels. Current capabilities and open qualification gates are described below.
 
-**Last recorded CI baseline: 10/10 jobs successful for `0.1.0.dev1`.** Six jobs checked the engine on Linux, Windows and macOS with Python 3.11 and 3.13. Three built and ran a native example with its resource on **Windows x64, Linux x64 and macOS ARM64**. The desktop job built the **Windows Maxkompilator bundle** and tested its packaged CLI worker. These results belong to the specific commit recorded in [CI results](docs/CI.md); they do not automatically qualify a later revision.
+**Verified CI: 10/10 jobs successful for `0.1.0.dev2`.** Six jobs checked the engine on Linux, Windows and macOS with Python 3.11 and 3.13. Three built and ran a native example with its resource on **Windows x64, Linux x64 and macOS ARM64**. The desktop job built the **Windows Maxkompilator bundle** and exercised its actual packaged GUI twice: **10 checks and 5 verified compiled CLI workers per launch**, including readable text, a real PYZ build, cancellation and reopening. See [CI run 39034556183](https://github.com/Swir/Maxkompilator/actions/runs/39034556183) and its [qualification record](docs/CI.md).
 
-**Still awaiting qualification:** the complete packaged Windows GUI workflow and reopening, a Windows machine without Python, real APK/AAB builds with Android SDK, and actual .NET publishing. The native results cover the tested example on the stated CI runners.
+**Still awaiting qualification:** a Windows machine without Python, manual interactive Windows release review, real APK/AAB builds with Android SDK, and actual .NET publishing. The packaged GUI was tested automatically with Qt offscreen; native results cover the tested example on the stated CI runners.
 
 [Roadmap and percentages](ROADMAP.md) · [Architecture](docs/ARCHITECTURE.md) · [Validation results](docs/VALIDATION.md) · [Verified CI jobs](docs/CI.md) · [GitHub Actions](https://github.com/Swir/Maxkompilator/actions)
 
@@ -22,7 +22,7 @@ Maxkompilator takes a project from its source folder through detection, environm
 
 <!-- MAXKOMPILATOR:PROGRESS:START -->
 
-**v1.0 progress: 55% — 55 / 100 points.**
+**v1.0 progress: 58% — 58 / 100 points.**
 
 Only completed criteria with recorded evidence earn points. Work in progress does not increase the percentage.
 
@@ -33,12 +33,12 @@ Only completed criteria with recorded evidence earn points. Work in progress doe
 | Python and Windows builds | 16 pts | 6 / 16 pts | 37.5% |
 | Android: APK and AAB | 14 pts | 2 / 14 pts | 14.3% |
 | .NET and Windows publishing | 12 pts | 2 / 12 pts | 16.7% |
-| Desktop interface | 12 pts | 9 / 12 pts | 75% |
+| Desktop interface | 12 pts | 12 / 12 pts | 100% |
 | Profiles and repeatable output | 10 pts | 5 / 10 pts | 50% |
 | Reliability and release qualification | 10 pts | 8 / 10 pts | 80% |
 | Linux and macOS runners | 4 pts | 3 / 4 pts | 75% |
 | Extensibility and additional architectures | 2 pts | 0 / 2 pts | 0% |
-| **Total** | **100 pts** | **55 / 100 pts** | **55%** |
+| **Total** | **100 pts** | **58 / 100 pts** | **58%** |
 
 Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-17**.
 
@@ -48,16 +48,16 @@ Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-17**
 
 ## Download the Windows development build
 
-The recorded baseline build is available from GitHub Actions:
+The verified `0.1.0.dev2` development build is available from GitHub Actions:
 
-1. Open [successful CI run 39028988975](https://github.com/Swir/Maxkompilator/actions/runs/39028988975).
+1. Open [successful CI run 39034556183](https://github.com/Swir/Maxkompilator/actions/runs/39034556183).
 2. Under **Artifacts**, select **`Maxkompilator-Windows-x64-dev`**.
 3. Extract the entire archive and open its `dist/Maxkompilator` folder.
 4. Keep **`Maxkompilator.exe`, `MaxkompilatorCLI.exe` and `_internal`** together. Launch **`Maxkompilator.exe`**.
 
-GitHub reports an artifact size of **54,090,240 bytes, approximately 51.6 MiB**, with retention until **2026-10-31**. These details describe the recorded `0.1.0.dev1` artifact. The `native-example-*` artifacts contain small test applications; select `Maxkompilator-Windows-x64-dev` for the build tool itself.
+GitHub reports an artifact size of **56,049,987 bytes, approximately 53.5 MiB**, with retention until **2026-10-31 at 12:59:08 UTC**. These details describe artifact **12101593136** from the verified dev2 run. The `native-example-*` artifacts contain small test applications; select `Maxkompilator-Windows-x64-dev` for the build tool itself.
 
-This bundle was produced by a real Windows job. Its source GUI passed seven test groups, and its packaged console worker detected a project, built a PYZ and ran the result. The complete packaged window and reopening scenario remains a separate qualification gate.
+The actual bundle was moved outside the checkout and launched from an unrelated directory. Both independent GUI launches passed the full automated workflow, used the packaged console worker for all five tasks and exited cleanly. Font checks and review of both downloaded captures confirmed readable interface text. The separate **`Maxkompilator-Windows-GUI-qualification`** artifact contains reports and diagnostic captures; it is not the application download. [CI results](docs/CI.md) records the exact scope and checksums.
 
 ## Current technology support
 
@@ -66,7 +66,7 @@ This bundle was produced by a real Windows job. Its source GUI passed seven test
 | Python | A `.py` script or project folder | `.pyz` through zipapp; native application through PyInstaller | Python 3.11+; PyInstaller and application dependencies for native packaging |
 | Android | Gradle project with an application configuration | Debug `.apk` or `.aab` | Compatible JDK, Android SDK, Gradle configuration and available project dependencies |
 | .NET | A concrete `.csproj` file | `dotnet publish` output directory | A .NET SDK compatible with the project and its libraries |
-| Maxkompilator GUI | Optional desktop interface | Project selection, diagnostics, plans, builds, logs and cancellation | Source GUI tested offscreen on Linux and Windows; full packaged-window qualification remains open |
+| Maxkompilator GUI | Optional desktop interface | Project selection, diagnostics, plans, builds, logs and cancellation | Source GUI tested on Linux and Windows; actual packaged Windows GUI tested offscreen with readable text, its compiled worker and reopening |
 
 Full support for C/C++, Rust, Go, Java, Flutter, Electron/Tauri, extensions and game engines is **planned**. A remote runner protocol for Linux/macOS is also future work. The shared interface will use build environments that are actually available and connected.
 
@@ -90,9 +90,9 @@ These commands install Maxkompilator. Android SDK, .NET SDK and the dependencies
 
 ### Desktop interface
 
-![Maxkompilator GUI after building and running a PYZ](docs/images/gui.png)
+![Maxkompilator Windows EXE after reopening and building a PYZ](docs/images/gui-windows.png)
 
-The screenshot shows `0.1.0.dev2` installed from its rebuilt wheel outside the checkout, after a real PYZ build and runtime check in **Linux, Qt 6.12, offscreen** mode. See [local validation](docs/VALIDATION.md) for the installed-wheel results and [docs/CI.md](docs/CI.md) for the separately tracked Windows qualification. The visual direction combines a multicolor 3D icon, illuminated accents and readable dark panels. [Visual identity](docs/DESIGN.md) documents the icon, palette and interface rules for this project and future Swir applications.
+The screenshot shows the actual **`0.1.0.dev2` Windows EXE** after an independent second launch, a real PYZ build and a runtime check in **Qt offscreen** mode. The complete bundle was relocated outside the checkout. This is a CI capture, not a manual Windows 11 desktop session. See [CI qualification](docs/CI.md) for the reports and [local validation](docs/VALIDATION.md) for the separate Linux and installed-wheel records. [Visual identity](docs/DESIGN.md) documents the multicolor 3D icon, illuminated accents and readable dark panels for this project and future Swir applications.
 
 ### Inspect, diagnose and plan
 
@@ -139,7 +139,7 @@ python -m maxkompilator build ./project --kind python --entry main.py --target n
 
 The initial PyInstaller adapter creates an **application directory**. Keep all its files, including its libraries. Windows output includes an EXE; Linux and macOS produce their native formats. Changing a file extension does not change the build platform.
 
-`--python` selects the build interpreter. Diagnostics check its OS and architecture, which must match the target and runner. The native example passed real builds, resource checks and execution outside the sources on Linux x64, Windows x64 and macOS ARM64 in the recorded CI baseline.
+`--python` selects the build interpreter. Diagnostics check its OS and architecture, which must match the target and runner. The native example passed real builds, resource checks and execution outside the sources on Linux x64, Windows x64 and macOS ARM64 in the verified dev2 CI run.
 
 ### Android
 
@@ -232,7 +232,7 @@ python -m unittest discover -s tests -v
 python scripts/update_progress.py --check
 ```
 
-The recorded `0.1.0.dev1` local Linux baseline passed **84/84 core and integration tests** and **7/7 GUI test groups**. All ten recorded CI jobs passed. Detailed Python 3.11 Core logs showed Linux with 84 passed, macOS with 83 passed and one skipped, and Windows with 82 passed and two skipped. See [docs/VALIDATION.md](docs/VALIDATION.md) and [docs/CI.md](docs/CI.md) for the exact evidence and skip rules.
+The dev2 local Linux engine passed **84/84 core and integration tests**. The source GUI with the new font gate passed **8/8 groups on Linux and Windows**. The packaged Windows application passed **10/10 checks on each of two independent launches**, and all **10/10 CI jobs** succeeded. The earlier installed-wheel GUI record remains separately scoped to its seven checks before the font fix. Test counts and skips belong to their particular environment; see [docs/VALIDATION.md](docs/VALIDATION.md) and [docs/CI.md](docs/CI.md) for the exact evidence and limits.
 
 With the `gui` extra installed, test the source GUI without a desktop:
 
@@ -249,7 +249,7 @@ python scripts/qualify_native.py examples/hello-python/dist/maxkompilator/build-
 
 Qualification compares SHA-256 and runs the application from another directory with `PYTHONPATH`/`PYTHONHOME` removed and a restricted `PATH`. This checks the example on the current system. The script also creates `native-example-TARGET.tar.gz`, preserving executable permissions and symbolic links.
 
-CI covers Linux/Windows/macOS with Python 3.11 and 3.13, native Python builds on all three systems, and a Windows desktop bundle. [docs/CI.md](docs/CI.md) records outcomes for a specific commit and distinguishes the source GUI, packaged console worker and clean-machine runtime qualification.
+CI covers Linux/Windows/macOS with Python 3.11 and 3.13, native Python builds on all three systems, and a Windows desktop bundle with an automated packaged-GUI, text-rendering and reopening gate. [docs/CI.md](docs/CI.md) records outcomes for a specific commit and distinguishes source testing, packaged GUI/worker execution and the still-open clean-machine qualification.
 
 ### Build the Windows Maxkompilator bundle
 
@@ -258,6 +258,7 @@ Run the packaging script in a Windows environment:
 ```bash
 python -m pip install -c constraints-ci.txt ".[gui,freeze]"
 python scripts/build_windows.py
+python scripts/qualify_windows_gui.py dist/Maxkompilator/Maxkompilator.exe --output build/packaged-gui
 ```
 
 The distribution is the entire `dist/Maxkompilator` folder, containing **`Maxkompilator.exe`, `MaxkompilatorCLI.exe` and their shared `_internal` directory**. The first executable opens the GUI, and the second handles console jobs. Keep the folder together.

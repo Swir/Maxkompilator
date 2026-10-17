@@ -90,7 +90,8 @@
   "distribution_checks": {
     "wheel_contains_png": true,
     "sdist_contains_root_and_runtime_png": true,
-    "bundled_qualification_module_present": true
+    "bundled_qualification_module_present": true,
+    "scope": "These local wheel and sdist files were built before the font-gate fix. The subsequent Windows CI distribution is recorded separately in ci-evidence-dev2.json."
   },
   "screenshot": {
     "path": "docs/images/gui.png",
@@ -101,5 +102,54 @@
     "This record does not qualify the Windows GUI executable.",
     "Actual Windows CI evidence is tracked separately in docs/CI.md.",
     "The runner has Python installed; a clean Windows machine without Python is a separate gate."
+  ],
+  "source_gui_with_font_gate": {
+    "source_commit": "044e32bebc13e87cf147868e497a2096ab2709f6",
+    "status": "passed",
+    "checks": [
+      "initial_window_icon_and_controls",
+      "readable_interface_text_glyphs",
+      "inspect_and_plan_unicode_path_auto_defaults",
+      "environment_doctor_and_smoke_flag_scoping",
+      "zipapp_build_real_runtime_and_persisted_report",
+      "open_results_and_copy_log_buttons",
+      "cancel_button_stops_running_build",
+      "cancelled_worker_and_descendant_are_stopped"
+    ],
+    "duration_seconds": 1.061,
+    "cancellation_seconds": 0.163,
+    "worker_count": 5,
+    "window_closed": true,
+    "font_glyph_status": "passed",
+    "sample": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ĄĆĘŁŃÓŚŹŻąćęłńóśźż.,:;!?-_/()[]{}",
+    "checked_font_roles": 17,
+    "physical_fonts": [
+      "DejaVu Sans Bold",
+      "DejaVu Sans Book"
+    ],
+    "report_sha256": "a960cd7c166c78d7b9ab8bd6694e7ae51c1ce13467ebb15b097fc419de9dd0b1",
+    "scope": "Actual source GUI on Linux with the new font gate; no new installed-wheel qualification is claimed."
+  },
+  "font_gate_negative_cases": [
+    {
+      "scenario": "An actual empty fontconfig database",
+      "expected_status": "failed",
+      "observed_status": "failed",
+      "worker_count": 0,
+      "checks_completed": 1,
+      "font_setup_status": "not_required",
+      "glyph_status": "failed",
+      "report_sha256": "aee819e30c1386c175db514d4fff7a3021c4c2feb0ba1cdd72a510a2a2d16b49"
+    },
+    {
+      "scenario": "An injected font-registration exception",
+      "expected_status": "failed",
+      "observed_status": "failed",
+      "worker_count": 0,
+      "checks_completed": 0,
+      "font_setup_status": "failed",
+      "glyph_status": "not_run",
+      "report_sha256": "6708e7b822e38f5fcfa519b82686e3f738546f70d463f6542d8aaad6bc5711f9"
+    }
   ]
 }

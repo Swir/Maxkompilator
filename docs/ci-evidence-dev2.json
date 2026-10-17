@@ -1,0 +1,1938 @@
+{
+  "schema_version": 1,
+  "version": "0.1.0.dev2",
+  "checked_on": "2026-10-17",
+  "repository": "Swir/Maxkompilator",
+  "commit": "044e32bebc13e87cf147868e497a2096ab2709f6",
+  "workflow_run_id": 39034556183,
+  "workflow_run_url": "https://github.com/Swir/Maxkompilator/actions/runs/39034556183",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 117401655386,
+      "name": "Core / macos-latest / Python 3.13",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401655386",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the package",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Unit and integration tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Check measurable roadmap",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Build and run a real PYZ",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 117401655572,
+      "name": "Core / ubuntu-latest / Python 3.11",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401655572",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the package",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Unit and integration tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Check measurable roadmap",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Build and run a real PYZ",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 117401655596,
+      "name": "Core / windows-latest / Python 3.13",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401655596",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the package",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Unit and integration tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Check measurable roadmap",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Build and run a real PYZ",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 117401655618,
+      "name": "Core / windows-latest / Python 3.11",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401655618",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the package",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Unit and integration tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Check measurable roadmap",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Build and run a real PYZ",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 117401655649,
+      "name": "Core / ubuntu-latest / Python 3.13",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401655649",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the package",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Unit and integration tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Check measurable roadmap",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Build and run a real PYZ",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 117401655670,
+      "name": "Core / macos-latest / Python 3.11",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401655670",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the package",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Unit and integration tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Check measurable roadmap",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Build and run a real PYZ",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 117401756236,
+      "name": "Windows desktop bundle",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756236",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install GUI and build dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Exercise actual GUI and CLI processes",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Build the Windows application and console worker",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Check packaged worker",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Build and run PYZ through packaged worker",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Qualify the packaged Windows GUI and reopen it",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Upload packaged GUI qualification evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Build source and wheel distributions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Post Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        }
+      ]
+    },
+    {
+      "id": 117401756250,
+      "name": "Native Python / windows-latest",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756250",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the native builder",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Build and run native example with a resource",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Qualify runtime and checksum",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 117401756274,
+      "name": "Native Python / ubuntu-latest",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756274",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the native builder",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Build and run native example with a resource",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Qualify runtime and checksum",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 117401756296,
+      "name": "Native Python / macos-latest",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756296",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the native builder",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Build and run native example with a resource",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Qualify runtime and checksum",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12101991267,
+      "name": "native-example-windows-latest",
+      "size_in_bytes": 7993068,
+      "url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12101991267",
+      "archive_download_url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12101991267/zip",
+      "expired": false,
+      "created_at": "2026-10-17T12:58:13Z",
+      "expires_at": "2026-10-31T12:58:11Z",
+      "updated_at": "2026-10-17T12:58:13Z",
+      "digest": "sha256:f76580bb7221b134eb628499cbb2fd29d888e3ae8b8a31adf1f02dbeca32ca93",
+      "workflow_run": {
+        "id": 39034556183,
+        "repository_id": 1423229248,
+        "head_repository_id": 1423229248,
+        "head_branch": "main",
+        "head_sha": "044e32bebc13e87cf147868e497a2096ab2709f6"
+      }
+    },
+    {
+      "id": 12101886672,
+      "name": "native-example-ubuntu-latest",
+      "size_in_bytes": 19842106,
+      "url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12101886672",
+      "archive_download_url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12101886672/zip",
+      "expired": false,
+      "created_at": "2026-10-17T12:57:51Z",
+      "expires_at": "2026-10-31T12:57:49Z",
+      "updated_at": "2026-10-17T12:57:51Z",
+      "digest": "sha256:e862f0abd2f6dff4ae5b18896c677e00a42f96000e876b47c28874e048da3378",
+      "workflow_run": {
+        "id": 39034556183,
+        "repository_id": 1423229248,
+        "head_repository_id": 1423229248,
+        "head_branch": "main",
+        "head_sha": "044e32bebc13e87cf147868e497a2096ab2709f6"
+      }
+    },
+    {
+      "id": 12101593136,
+      "name": "Maxkompilator-Windows-x64-dev",
+      "size_in_bytes": 56049987,
+      "url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12101593136",
+      "archive_download_url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12101593136/zip",
+      "expired": false,
+      "created_at": "2026-10-17T12:59:12Z",
+      "expires_at": "2026-10-31T12:59:08Z",
+      "updated_at": "2026-10-17T12:59:12Z",
+      "digest": "sha256:660148c4b83a6b9023ba408e71f2c7335a13215804bf6b28546ee14992a1f374",
+      "workflow_run": {
+        "id": 39034556183,
+        "repository_id": 1423229248,
+        "head_repository_id": 1423229248,
+        "head_branch": "main",
+        "head_sha": "044e32bebc13e87cf147868e497a2096ab2709f6"
+      }
+    },
+    {
+      "id": 12101279103,
+      "name": "native-example-macos-latest",
+      "size_in_bytes": 7216173,
+      "url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12101279103",
+      "archive_download_url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12101279103/zip",
+      "expired": false,
+      "created_at": "2026-10-17T12:58:01Z",
+      "expires_at": "2026-10-31T12:57:59Z",
+      "updated_at": "2026-10-17T12:58:01Z",
+      "digest": "sha256:ed95aa5c7e3bd830b3f29b2ef6ba8052e6ec56207ea4503dcee1c179b6f88095",
+      "workflow_run": {
+        "id": 39034556183,
+        "repository_id": 1423229248,
+        "head_repository_id": 1423229248,
+        "head_branch": "main",
+        "head_sha": "044e32bebc13e87cf147868e497a2096ab2709f6"
+      }
+    },
+    {
+      "id": 12101229870,
+      "name": "Maxkompilator-Windows-GUI-qualification",
+      "size_in_bytes": 237637,
+      "url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12101229870",
+      "archive_download_url": "https://api.github.com/repos/Swir/Maxkompilator/actions/artifacts/12101229870/zip",
+      "expired": false,
+      "created_at": "2026-10-17T12:59:03Z",
+      "expires_at": "2026-10-31T12:59:02Z",
+      "updated_at": "2026-10-17T12:59:03Z",
+      "digest": "sha256:524247df10900168b7416f89682d529f30dec2a243f6bf2e908b50277a7b7098",
+      "workflow_run": {
+        "id": 39034556183,
+        "repository_id": 1423229248,
+        "head_repository_id": 1423229248,
+        "head_branch": "main",
+        "head_sha": "044e32bebc13e87cf147868e497a2096ab2709f6"
+      }
+    }
+  ],
+  "source_gui": {
+    "status": "passed",
+    "mode": "source",
+    "version": "0.1.0.dev2",
+    "run_id": "source",
+    "checks": [
+      "initial_window_icon_and_controls",
+      "readable_interface_text_glyphs",
+      "inspect_and_plan_unicode_path_auto_defaults",
+      "environment_doctor_and_smoke_flag_scoping",
+      "zipapp_build_real_runtime_and_persisted_report",
+      "open_results_and_copy_log_buttons",
+      "cancel_button_stops_running_build",
+      "cancelled_worker_and_descendant_are_stopped"
+    ],
+    "duration_seconds": 1.312,
+    "cancellation_seconds": 0.156,
+    "screenshot": "D:\\a\\Maxkompilator\\Maxkompilator\\build\\gui-smoke.png",
+    "error": null,
+    "worker_count": 5,
+    "report": "D:\\a\\Maxkompilator\\Maxkompilator\\build\\gui-smoke.json"
+  },
+  "packaged_windows_gui": {
+    "schema_version": 1,
+    "status": "passed",
+    "scope": "Automated offscreen qualification of a relocated, fully frozen Windows x64 GUI and its compiled console worker, with two independent GUI launches.",
+    "limitations": [
+      "The hosted runner has Python installed for the generated PYZ runtime.",
+      "This is not a manual interactive Windows 11 test or a clean machine without Python."
+    ],
+    "executables": {
+      "desktop": {
+        "path": "D:\\a\\Maxkompilator\\Maxkompilator\\dist\\Maxkompilator\\Maxkompilator.exe",
+        "size_bytes": 2230813,
+        "sha256": "f22bd878b9771861a9d836b15b0ed92e22bac7a4d1c7812409dc82f2995dcd97",
+        "format": "PE",
+        "architecture": "x64",
+        "subsystem": "windows_gui"
+      },
+      "worker": {
+        "path": "D:\\a\\Maxkompilator\\Maxkompilator\\dist\\Maxkompilator\\MaxkompilatorCLI.exe",
+        "size_bytes": 2235933,
+        "sha256": "4f64d3023e5979735b7662347494d2f5db0014cda6c8d20d6218aae2ff5e3dc0",
+        "format": "PE",
+        "architecture": "x64",
+        "subsystem": "windows_console"
+      }
+    },
+    "launches": [
+      {
+        "run_id": "d1f4bd1861574b29855340d1209ea3b1",
+        "process_id": 3492,
+        "return_code": 0,
+        "duration_seconds": 2.265,
+        "report": "D:\\a\\Maxkompilator\\Maxkompilator\\build\\packaged-gui\\first-launch.json",
+        "screenshot": "D:\\a\\Maxkompilator\\Maxkompilator\\build\\packaged-gui\\first-launch.png",
+        "status": "passed",
+        "checks": [
+          "frozen_gui_imports_and_portable_worker_present",
+          "initial_window_icon_and_controls",
+          "readable_interface_text_glyphs",
+          "inspect_and_plan_unicode_path_auto_defaults",
+          "environment_doctor_and_smoke_flag_scoping",
+          "zipapp_build_real_runtime_and_persisted_report",
+          "open_results_and_copy_log_buttons",
+          "cancel_button_stops_running_build",
+          "cancelled_worker_and_descendant_are_stopped",
+          "all_five_tasks_used_verified_frozen_console_worker"
+        ],
+        "worker_count": 5,
+        "screenshot_sha256": "93257fc76543b9c25123e1c63a797dbb267a849d9de040ea1fab571faf147a95",
+        "gui_duration_seconds": 1.313,
+        "cancellation_seconds": 0.157,
+        "window_closed": true,
+        "fonts": {
+          "setup": {
+            "status": "registered",
+            "strategy": "host_system_fonts_for_windows_offscreen",
+            "fonts": [
+              {
+                "path": "C:\\Windows\\Fonts\\segoeui.ttf",
+                "expected_family": "Segoe UI",
+                "id": 0,
+                "families": [
+                  "Segoe UI"
+                ]
+              },
+              {
+                "path": "C:\\Windows\\Fonts\\segoeuib.ttf",
+                "expected_family": "Segoe UI",
+                "id": 1,
+                "families": [
+                  "Segoe UI"
+                ]
+              },
+              {
+                "path": "C:\\Windows\\Fonts\\consola.ttf",
+                "expected_family": "Consolas",
+                "id": 2,
+                "families": [
+                  "Consolas"
+                ]
+              }
+            ],
+            "directory": "C:\\Windows\\Fonts"
+          },
+          "glyphs": {
+            "status": "passed",
+            "sample": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ĄĆĘŁŃÓŚŹŻąćęłńóśźż.,:;!?-_/()[]{}",
+            "controls": [
+              {
+                "control": "projectRoot",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "entrypoint",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "projectKind",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "targetPlatform",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "outputFormat",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "smokeTestCheck",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 15,
+                "sample_width_pixels": 529
+              },
+              {
+                "control": "inspectButton",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Bold",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 681
+              },
+              {
+                "control": "doctorButton",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Bold",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 681
+              },
+              {
+                "control": "buildButton",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Bold",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 681
+              },
+              {
+                "control": "cancelButton",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Bold",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 681
+              },
+              {
+                "control": "openResultsButton",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Bold",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 681
+              },
+              {
+                "control": "logView",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "logView.document",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "summaryView",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "summaryView.document",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "statusLabel",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 16,
+                "sample_width_pixels": 582
+              },
+              {
+                "control": "appTitle",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Bold",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 41,
+                "sample_width_pixels": 1633
+              }
+            ]
+          }
+        },
+        "worker_processes": [
+          {
+            "action": "inspect",
+            "program": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "arguments": [
+              "--cli",
+              "inspect",
+              "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-gui-19jma1it\\projekt ze spacją Łódź",
+              "--entry",
+              "main.py",
+              "--json"
+            ],
+            "working_directory": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+            "pid": 3812,
+            "image_path": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "exit_code": 0,
+            "exit_status": "NormalExit"
+          },
+          {
+            "action": "plan",
+            "program": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "arguments": [
+              "--cli",
+              "plan",
+              "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-gui-19jma1it\\projekt ze spacją Łódź",
+              "--entry",
+              "main.py",
+              "--target",
+              "native",
+              "--json"
+            ],
+            "working_directory": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+            "pid": 6904,
+            "image_path": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "exit_code": 0,
+            "exit_status": "NormalExit"
+          },
+          {
+            "action": "doctor",
+            "program": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "arguments": [
+              "--cli",
+              "doctor",
+              "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-gui-19jma1it\\projekt ze spacją Łódź",
+              "--entry",
+              "main.py",
+              "--target",
+              "native",
+              "--format",
+              "zipapp",
+              "--json"
+            ],
+            "working_directory": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+            "pid": 8168,
+            "image_path": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "exit_code": 0,
+            "exit_status": "NormalExit"
+          },
+          {
+            "action": "build",
+            "program": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "arguments": [
+              "--cli",
+              "build",
+              "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-gui-19jma1it\\projekt ze spacją Łódź",
+              "--entry",
+              "main.py",
+              "--target",
+              "native",
+              "--format",
+              "zipapp",
+              "--smoke-test",
+              "--json"
+            ],
+            "working_directory": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+            "pid": 8144,
+            "image_path": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "exit_code": 0,
+            "exit_status": "NormalExit"
+          },
+          {
+            "action": "build",
+            "program": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "arguments": [
+              "--cli",
+              "build",
+              "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-gui-19jma1it\\projekt ze spacją Łódź",
+              "--entry",
+              "main.py",
+              "--target",
+              "native",
+              "--format",
+              "zipapp",
+              "--smoke-test",
+              "--json"
+            ],
+            "working_directory": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+            "pid": 9684,
+            "image_path": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "exit_code": 130,
+            "exit_status": "NormalExit"
+          }
+        ],
+        "diagnostic_report": {
+          "file": "first-launch.json",
+          "size_bytes": 25799,
+          "sha256": "4e114650e33d8c17b502e4690388aa6fb79229775db5205ef88352985d2faf92"
+        },
+        "frozen_module_files": {
+          "gui": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal\\maxkompilator\\gui.py",
+          "qualification": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal\\maxkompilator\\gui_qualification.py"
+        }
+      },
+      {
+        "run_id": "357703d845c042f6817d012a57f3b30c",
+        "process_id": 1524,
+        "return_code": 0,
+        "duration_seconds": 1.328,
+        "report": "D:\\a\\Maxkompilator\\Maxkompilator\\build\\packaged-gui\\reopened.json",
+        "screenshot": "D:\\a\\Maxkompilator\\Maxkompilator\\build\\packaged-gui\\reopened.png",
+        "status": "passed",
+        "checks": [
+          "frozen_gui_imports_and_portable_worker_present",
+          "initial_window_icon_and_controls",
+          "readable_interface_text_glyphs",
+          "inspect_and_plan_unicode_path_auto_defaults",
+          "environment_doctor_and_smoke_flag_scoping",
+          "zipapp_build_real_runtime_and_persisted_report",
+          "open_results_and_copy_log_buttons",
+          "cancel_button_stops_running_build",
+          "cancelled_worker_and_descendant_are_stopped",
+          "all_five_tasks_used_verified_frozen_console_worker"
+        ],
+        "worker_count": 5,
+        "screenshot_sha256": "790de62a937aec74c151d0209ee12508ac93dee5306e9a0c818273476bee0728",
+        "gui_duration_seconds": 1.188,
+        "cancellation_seconds": 0.125,
+        "window_closed": true,
+        "fonts": {
+          "setup": {
+            "status": "registered",
+            "strategy": "host_system_fonts_for_windows_offscreen",
+            "fonts": [
+              {
+                "path": "C:\\Windows\\Fonts\\segoeui.ttf",
+                "expected_family": "Segoe UI",
+                "id": 0,
+                "families": [
+                  "Segoe UI"
+                ]
+              },
+              {
+                "path": "C:\\Windows\\Fonts\\segoeuib.ttf",
+                "expected_family": "Segoe UI",
+                "id": 1,
+                "families": [
+                  "Segoe UI"
+                ]
+              },
+              {
+                "path": "C:\\Windows\\Fonts\\consola.ttf",
+                "expected_family": "Consolas",
+                "id": 2,
+                "families": [
+                  "Consolas"
+                ]
+              }
+            ],
+            "directory": "C:\\Windows\\Fonts"
+          },
+          "glyphs": {
+            "status": "passed",
+            "sample": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ĄĆĘŁŃÓŚŹŻąćęłńóśźż.,:;!?-_/()[]{}",
+            "controls": [
+              {
+                "control": "projectRoot",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "entrypoint",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "projectKind",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "targetPlatform",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "outputFormat",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "smokeTestCheck",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 15,
+                "sample_width_pixels": 529
+              },
+              {
+                "control": "inspectButton",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Bold",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 681
+              },
+              {
+                "control": "doctorButton",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Bold",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 681
+              },
+              {
+                "control": "buildButton",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Bold",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 681
+              },
+              {
+                "control": "cancelButton",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Bold",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 681
+              },
+              {
+                "control": "openResultsButton",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Bold",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 681
+              },
+              {
+                "control": "logView",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "logView.document",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "summaryView",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "summaryView.document",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 17,
+                "sample_width_pixels": 636
+              },
+              {
+                "control": "statusLabel",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Regular",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 16,
+                "sample_width_pixels": 582
+              },
+              {
+                "control": "appTitle",
+                "requested_families": [
+                  "Segoe UI",
+                  "Noto Sans",
+                  "sans-serif"
+                ],
+                "resolved_family": "Segoe UI",
+                "raw_family": "Segoe UI",
+                "raw_style": "Bold",
+                "raw_font_valid": true,
+                "glyph_count": 96,
+                "missing_glyphs": [],
+                "missing_metrics": [],
+                "height_pixels": 41,
+                "sample_width_pixels": 1633
+              }
+            ]
+          }
+        },
+        "worker_processes": [
+          {
+            "action": "inspect",
+            "program": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "arguments": [
+              "--cli",
+              "inspect",
+              "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-gui-_whbrr8n\\projekt ze spacją Łódź",
+              "--entry",
+              "main.py",
+              "--json"
+            ],
+            "working_directory": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+            "pid": 9232,
+            "image_path": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "exit_code": 0,
+            "exit_status": "NormalExit"
+          },
+          {
+            "action": "plan",
+            "program": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "arguments": [
+              "--cli",
+              "plan",
+              "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-gui-_whbrr8n\\projekt ze spacją Łódź",
+              "--entry",
+              "main.py",
+              "--target",
+              "native",
+              "--json"
+            ],
+            "working_directory": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+            "pid": 5872,
+            "image_path": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "exit_code": 0,
+            "exit_status": "NormalExit"
+          },
+          {
+            "action": "doctor",
+            "program": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "arguments": [
+              "--cli",
+              "doctor",
+              "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-gui-_whbrr8n\\projekt ze spacją Łódź",
+              "--entry",
+              "main.py",
+              "--target",
+              "native",
+              "--format",
+              "zipapp",
+              "--json"
+            ],
+            "working_directory": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+            "pid": 9920,
+            "image_path": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "exit_code": 0,
+            "exit_status": "NormalExit"
+          },
+          {
+            "action": "build",
+            "program": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "arguments": [
+              "--cli",
+              "build",
+              "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-gui-_whbrr8n\\projekt ze spacją Łódź",
+              "--entry",
+              "main.py",
+              "--target",
+              "native",
+              "--format",
+              "zipapp",
+              "--smoke-test",
+              "--json"
+            ],
+            "working_directory": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+            "pid": 7768,
+            "image_path": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "exit_code": 0,
+            "exit_status": "NormalExit"
+          },
+          {
+            "action": "build",
+            "program": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "arguments": [
+              "--cli",
+              "build",
+              "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-gui-_whbrr8n\\projekt ze spacją Łódź",
+              "--entry",
+              "main.py",
+              "--target",
+              "native",
+              "--format",
+              "zipapp",
+              "--smoke-test",
+              "--json"
+            ],
+            "working_directory": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+            "pid": 6436,
+            "image_path": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+            "exit_code": 130,
+            "exit_status": "NormalExit"
+          }
+        ],
+        "diagnostic_report": {
+          "file": "reopened.json",
+          "size_bytes": 25795,
+          "sha256": "649c987a6b5dcf57460c36891c2a6a674de17d48ca5df199bbed4e58ab7f7dda"
+        },
+        "frozen_module_files": {
+          "gui": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal\\maxkompilator\\gui.py",
+          "qualification": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator\\_internal\\maxkompilator\\gui_qualification.py"
+        }
+      }
+    ],
+    "checks": [
+      "x64_pe_gui_and_console_subsystems",
+      "relocated_bundle_outside_checkout",
+      "frozen_module_and_process_origins",
+      "real_gui_workflow_and_cancellation",
+      "clean_close_and_independent_reopen"
+    ],
+    "error": null,
+    "icon": {
+      "path": "D:\\a\\Maxkompilator\\Maxkompilator\\dist\\Maxkompilator\\_internal\\maxkompilator\\assets\\maxkompilator.png",
+      "sha256": "03ee456da8263cf1ed476a05c60d719948aaf41f8d81316798b73717893f381a",
+      "size_bytes": 334341
+    },
+    "environment": {
+      "relocated_bundle": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\portable ze spacją Łódź\\Maxkompilator",
+      "working_directory": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\maxkompilator-packaged-s0i1w39q\\unrelated working directory",
+      "pythonpath_removed": true,
+      "pythonhome_removed": true,
+      "external_python": "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.EXE"
+    },
+    "duration_seconds": 3.875
+  },
+  "native_qualifications": [
+    {
+      "target": "win-x64",
+      "job_id": 117401756250,
+      "evidence": {
+        "status": "passed",
+        "binary": "D:\\a\\Maxkompilator\\Maxkompilator\\examples\\hello-python\\dist\\maxkompilator\\runs\\5f6f33c2b6c6474c95fd0346e6fd2215\\hello-python\\hello-python.exe",
+        "sha256": "e793758b33652a03c7ff1d969d2aa199328a32e00203b5aa7fe01c0655262f71",
+        "format": "pe-x64",
+        "outside_source": true,
+        "python_environment_removed": true,
+        "stdout": "Maxkompilator: build and resource check OK",
+        "archive": {
+          "path": "examples\\hello-python\\dist\\maxkompilator\\native-example-win-x64.tar.gz",
+          "sha256": "6c254e27d6bbe5134ed16d9f69d8bff03116183cdc66ab316768b3b79d747749",
+          "size_bytes": 8027344,
+          "validated": true,
+          "members": 61,
+          "symlinks_preserved": 0,
+          "posix_permissions_checked": false,
+          "binary_sha256_checked": true,
+          "artifact_role": "development"
+        }
+      }
+    },
+    {
+      "target": "linux-x64",
+      "job_id": 117401756274,
+      "evidence": {
+        "status": "passed",
+        "binary": "/home/runner/work/Maxkompilator/Maxkompilator/examples/hello-python/dist/maxkompilator/runs/60984a2c6f56439284fd50305c3b58ca/hello-python/hello-python",
+        "sha256": "8a01e5e291672c832843561376381864bbc2c37a06b6ce60b375ab192458713d",
+        "format": "elf-x64",
+        "outside_source": true,
+        "python_environment_removed": true,
+        "stdout": "Maxkompilator: build and resource check OK",
+        "archive": {
+          "path": "examples/hello-python/dist/maxkompilator/native-example-linux-x64.tar.gz",
+          "sha256": "f2b1c6a099f42dcefc7f60b1db104b2e0fadb905b2677b07c36a3611d003af0c",
+          "size_bytes": 19956986,
+          "validated": true,
+          "members": 53,
+          "symlinks_preserved": 0,
+          "posix_permissions_checked": true,
+          "binary_sha256_checked": true,
+          "artifact_role": "development"
+        }
+      }
+    },
+    {
+      "target": "macos-arm64",
+      "job_id": 117401756296,
+      "evidence": {
+        "status": "passed",
+        "binary": "/Users/runner/work/Maxkompilator/Maxkompilator/examples/hello-python/dist/maxkompilator/runs/eff799bcc1874122bdba1aa7c6c91403/hello-python/hello-python",
+        "sha256": "47d2993aaebf1673e81af616c23c819a01286d70c775c8a0edefbcdbe5e75cd7",
+        "format": "mach-o",
+        "outside_source": true,
+        "python_environment_removed": true,
+        "stdout": "Maxkompilator: build and resource check OK",
+        "archive": {
+          "path": "examples/hello-python/dist/maxkompilator/native-example-macos-arm64.tar.gz",
+          "sha256": "126bcefa8ae573b6fe0a8bf9abe4be3ad0c1fb84bf040752fa497d32ab897915",
+          "size_bytes": 7270324,
+          "validated": true,
+          "members": 59,
+          "symlinks_preserved": 4,
+          "posix_permissions_checked": true,
+          "binary_sha256_checked": true,
+          "artifact_role": "development"
+        }
+      }
+    }
+  ],
+  "scope_note": "Completes gui.windows-test for 3 points: a relocated Windows x64 Maxkompilator.exe, real compiled CLI workers, full GUI workflow, readable ASCII and Polish text, clean closure and an independent second launch. Clean Windows without Python, manual interactive Windows 11 release qualification, Android SDK/device builds and real .NET publishing remain separate gates.",
+  "visual_review": {
+    "status": "passed",
+    "method": "Inspected both screenshots downloaded from the successful Windows qualification artifact.",
+    "findings": [
+      "Readable labels, input fields, buttons, output summary and build logs, including Polish text.",
+      "The vivid 3D PNG is present in the actual packaged Windows window.",
+      "The screenshot records an actual PYZ build and runtime result."
+    ],
+    "screenshot": {
+      "path": "docs/images/gui-windows.png",
+      "source": "reopened.png",
+      "sha256": "790de62a937aec74c151d0209ee12508ac93dee5306e9a0c818273476bee0728",
+      "scope": "Actual relocated Windows x64 Maxkompilator.exe after a successful GUI-driven build and runtime check, captured with Qt offscreen."
+    }
+  },
+  "qualification_artifact_verification": {
+    "artifact_id": 12101229870,
+    "size_bytes": 237637,
+    "digest": "sha256:524247df10900168b7416f89682d529f30dec2a243f6bf2e908b50277a7b7098",
+    "download_sha256_verified": true,
+    "aggregate_report_sha256": "11a8732d23a7e19cc062a508014ec3c592240f7019b64a4a02a36b13402ef36d"
+  },
+  "superseded_run": {
+    "workflow_run_id": 39033408370,
+    "commit": "4d6588fefbe44351571f21cf8aab888805b027ed",
+    "functional_ci_status": "success",
+    "visual_review": "failed",
+    "reason": "The initial Windows offscreen screenshots contained missing-glyph boxes. Progress was held at 55 until host font registration and mandatory per-control glyph validation passed in the current run."
+  }
+}

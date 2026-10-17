@@ -1,97 +1,100 @@
-# GitHub Actions results
+# GitHub Actions results — 0.1.0.dev2
 
-## Current 0.1.0.dev2 gate — pending
+**Verified on 2026-10-17: 10/10 jobs SUCCESS.** This record covers [run 39034556183](https://github.com/Swir/Maxkompilator/actions/runs/39034556183) in [Swir/Maxkompilator](https://github.com/Swir/Maxkompilator), at commit [`044e32bebc13e87cf147868e497a2096ab2709f6`](https://github.com/Swir/Maxkompilator/commit/044e32bebc13e87cf147868e497a2096ab2709f6).
 
-The new Windows qualification gate exercises the actual packaged `Maxkompilator.exe` and its packaged CLI worker, including the complete GUI workflow, closing and reopening. **Its Windows CI result has not yet been verified.** Local source and installed-wheel checks for `0.1.0.dev2` are recorded in [VALIDATION.md](VALIDATION.md) and [validation-dev2.json](validation-dev2.json).
+The actual packaged Windows GUI passed **10/10 checks on each of two independent launches**, including its compiled CLI worker, readable interface text, a real PYZ build, cancellation and reopening. Both downloaded captures were also reviewed for readable labels, Polish characters, build output and the 3D icon. Full job metadata, artifact metadata, process evidence, font checks and report hashes are stored in [ci-evidence-dev2.json](ci-evidence-dev2.json).
 
-The pending gate does not yet earn the three points for `gui.windows-test`. The successful jobs and downloadable artifact below belong to the earlier `0.1.0.dev1` baseline.
+## Verified jobs
 
-## Recorded baseline — 0.1.0.dev1
-
-**Repository:** [Swir/Maxkompilator](https://github.com/Swir/Maxkompilator). **Recorded baseline version:** `0.1.0.dev1`.
-
-This record covers [run 39028988975](https://github.com/Swir/Maxkompilator/actions/runs/39028988975) at commit [`aea4aa811f139edab7b167ab86f1518a283a7302`](https://github.com/Swir/Maxkompilator/commit/aea4aa811f139edab7b167ab86f1518a283a7302), checked on 2026-10-17. A later commit or rerun needs a separate review of its results.
-
-**Entire run: SUCCESS — 10/10 jobs.** The job list, metadata for four artifacts and inspected results are stored in [ci-evidence.json](ci-evidence.json).
-
-### Engine: six verified Core jobs
-
-**6/6 Core jobs completed with SUCCESS.** Each installs the package, runs tests, checks README/ROADMAP progress consistency and builds a real PYZ with its resource and runtime test.
-
-| Environment | Python | Result | Evidence |
-|---|---|---|---|
-| Linux — `ubuntu-latest` | 3.11 | SUCCESS | [Job 117385484411](https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385484411) |
-| Linux — `ubuntu-latest` | 3.13 | SUCCESS | [Job 117385484154](https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385484154) |
-| Windows — `windows-latest` | 3.11 | SUCCESS | [Job 117385484444](https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385484444) |
-| Windows — `windows-latest` | 3.13 | SUCCESS | [Job 117385484391](https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385484391) |
-| macOS — `macos-latest` | 3.11 | SUCCESS | [Job 117385484318](https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385484318) |
-| macOS — `macos-latest` | 3.13 | SUCCESS | [Job 117385484353](https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385484353) |
-
-The local **84/84 PASS without skips** result comes from Linux x86_64/Python 3.12.14. Each CI platform has its own executed-case count. `unittest` reports discovered tests and a separate skip count; `skipped` does not mean the scenario passed on that platform.
-
-The POSIX process-group regression is skipped on Windows, and the frozen Linux library-environment integration is skipped on Windows and macOS. Symlink tests may be skipped if the runner cannot create links. Each job's **Unit and integration tests** step contains the exact result.
-
-The inspected detailed Core logs use **Python 3.11**:
-
-| Environment | Discovered | Passed | Skipped | Duration |
-|---|---:|---:|---:|---:|
-| Linux | 84 | 84 | 0 | 1.773 s |
-| macOS | 84 | 83 | 1 | 2.654 s |
-| Windows | 84 | 82 | 2 | 3.437 s |
-
-SUCCESS was also verified for all three Python 3.13 jobs. Their detailed timings and skip counts are not represented by this table.
-
-### Native jobs and Windows bundle
-
-These jobs run after Core. Their status and evidence are assessed independently of the six engine jobs.
-
-| Job | Result and tested target | Link |
+| Job and environment | Result | Evidence |
 |---|---|---|
-| Native Python — macOS | SUCCESS; `macos-arm64`, Mach-O, build/resource/smoke/archive | [Job 117385587229](https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587229) |
-| Native Python — Windows | SUCCESS; `win-x64`, PE x64, build/resource/smoke/archive | [Job 117385587290](https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587290) |
-| Native Python — Linux | SUCCESS; `linux-x64`, ELF x64, build/resource/smoke/archive | [Job 117385587311](https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587311) |
-| Windows desktop bundle | SUCCESS; source GUI, real EXE bundle and packaged CLI building a PYZ | [Job 117385587321](https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587321) |
+| Engine: Linux, Python 3.11 | SUCCESS | [Job 117401655572](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401655572) |
+| Engine: Linux, Python 3.13 | SUCCESS | [Job 117401655649](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401655649) |
+| Engine: Windows, Python 3.11 | SUCCESS | [Job 117401655618](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401655618) |
+| Engine: Windows, Python 3.13 | SUCCESS | [Job 117401655596](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401655596) |
+| Engine: macOS, Python 3.11 | SUCCESS | [Job 117401655670](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401655670) |
+| Engine: macOS, Python 3.13 | SUCCESS | [Job 117401655386](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401655386) |
+| Native Python: Windows x64 | SUCCESS | [Job 117401756250](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756250) |
+| Native Python: Linux x64 | SUCCESS | [Job 117401756274](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756274) |
+| Native Python: macOS ARM64 | SUCCESS | [Job 117401756296](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756296) |
+| Windows application and packaged GUI qualification | SUCCESS | [Job 117401756236](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756236) |
 
-#### Native qualification
+Each Core job installs the package, runs the engine and integration suite, checks generated roadmap consistency, and builds and runs a real PYZ with its resource. Skipped tests are tracked separately in each job's logs. The local Linux **84/84 without skips** record has its own environment and timing in [VALIDATION.md](VALIDATION.md); its exact counters are not assigned to every CI platform.
 
-The job builds `examples/hello-python` with PyInstaller, runs the application and checks its bundled resource. `scripts/qualify_native.py` compares SHA-256 and executes the output outside the sources with `PYTHONPATH`/`PYTHONHOME` removed and `PATH` restricted to system directories.
+## Actual packaged Windows GUI
 
-It then creates `native-example-TARGET.tar.gz`. The script reopens the archive and checks complete membership, symlink types and targets, POSIX permissions, and checksums of the executable and reports. The archive preserves permissions and symlinks when downloaded through the CI artifact service. It is a development package.
+[Desktop job 117401756236](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756236) built `Maxkompilator.exe`, `MaxkompilatorCLI.exe` and their shared runtime. The driver verified that both executables are **PE x64**, with the appropriate Windows GUI and console subsystems. It relocated the complete bundle to a path containing spaces and Unicode outside the checkout, removed `PYTHONPATH` and `PYTHONHOME`, and launched it from an unrelated working directory.
 
-All three qualifications passed. The macOS archive preserved **4 symbolic links**. Tested executable checksums:
+The driver then started the real `Maxkompilator.exe` twice. The second run was a new process after the first window had closed:
 
-- macOS ARM64: `47d2993aaebf1673e81af616c23c819a01286d70c775c8a0edefbcdbe5e75cd7`.
-- Windows x64: `e9a87d7f865745f02aeca29cb6a7a98333b2692085113833218fa0a5b14222cd`.
-- Linux x64: `8a01e5e291672c832843561376381864bbc2c37a06b6ce60b375ab192458713d`.
+| Launch | GUI PID | Checks | Compiled workers | Driver launch duration | GUI scenario duration | Cancellation | GUI exit |
+|---|---:|---|---:|---:|---:|---:|---:|
+| First launch | 3492 | 10/10 PASS | 5 | 2.265 s | 1.313 s | 0.157 s | 0 |
+| Independent reopening | 1524 | 10/10 PASS | 5 | 1.328 s | 1.188 s | 0.125 s | 0 |
 
-**The CI runner still has Python installed.** Restricted `PATH` and environment variables provide a concrete independence check, while qualification on a clean machine without Python remains a separate requirement.
+The complete driver qualification took **3.875 s**. Driver durations include process startup; GUI scenario timings come from the in-application reports. Each launch used five verified `MaxkompilatorCLI.exe` processes for inspect, plan, doctor, a successful build and a cancelled build, with exit codes **`0`, `0`, `0`, `0`, `130`**. Both windows closed successfully.
 
-#### Windows desktop bundle qualification
+The ten check groups cover frozen module and worker origins, window controls and icon, readable text, automatic project detection and planning with Unicode paths, environment diagnostics, a real PYZ/resource/runtime check and persisted report, output-folder and log actions, cancellation, descendant termination, and confirmation that every task used the compiled worker. Process image paths and imported-module origins are included in the JSON evidence.
 
-Verified steps:
+### Readable text and captures
 
-1. Source PySide6 GUI in offscreen mode: **7/7 groups PASS in 1.422 s**, using the real CLI, a PYZ build, resource checks and cancellation in **0.156 s**; descendant termination was confirmed.
-2. Distribution folder containing `Maxkompilator.exe`, `MaxkompilatorCLI.exe` and `_internal`: **built successfully**.
-3. Packaged console worker: **PASS** for project detection, a real PYZ build and execution of the result.
-4. Wheel/sdist build and artifact upload: **PASS**.
+The Windows offscreen backend registers the runner's available system fonts before qualification. Every launch checked a **96-character sample across 17 interface font roles**, covering Latin letters, digits, Polish characters and punctuation. The actual fonts resolved to **Segoe UI Regular and Bold**, with no missing glyphs or metrics. The check runs before the build workflow and fails qualification when text cannot be rendered.
 
-These steps qualify the operations described above. At this baseline, the complete built `Maxkompilator.exe` workflow, including window operations, closing and reopening, was still pending. That scenario and the separate machine without Python have distinct roadmap criteria.
+The qualification artifact was downloaded and its SHA-256 verified. Both `first-launch.png` and `reopened.png` were inspected: labels, fields, buttons, summary and logs are readable, including Polish text. The actual reopened Windows screenshot is retained as [images/gui-windows.png](images/gui-windows.png), with SHA-256 `790de62a937aec74c151d0209ee12508ac93dee5306e9a0c818273476bee0728`.
 
-### Download the recorded Windows development build
+This is automated **Qt offscreen** execution of the real Windows binaries, plus review of their diagnostic captures. It is not a manual interactive Windows 11 session. The hosted runner has Python installed for the generated PYZ, so qualification on a clean Windows machine without Python remains open.
 
-Open **Actions → [run 39028988975](https://github.com/Swir/Maxkompilator/actions/runs/39028988975) → Artifacts → `Maxkompilator-Windows-x64-dev`**. Extract the entire archive, open `dist/Maxkompilator`, and launch `Maxkompilator.exe`. Keep `MaxkompilatorCLI.exe` and `_internal` in the same folder.
+### Source GUI and packaged-file checks
 
-| Artifact | Contents | GitHub-reported size |
-|---|---|---:|
-| `Maxkompilator-Windows-x64-dev` | Windows Maxkompilator tool, both EXEs and runtime; also wheel/sdist and GUI test screenshot | 54,090,240 bytes, approximately 51.6 MiB |
-| `native-example-windows-latest` | Example Windows application built by Maxkompilator | 7,995,708 bytes |
-| `native-example-ubuntu-latest` | Example Linux application built by Maxkompilator | 19,841,977 bytes |
-| `native-example-macos-latest` | Example macOS application built by Maxkompilator | 7,217,509 bytes |
+The Windows source GUI passed **8/8 groups in 1.312 s**, with cancellation in **0.156 s**. Its result is separate from the two packaged launches above. The job also ran the packaged console worker directly and built a real PYZ with a successful runtime test through that worker, then built wheel/sdist distributions.
 
-The tool artifact ID is **12099418546**. GitHub reports retention until **2026-10-31 at 11:32:45 UTC** and digest `sha256:4c7d50f97276e9a94551e0e565ccca5c4cd654b68fc80355808fd2b0a16d4af2`. The table's sizes and this digest refer to GitHub service artifacts. Internal `native-example-TARGET.tar.gz` files have their own sizes and checksums in their qualification reports.
+The packaged PNG is **512 × 512**, **334,341 bytes**, and matches the project icon with SHA-256 `03ee456da8263cf1ed476a05c60d719948aaf41f8d81316798b73717893f381a`. Executable checksums for this build:
 
-### Relationship to roadmap progress
+- `Maxkompilator.exe`: `f22bd878b9771861a9d836b15b0ed92e22bac7a4d1c7812409dc82f2995dcd97`.
+- `MaxkompilatorCLI.exe`: `4f64d3023e5979735b7662347494d2f5db0014cda6c8d20d6218aae2ff5e3dc0`.
 
-The six successful Core jobs completed `foundation.ci` for **2 points**. The real macOS ARM64 build and runtime check completed `runners.macos` for **1 point**, bringing the recorded baseline to **55%**. The current score is generated in [ROADMAP.md](../ROADMAP.md). Further points require the complete criterion: recipe tests do not qualify real APK/.NET output, and the packaged console worker does not qualify the full Windows GUI workflow.
+Keep the complete application directory, including `_internal`. The executable checksums identify the tested entry points; their runtime files remain part of the distribution.
 
-[Local validation and evidence boundaries](VALIDATION.md) · [Roadmap](../ROADMAP.md)
+## Native example qualification
+
+All three native examples passed real builds, resource checks, execution outside the source directory and archive validation:
+
+| Target | Detected format | Build/resource/runtime/archive | Symlinks preserved | Evidence |
+|---|---|---|---:|---|
+| `win-x64` | `pe-x64` | PASS | 0 | [Job 117401756250](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756250) |
+| `linux-x64` | `elf-x64` | PASS | 0 | [Job 117401756274](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756274) |
+| `macos-arm64` | `mach-o` | PASS | 4 | [Job 117401756296](https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756296) |
+
+`scripts/qualify_native.py` verifies checksums and runs the output with `PYTHONPATH`/`PYTHONHOME` removed and a restricted `PATH`. It creates `native-example-TARGET.tar.gz` with the complete application, build report and qualification report, then checks archive membership, symbolic links, applicable POSIX permissions and checksums. The macOS archive preserves four symlinks. Exact executable and archive hashes are in [ci-evidence-dev2.json](ci-evidence-dev2.json).
+
+These results qualify the example on the stated CI runners. Those runners have Python installed. They do not complete application icon profiles, a clean Windows machine without Python, Android SDK/device testing or real .NET publishing.
+
+## Download the Windows development application
+
+Open **Actions → [run 39034556183](https://github.com/Swir/Maxkompilator/actions/runs/39034556183) → Artifacts → `Maxkompilator-Windows-x64-dev`**. Extract the entire archive, open `dist/Maxkompilator`, and launch `Maxkompilator.exe`. Keep `MaxkompilatorCLI.exe` and `_internal` in the same folder.
+
+The application artifact is **56,049,987 bytes, approximately 53.5 MiB**, ID **12101593136**, with retention until **2026-10-31 at 12:59:08 UTC**. Its GitHub-reported digest is `sha256:660148c4b83a6b9023ba408e71f2c7335a13215804bf6b28546ee14992a1f374`.
+
+| Artifact | Contents | Artifact ID | GitHub-reported size |
+|---|---|---:|---:|
+| `Maxkompilator-Windows-x64-dev` | The application: both Windows EXEs and runtime; also wheel/sdist and qualification output | 12101593136 | 56,049,987 bytes |
+| `Maxkompilator-Windows-GUI-qualification` | Small evidence package: reports and diagnostic captures; no application runtime | 12101229870 | 237,637 bytes |
+| `native-example-windows-latest` | Example Windows application built by Maxkompilator | 12101991267 | 7,993,068 bytes |
+| `native-example-ubuntu-latest` | Example Linux application built by Maxkompilator | 12101886672 | 19,842,106 bytes |
+| `native-example-macos-latest` | Example macOS application built by Maxkompilator | 12101279103 | 7,216,173 bytes |
+
+`Maxkompilator-Windows-GUI-qualification` is the small evidence package. To run Maxkompilator, download `Maxkompilator-Windows-x64-dev`. Artifact sizes and digests above refer to the GitHub service archives; inner native `.tar.gz` files have separate checksums in their reports.
+
+## Roadmap acceptance
+
+This verified run completes **`gui.windows-test` for 3 points**, bringing the fixed v1 score from **55% to 58%**. Every other criterion weight and status remains unchanged. [ROADMAP.md](../ROADMAP.md) is generated from [progress.json](progress.json).
+
+The separate Windows-without-Python and manual interactive release gates remain open. So do real Android APK/AAB and device qualification, .NET publishing/runtime checks, and icon profiles for applications built by Maxkompilator. The application's refreshed branding does not award those points.
+
+## Earlier records
+
+The `0.1.0.dev1` [run 39028988975](https://github.com/Swir/Maxkompilator/actions/runs/39028988975), at commit `aea4aa811f139edab7b167ab86f1518a283a7302`, passed its ten jobs and established the previous **55%** baseline. It covered source GUI, native examples and a packaged console worker. Its exact job and artifact records remain in [ci-evidence.json](ci-evidence.json), with historical local results in [VALIDATION.md](VALIDATION.md).
+
+An earlier dev2 run, **39033408370**, passed the functional workflow but produced missing-glyph boxes in Windows offscreen captures. That result did not complete the GUI criterion. The current run includes the corrected font setup, a mandatory glyph gate, fresh process reports and visually reviewed readable captures; the superseded finding is preserved in [ci-evidence-dev2.json](ci-evidence-dev2.json).
+
+[Local validation and evidence boundaries](VALIDATION.md) · [Roadmap](../ROADMAP.md) · [Visual identity](DESIGN.md)

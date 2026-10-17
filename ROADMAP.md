@@ -6,17 +6,17 @@ The v1 scope includes a shared CLI/GUI engine, local Python/Windows, Android and
 
 **100% means completion of this v1 checklist.** Additional languages and formats have a separate roadmap. Weights describe the agreed product scope rather than elapsed or remaining development time. Completing easy criteria does not award points to unfinished difficult ones.
 
-The recorded local baseline covers detection and planning for three technologies, a real PYZ and native Linux build, basic configuration and reports, CLI/GUI integration, cancellation and an installable wheel. CI additionally verified native examples on Windows x64, Linux x64 and macOS ARM64, the Windows source GUI, and a Windows bundle with a working packaged CLI. The [validation report](docs/VALIDATION.md) separates these results from the open full packaged-GUI, Python-free Windows, Android and .NET qualification gates.
+Local qualification covers detection and planning for three technologies, a real PYZ and native Linux build, basic configuration and reports, CLI/GUI integration, cancellation and an installable wheel. The dev2 CI run additionally verified native examples on Windows x64, Linux x64 and macOS ARM64 and the actual packaged Windows GUI with its compiled CLI worker. Both independent GUI launches passed all ten checks, including readable interface text, the full workflow, cancellation and reopening. The [validation report](docs/VALIDATION.md) separates these results from the open Python-free Windows, manual interactive release, Android and .NET qualification gates.
 
-The CI foundation is complete based on **six successful Core jobs** for Linux/Windows/macOS and Python 3.11/3.13. Each result refers to a specific run in [docs/CI.md](docs/CI.md). Separate criteria require a real native EXE, the packaged Windows GUI and execution on a machine without Python.
+The CI foundation is complete based on **six successful Core jobs** for Linux/Windows/macOS and Python 3.11/3.13. Each result refers to a specific run in [docs/CI.md](docs/CI.md). The packaged GUI criterion is now complete; separate criteria still require application icon profiles, execution on a machine without Python and full release qualification.
 
-The recorded baseline run completed **10/10 jobs successfully**. Its native macOS ARM64 example passed a build, resource check, execution outside the sources and archive validation, completing `runners.macos` for one point. The generated table below is the source for the current v1 percentage. English documentation and refreshed branding do not, by themselves, complete any remaining runtime qualification gate.
+The verified [dev2 run 39034556183](https://github.com/Swir/Maxkompilator/actions/runs/39034556183), at commit `044e32bebc13e87cf147868e497a2096ab2709f6`, completed **10/10 jobs successfully**. Its packaged Windows GUI, font checks, readable captures and reopening proof complete **`gui.windows-test` for 3 points**, moving v1 from **55% to 58%**. All other criterion weights and statuses remain unchanged. The generated table below is the source for the current v1 percentage; English documentation and refreshed branding do not earn additional runtime points.
 
 ## Current progress
 
 <!-- MAXKOMPILATOR:PROGRESS:START -->
 
-**v1.0 progress: 55% — 55 / 100 points.**
+**v1.0 progress: 58% — 58 / 100 points.**
 
 Only completed criteria with recorded evidence earn points. Work in progress does not increase the percentage.
 
@@ -27,12 +27,12 @@ Only completed criteria with recorded evidence earn points. Work in progress doe
 | Python and Windows builds | 16 pts | 6 / 16 pts | 37.5% |
 | Android: APK and AAB | 14 pts | 2 / 14 pts | 14.3% |
 | .NET and Windows publishing | 12 pts | 2 / 12 pts | 16.7% |
-| Desktop interface | 12 pts | 9 / 12 pts | 75% |
+| Desktop interface | 12 pts | 12 / 12 pts | 100% |
 | Profiles and repeatable output | 10 pts | 5 / 10 pts | 50% |
 | Reliability and release qualification | 10 pts | 8 / 10 pts | 80% |
 | Linux and macOS runners | 4 pts | 3 / 4 pts | 75% |
 | Extensibility and additional architectures | 2 pts | 0 / 2 pts | 0% |
-| **Total** | **100 pts** | **55 / 100 pts** | **55%** |
+| **Total** | **100 pts** | **58 / 100 pts** | **58%** |
 
 Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-17**.
 
@@ -78,7 +78,7 @@ Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-17**
 - [x] **Dark interface, original icon and by Swir attribution — 3 points.** Evidence: maxkompilator/gui.py; scripts/gui_smoke.py: initial_window_icon_and_controls — PASS on Linux with Qt 6.12 offscreen in the 0.1.0.dev1 qualification. ID: `gui.design`.
 - [x] **Project selection, diagnostics, planning and building from the GUI — 3 points.** Evidence: scripts/gui_smoke.py: inspect_and_plan_unicode_path_auto_defaults, environment_doctor_and_smoke_flag_scoping, zipapp_build_real_runtime_and_persisted_report — PASS on Linux. ID: `gui.workflow`.
 - [x] **Responsive logs, background work and job cancellation — 3 points.** Evidence: scripts/gui_smoke.py: open_results_and_copy_log_buttons, cancel_button_stops_running_build, cancelled_worker_and_descendant_are_stopped — PASS on Linux. ID: `gui.responsiveness`.
-- [ ] **Complete Windows GUI workflow and relaunch test — 3 points.** In progress; points are awarded after the full criterion is met. ID: `gui.windows-test`.
+- [x] **Complete Windows GUI workflow and relaunch test — 3 points.** Evidence: GitHub Actions run 39034556183, job 117401756236, commit 044e32bebc13e87cf147868e497a2096ab2709f6: actual packaged Windows x64 GUI completed two independent launches (PIDs 3492 and 1524), each with 10 passing checks, 5 verified compiled CLI workers and a clean exit — docs/CI.md and docs/ci-evidence-dev2.json; https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756236; Relocated bundle outside the checkout; real PYZ/resource test, cancellation, descendant termination and reopening PASS; 17 font roles passed the 96-character glyph check in each launch, and both downloaded captures were visually checked for readable text. This completes automated GUI qualification; manual interactive and Python-free Windows release gates remain open. ID: `gui.windows-test`.
 
 #### Profiles and repeatable output — 10 points
 

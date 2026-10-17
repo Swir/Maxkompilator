@@ -246,9 +246,10 @@
           "id": "windows-test",
           "title": "Complete Windows GUI workflow and relaunch test",
           "weight": 3,
-          "status": "in_progress",
+          "status": "complete",
           "evidence": [
-            "Job 117385587321: source GUI 7/7 groups PASS, EXE bundle built and packaged CLI working; the complete frozen GUI scenario including reopening remains open — docs/CI.md"
+            "GitHub Actions run 39034556183, job 117401756236, commit 044e32bebc13e87cf147868e497a2096ab2709f6: actual packaged Windows x64 GUI completed two independent launches (PIDs 3492 and 1524), each with 10 passing checks, 5 verified compiled CLI workers and a clean exit — docs/CI.md and docs/ci-evidence-dev2.json; https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756236",
+            "Relocated bundle outside the checkout; real PYZ/resource test, cancellation, descendant termination and reopening PASS; 17 font roles passed the 96-character glyph check in each launch, and both downloaded captures were visually checked for readable text. This completes automated GUI qualification; manual interactive and Python-free Windows release gates remain open"
           ]
         }
       ]

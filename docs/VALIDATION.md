@@ -7,20 +7,31 @@
 | Check | Result | Scope |
 |---|---|---|
 | Engine and integration suite | **84/84 PASS**, 2.631 s | Current source revision, including the English progress generator |
-| Source GUI | **7/7 groups PASS**, 1.051 s; cancellation 0.150 s | Actual Qt window, CLI subprocesses and build workflow in Linux offscreen mode |
-| Installed wheel GUI | **7/7 groups PASS**, 1.003 s; cancellation 0.150 s | Rebuilt `0.1.0.dev2` wheel installed outside the checkout and launched from `/tmp` |
+| Source GUI before the font fix | **7/7 groups PASS**, 1.051 s; cancellation 0.150 s | Actual Qt window, CLI subprocesses and build workflow in Linux offscreen mode |
+| Source GUI with the font gate | **8/8 groups PASS**, 1.061 s; cancellation 0.163 s | Commit `044e32bebc13e87cf147868e497a2096ab2709f6`; checks actual glyph support for 17 interface font roles before running the build workflow |
+| Installed wheel GUI before the font fix | **7/7 groups PASS**, 1.003 s; cancellation 0.150 s | Rebuilt `0.1.0.dev2` wheel installed outside the checkout and launched from `/tmp`; this record does not qualify a new wheel after the font fix |
 | Real CLI subprocesses in the installed-wheel test | **PASS**; exit codes `0`, `0`, `0`, `0`, `130` | Four successful operations and the expected cancellation exit code `130` |
-| Python distribution | **Wheel and sdist built successfully** | Installed wheel reports `0.1.0.dev2` and contains the exact application PNG |
+| Python distribution before the font fix | **Wheel and sdist built successfully** | The locally installed wheel reports `0.1.0.dev2` and contains the exact application PNG; the later CI distributions are tracked separately |
 
-The desktop icon export is a **512 × 512 PNG**, **334,341 bytes**, with SHA-256 `03ee456da8263cf1ed476a05c60d719948aaf41f8d81316798b73717893f381a`. The original larger 3D master is preserved separately. The repository screenshot shows the installed-wheel GUI after its real PYZ build and runtime check, outside the checkout.
+The new font gate checks a 96-character sample covering Latin letters, digits, Polish characters and interface punctuation against the actual fonts selected for 17 interface roles. It passed on Linux using DejaVu Sans Book and Bold. Two negative scenarios also produced the expected failure before any CLI worker started: an actual empty fontconfig database and an injected font-registration exception. Their report checksums are recorded in [validation-dev2.json](validation-dev2.json).
 
-These checks qualify the local Linux source and installed wheel. The new complete packaged Windows GUI workflow and reopening gate is still pending CI verification. They do not complete the Windows-without-Python, Android or .NET runtime criteria, and the roadmap remains at **55%**.
+The desktop icon export is a **512 × 512 PNG**, **334,341 bytes**, with SHA-256 `03ee456da8263cf1ed476a05c60d719948aaf41f8d81316798b73717893f381a`. The original larger 3D master is preserved separately. [images/gui.png](images/gui.png) retains the earlier installed-wheel Linux capture after its real PYZ build and runtime check outside the checkout.
+
+These records qualify the stated local Linux source and installed-wheel scenarios. The eight-check font-gate run does not claim a new local wheel installation after the font fix. Windows qualification has its own evidence below.
+
+## Current Windows qualification — 0.1.0.dev2
+
+**[CI run 39034556183](https://github.com/Swir/Maxkompilator/actions/runs/39034556183): 10/10 jobs SUCCESS**, at commit `044e32bebc13e87cf147868e497a2096ab2709f6`. The Windows source GUI passed **8/8 groups in 1.312 s**, with cancellation in **0.156 s**. The actual packaged application was relocated outside the checkout and completed two independent launches with **10/10 checks and five verified compiled CLI workers per launch**. Both windows exited cleanly after the full workflow, including real PYZ/resource/runtime checks, cancellation and reopening.
+
+The first GUI process was **PID 3492** and reopening used **PID 1524**. Driver launch durations were **2.265 s** and **1.328 s**; total qualification took **3.875 s**. The inner GUI scenarios took **1.313 s** and **1.188 s**, with cancellation in **0.157 s** and **0.125 s**. Each launch verified **96 characters across 17 font roles** using actual Segoe UI Regular/Bold glyphs. Both captures from the SHA-verified downloaded artifact were inspected and contained readable Polish labels and logs; [images/gui-windows.png](images/gui-windows.png) is the actual reopened Windows EXE capture.
+
+This completes **`gui.windows-test` for 3 points**, bringing the defined v1 score to **58%**. The evidence is automated Qt offscreen execution and capture review. A manual interactive Windows 11 release test, a clean Windows machine without Python, real Android SDK/device checks and .NET publishing/runtime qualification remain open. Full process reports, hashes, native results and download metadata are in [CI.md](CI.md) and [ci-evidence-dev2.json](ci-evidence-dev2.json).
 
 ## Historical baseline — 0.1.0.dev1
 
-**Recorded on 2026-10-17.** This document separates local Linux qualification from GitHub Actions results for the `0.1.0.dev1` baseline. [Run 39028988975](https://github.com/Swir/Maxkompilator/actions/runs/39028988975), at commit `aea4aa811f139edab7b167ab86f1518a283a7302`, completed **10/10 jobs successfully**: six Core jobs, three native examples and a Windows desktop bundle. Direct evidence and test boundaries are recorded in [CI.md](CI.md) and [ci-evidence.json](ci-evidence.json). Later revisions need their own checks.
+**Recorded on 2026-10-17.** The following historical results describe the `0.1.0.dev1` baseline. [Run 39028988975](https://github.com/Swir/Maxkompilator/actions/runs/39028988975), at commit `aea4aa811f139edab7b167ab86f1518a283a7302`, completed **10/10 jobs successfully**: six Core jobs, three native examples and a Windows desktop bundle. Its direct evidence remains in [ci-evidence.json](ci-evidence.json). Current dev2 qualification is recorded above and in [CI.md](CI.md).
 
-The local qualification environment was **Linux x86_64, glibc 2.39, Python 3.12.14**. Native packaging used **PyInstaller 6.22.3**, and the GUI was tested with **PySide6/Qt 6.12.0** in `offscreen` mode. The source-GUI test exercises a real window, its logic and subprocesses. Packaged Windows GUI execution is a separate gate.
+The local qualification environment was **Linux x86_64, glibc 2.39, Python 3.12.14**. Native packaging used **PyInstaller 6.22.3**, and the GUI was tested with **PySide6/Qt 6.12.0** in `offscreen` mode. The source-GUI test exercised a real window, its logic and subprocesses. Packaged Windows GUI execution was a separate open gate at that baseline.
 
 A machine-readable summary is in [validation-local.json](validation-local.json). Test sources and scripts are in the repository; the original temporary paths are not required to reproduce the documented commands.
 
@@ -39,7 +50,7 @@ A machine-readable summary is in [validation-local.json](validation-local.json).
 
 ### GitHub Actions
 
-**Core: 6/6 jobs SUCCESS.** Each job checked package installation, the test suite, generated roadmap consistency and a real PYZ example with a runtime test. Direct job links are in [CI.md](CI.md).
+**Core: 6/6 jobs SUCCESS.** Each job checked package installation, the test suite, generated roadmap consistency and a real PYZ example with a runtime test. Historical job IDs are recorded in [ci-evidence.json](ci-evidence.json).
 
 The **84/84 result without skips** belongs to the local Linux run. Detailed Core **Python 3.11** logs showed Linux with **84 passed and 0 skipped**, macOS with **83 passed and 1 skipped**, and Windows with **82 passed and 2 skipped**. All three Python 3.13 jobs also succeeded; the detailed counters recorded here come from the 3.11 logs.
 
@@ -51,7 +62,7 @@ The **84/84 result without skips** belongs to the local Linux run. Detailed Core
 
 ### Packaged CLI worker on Linux
 
-A real `MaxkompilatorCLI` executable built by PyInstaller ran its own engine, created a PYZ and executed it through an external Python interpreter. A separate environment check confirmed external Python and PyInstaller invocation. JSON input/output and resource checks passed. The result and executable checksum are recorded in `validation-local.json`. This covers the Linux console worker; frozen Windows GUI qualification remains a separate task.
+A real `MaxkompilatorCLI` executable built by PyInstaller ran its own engine, created a PYZ and executed it through an external Python interpreter. A separate environment check confirmed external Python and PyInstaller invocation. JSON input/output and resource checks passed. The result and executable checksum are recorded in `validation-local.json`. This historical result covered the Linux console worker; frozen Windows GUI qualification was a separate task at that point.
 
 ### Final local native Linux output
 
@@ -98,6 +109,6 @@ Negative tests cover missing tools, nonzero exits, a successful command producin
 
 ### Remaining qualification at this baseline
 
-Open scenarios include the complete built Windows GUI workflow with reopening, a computer without Python, Android with the proper SDK and a device, and real .NET publishing. The Windows distribution is the complete folder containing `Maxkompilator.exe`, `MaxkompilatorCLI.exe` and `_internal`. Testing its console worker alone does not qualify its full GUI workflow. Current acceptance status is tracked in [ROADMAP.md](../ROADMAP.md).
+At the dev1 baseline, open scenarios included the complete built Windows GUI workflow with reopening, a computer without Python, Android with the proper SDK and a device, and real .NET publishing. The current dev2 record above now completes the automated packaged-GUI criterion. The Windows distribution remains the complete folder containing `Maxkompilator.exe`, `MaxkompilatorCLI.exe` and `_internal`. Current acceptance status is tracked in [ROADMAP.md](../ROADMAP.md).
 
 [Scored roadmap](../ROADMAP.md) · [CI results](CI.md) · [Architecture](ARCHITECTURE.md)
