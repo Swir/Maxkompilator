@@ -1,0 +1,181 @@
+{
+  "run_id": "1436d3b7ba434701a94bf66ae28b6707",
+  "started_at": "2026-10-18T17:07:53.868799+00:00",
+  "status": "built",
+  "output_dir": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\aab",
+  "project": {
+    "root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android",
+    "kind": "android",
+    "name": "hello-android",
+    "entrypoint": null,
+    "project_file": "build.gradle"
+  },
+  "plan": {
+    "project": {
+      "root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android",
+      "kind": "android",
+      "name": "hello-android",
+      "entrypoint": null,
+      "project_file": "build.gradle"
+    },
+    "target": "android",
+    "format": "aab",
+    "output_dir": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\aab",
+    "steps": [
+      {
+        "name": "Clean and build Android debug AAB",
+        "command": [
+          "cmd.exe",
+          "/d",
+          "/c",
+          "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\gradlew.bat",
+          ":app:clean",
+          ":app:bundleDebug",
+          "--console=plain"
+        ],
+        "cwd": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android"
+      }
+    ],
+    "requirements": [
+      {
+        "name": "Java (JDK)",
+        "command": [
+          "java",
+          "-version"
+        ],
+        "hint": "Install the JDK required by the project's Gradle and Android Gradle Plugin versions."
+      }
+    ],
+    "artifact_patterns": [
+      "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\app\\build\\outputs\\bundle\\*[dD]ebug\\*.aab"
+    ],
+    "notes": [
+      "The app module's generated build results are cleaned before building to exclude older APK/AAB files.",
+      "Requires an Android SDK configured through ANDROID_HOME or sdk.dir in local.properties.",
+      "The project's Gradle Wrapper may download its configured Gradle distribution and dependencies.",
+      "This is a debug build signed for testing. Store-ready release signing is not configured by v0.1.",
+      "An AAB cannot be installed directly on a phone; choose APK for device tests."
+    ],
+    "internal_builder": null
+  },
+  "execution_plan": {
+    "project": {
+      "root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android",
+      "kind": "android",
+      "name": "hello-android",
+      "entrypoint": null,
+      "project_file": "build.gradle"
+    },
+    "target": "android",
+    "format": "aab",
+    "output_dir": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\aab",
+    "steps": [
+      {
+        "name": "Clean and build Android debug AAB",
+        "command": [
+          "cmd.exe",
+          "/d",
+          "/c",
+          "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\gradlew.bat",
+          ":app:clean",
+          ":app:bundleDebug",
+          "--console=plain"
+        ],
+        "cwd": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android"
+      }
+    ],
+    "requirements": [
+      {
+        "name": "Java (JDK)",
+        "command": [
+          "java",
+          "-version"
+        ],
+        "hint": "Install the JDK required by the project's Gradle and Android Gradle Plugin versions."
+      }
+    ],
+    "artifact_patterns": [
+      "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\app\\build\\outputs\\bundle\\*[dD]ebug\\*.aab"
+    ],
+    "notes": [
+      "The app module's generated build results are cleaned before building to exclude older APK/AAB files.",
+      "Requires an Android SDK configured through ANDROID_HOME or sdk.dir in local.properties.",
+      "The project's Gradle Wrapper may download its configured Gradle distribution and dependencies.",
+      "This is a debug build signed for testing. Store-ready release signing is not configured by v0.1.",
+      "An AAB cannot be installed directly on a phone; choose APK for device tests."
+    ],
+    "internal_builder": null
+  },
+  "artifact_directory": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\aab",
+  "artifacts": [
+    {
+      "path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\aab\\artifacts\\app\\build\\outputs\\bundle\\debug\\app-debug.aab",
+      "size_bytes": 4294,
+      "sha256": "b6b303606863ee49910aa4f4b3ea66a246576389ded209af6220daa5cd97bd6f",
+      "format": "aab",
+      "verified": false,
+      "variant": "debug",
+      "signature_status": "unsigned",
+      "verification": "gradle_debug_provenance+zip_structure; AAB_unsigned; manifest_and_device_not_tested",
+      "signature_check": {
+        "command": [
+          "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.8-hotspot\\bin\\jarsigner.exe",
+          "-verify",
+          "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\aab\\artifacts\\app\\build\\outputs\\bundle\\debug\\app-debug.aab"
+        ],
+        "returncode": 0,
+        "duration_seconds": 0.656,
+        "output_tail": "\nno manifest.\n\njar is unsigned.",
+        "matching_lines": [
+          "jar is unsigned."
+        ]
+      }
+    }
+  ],
+  "steps": [
+    {
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\gradlew.bat",
+        ":app:clean",
+        ":app:bundleDebug",
+        "--console=plain"
+      ],
+      "returncode": 0,
+      "duration_seconds": 63.187,
+      "output_tail": "> Task :app:compileDebugShaders NO-SOURCE\n> Task :app:generateDebugAssets UP-TO-DATE\n> Task :app:parseDebugLocalResources\n> Task :app:mergeDebugAssets\n> Task :app:processDebugJavaRes NO-SOURCE\n> Task :app:mergeDebugJavaResource\n> Task :app:checkDebugDuplicateClasses\n> Task :app:desugarDebugFileDependencies\n> Task :app:mergeExtDexDebug\n> Task :app:mergeLibDexDebug\n> Task :app:javaPreCompileDebug\n> Task :app:mergeDebugJniLibFolders\n> Task :app:mergeDebugNativeLibs NO-SOURCE\n> Task :app:stripDebugDebugSymbols NO-SOURCE\n> Task :app:writeDebugAppMetadata\n> Task :app:parseDebugIntegrityConfig\n> Task :app:processDebugResources\n> Task :app:bundleDebugResources\n> Task :app:compileDebugJavaWithJavac\n> Task :app:dexBuilderDebug\n> Task :app:mergeProjectDexDebug\n> Task :app:buildDebugPreBundle\n> Task :app:packageDebugBundle\n> Task :app:signDebugBundle\n> Task :app:produceDebugBundleIdeListingFile\n> Task :app:createDebugBundleListingFileRedirect\n> Task :app:bundleDebug\n\nBUILD SUCCESSFUL in 1m 2s\n35 actionable tasks: 35 executed"
+    }
+  ],
+  "smoke_test": {
+    "status": "not_run",
+    "reason": "Test uruchomienia nie został zlecony."
+  },
+  "log_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\aab\\.maxkompilator\\1436d3b7ba434701a94bf66ae28b6707\\build.log",
+  "report_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\aab\\.maxkompilator\\1436d3b7ba434701a94bf66ae28b6707\\build-report.json",
+  "error": null,
+  "environment": {
+    "ready": true,
+    "checks": [
+      {
+        "name": "Java (JDK)",
+        "command": [
+          "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.8-hotspot\\bin\\java.exe",
+          "-version"
+        ],
+        "available": true,
+        "version": "openjdk version \"17.0.20\" 2026-07-21\r\nOpenJDK Runtime Environment Temurin-17.0.20+8 (build 17.0.20+8)\r\nOpenJDK 64-Bit Server VM Temurin-17.0.20+8 (build 17.0.20+8, mixed mode, sharing)",
+        "hint": "Install the JDK required by the project's Gradle and Android Gradle Plugin versions."
+      },
+      {
+        "name": "Android SDK",
+        "available": true,
+        "version": "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk",
+        "hint": ""
+      }
+    ]
+  },
+  "finished_at": "2026-10-18T17:08:58.096551+00:00",
+  "duration_seconds": 64.219
+}

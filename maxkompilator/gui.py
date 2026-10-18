@@ -364,7 +364,7 @@ def launch_gui() -> int:
             self.smoke_checkbox = QCheckBox("Test uruchomienia")
             self.smoke_checkbox.setObjectName("smokeTestCheck")
             self.smoke_checkbox.setChecked(False)
-            self.smoke_checkbox.setToolTip("Po zbudowaniu uruchom wynikową aplikację Python i sprawdź zakończenie programu. Wykonuje kod projektu.")
+            self.smoke_checkbox.setToolTip("Po zbudowaniu uruchom wynikową aplikację Python lub .NET i sprawdź zakończenie programu. Wykonuje kod projektu.")
             form_layout.addWidget(self.smoke_checkbox)
             form_layout.addStretch()
             hint = QLabel("Sprawdź projekt, aby zobaczyć rozpoznany typ, plan budowania i wymagane narzędzia.")

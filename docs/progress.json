@@ -2,7 +2,7 @@
   "schema_version": 1,
   "project": "Maxkompilator",
   "release": "1.0",
-  "updated": "2026-10-17",
+  "updated": "2026-10-18",
   "scope": "Defined v1: a shared engine and GUI, qualified Python/Windows, Android and .NET builds, and foundations for Linux/macOS runners. 100% covers this release scope; support for additional languages and formats has a separate roadmap.",
   "milestones": [
     {
@@ -152,24 +152,28 @@
           "id": "apk",
           "title": "Real APK: manifest, package, variant and signature verification",
           "weight": 4,
-          "status": "in_progress",
+          "status": "complete",
           "evidence": [
-            "maxkompilator/engine.py: container checks and apksigner invocation; real qualification with Android SDK is still pending"
+            "Actual Gradle 8.11.1 / AGP 8.9.2 APK build; SDK aapt manifest/package/version/debug and apksigner certificate/SHA-256 checks PASS; docs/evidence/windows-2026-10-18/apk-build-report.json"
           ]
         },
         {
           "id": "device",
           "title": "Install and launch an APK on an emulator or phone",
           "weight": 5,
-          "status": "pending",
-          "evidence": []
+          "status": "complete",
+          "evidence": [
+            "APK installed and launched twice on the Android API 36 x86_64 emulator; independent PIDs 2539/2713 each read the compiled resource and logged MAXKOMPILATOR_ANDROID_RUNTIME_OK; docs/evidence/windows-2026-10-18/android-qualification.json"
+          ]
         },
         {
           "id": "aab",
           "title": "Real AAB and explicit debug/release signing distinction",
           "weight": 3,
-          "status": "pending",
-          "evidence": []
+          "status": "complete",
+          "evidence": [
+            "Actual Gradle debug AAB built; unsigned state explicitly distinguished from production signing; bundletool 1.18.2 validate and decoded package/version/debug manifest comparison PASS; docs/evidence/windows-2026-10-18/android-qualification.json and aab-build-report.json"
+          ]
         }
       ]
     },
@@ -191,15 +195,19 @@
           "id": "publish",
           "title": "Publish a real .NET project and verify its output",
           "weight": 4,
-          "status": "pending",
-          "evidence": []
+          "status": "complete",
+          "evidence": [
+            "Actual Windows self-contained net8.0 build through Maxkompilator; PE x64 apphost, resource, runtime DLLs and hashes PASS; docs/evidence/windows-2026-10-18/dotnet-build-report.json and dotnet-qualification.json"
+          ]
         },
         {
           "id": "windows-runtime",
           "title": "Run the published application on Windows",
           "weight": 4,
-          "status": "pending",
-          "evidence": []
+          "status": "complete",
+          "evidence": [
+            "Published 188-file application copied outside the sources and executed on Windows x64; MAXKOMPILATOR_DOTNET_RUNTIME_OK and matching copied-tree hashes PASS; docs/INTEGRATION_2026-10-18.md"
+          ]
         },
         {
           "id": "desktop",

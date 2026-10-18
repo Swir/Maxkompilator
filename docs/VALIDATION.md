@@ -1,5 +1,14 @@
 # Validation records
 
+## Integrated handoff and native toolchains — 2026-10-18
+
+The v6/v7/v8 handoff was integrated on base `989b9ba` and checked on Windows.
+The suite ran 184 tests: 180 passed, four platform-specific skips. Real .NET
+publishing/runtime, Gradle APK/AAB, bundletool validation and two emulator app
+launches passed. [The integration record](INTEGRATION_2026-10-18.md) contains
+the exact scope, reports, hashes and remaining gates. The older records below
+retain their original dates and do not describe the newly integrated source.
+
 ## Current local validation — 0.1.0.dev2
 
 **Checked on 2026-10-17.** The refreshed application, English documentation and rebuilt Python distribution were checked locally on Linux. The detailed record is [validation-dev2.json](validation-dev2.json).

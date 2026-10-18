@@ -14,7 +14,9 @@ Maxkompilator takes a project from its source folder through detection, environm
 
 **Verified CI: 10/10 jobs successful for `0.1.0.dev2`.** Six jobs checked the engine on Linux, Windows and macOS with Python 3.11 and 3.13. Three built and ran a native example with its resource on **Windows x64, Linux x64 and macOS ARM64**. The desktop job built the **Windows Maxkompilator bundle** and exercised its actual packaged GUI twice: **10 checks and 5 verified compiled CLI workers per launch**, including readable text, a real PYZ build, cancellation and reopening. See [CI run 39034556183](https://github.com/Swir/Maxkompilator/actions/runs/39034556183) and its [qualification record](docs/CI.md).
 
-**Still awaiting qualification:** a Windows machine without Python, manual interactive Windows release review, real APK/AAB builds with Android SDK, and actual .NET publishing. The packaged GUI was tested automatically with Qt offscreen; native results cover the tested example on the stated CI runners.
+**Local integration checked on 2026-10-18:** real self-contained .NET Windows publishing and relocated execution; real Gradle APK/AAB builds; Android SDK signature/manifest checks; independent bundletool validation; APK installation and two launches on an Android emulator. See [integration evidence](docs/INTEGRATION_2026-10-18.md). These local results do not imply that the updated CI has run.
+
+**Still awaiting qualification:** a Windows machine without Python, manual interactive Windows release review, .NET desktop dependencies, complete application-profile qualification and production signing. Historical packaged GUI evidence remains scoped to its recorded dev2 commit.
 
 [Roadmap and percentages](ROADMAP.md) · [Architecture](docs/ARCHITECTURE.md) · [Validation results](docs/VALIDATION.md) · [Verified CI jobs](docs/CI.md) · [GitHub Actions](https://github.com/Swir/Maxkompilator/actions)
 
@@ -22,7 +24,7 @@ Maxkompilator takes a project from its source folder through detection, environm
 
 <!-- MAXKOMPILATOR:PROGRESS:START -->
 
-**v1.0 progress: 58% — 58 / 100 points.**
+**v1.0 progress: 78% — 78 / 100 points.**
 
 Only completed criteria with recorded evidence earn points. Work in progress does not increase the percentage.
 
@@ -31,16 +33,16 @@ Only completed criteria with recorded evidence earn points. Work in progress doe
 | Project foundation and CI | 8 pts | 8 / 8 pts | 100% |
 | Project and environment discovery | 12 pts | 12 / 12 pts | 100% |
 | Python and Windows builds | 16 pts | 6 / 16 pts | 37.5% |
-| Android: APK and AAB | 14 pts | 2 / 14 pts | 14.3% |
-| .NET and Windows publishing | 12 pts | 2 / 12 pts | 16.7% |
+| Android: APK and AAB | 14 pts | 14 / 14 pts | 100% |
+| .NET and Windows publishing | 12 pts | 10 / 12 pts | 83.3% |
 | Desktop interface | 12 pts | 12 / 12 pts | 100% |
 | Profiles and repeatable output | 10 pts | 5 / 10 pts | 50% |
 | Reliability and release qualification | 10 pts | 8 / 10 pts | 80% |
 | Linux and macOS runners | 4 pts | 3 / 4 pts | 75% |
 | Extensibility and additional architectures | 2 pts | 0 / 2 pts | 0% |
-| **Total** | **100 pts** | **58 / 100 pts** | **58%** |
+| **Total** | **100 pts** | **78 / 100 pts** | **78%** |
 
-Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-17**.
+Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**.
 
 <!-- MAXKOMPILATOR:PROGRESS:END -->
 
@@ -152,7 +154,7 @@ python -m maxkompilator build ./android-app --kind android --target android --fo
 
 `--format aab` selects a debug App Bundle. Use APK for installation on a phone. ABI and variant configuration belong to the Gradle project. The job runs `:app:clean` before building to exclude stale output, and Maxkompilator's output directory must be outside `app/build`.
 
-The engine checks APK container structure and requires successful signature verification with Android SDK's `apksigner`. This path has not yet been qualified by building and installing a real Android application. AAB structure checks do not qualify its signing or store distribution.
+The engine verifies APK structure, Gradle output metadata, compiled manifest, SHA-256 and Android SDK `apksigner` results. The included [Android example](examples/hello-android/README.md) was built, installed and launched twice on an emulator. AAB reports explicitly distinguish unsigned and JAR-signed debug output; the example's actual unsigned AAB passed independent bundletool validation and decoded-manifest checks. Neither result qualifies Play Store distribution or production signing.
 
 ### .NET
 
@@ -163,7 +165,7 @@ python -m maxkompilator plan ./dotnet-app/App.csproj --kind dotnet --target nati
 python -m maxkompilator build ./dotnet-app/App.csproj --kind dotnet --target native --format directory
 ```
 
-The publish plan sets `--self-contained true`; keep the complete output directory. NativeAOT and publishing multiple frameworks in one job require further support. The initial adapter requires a Windows runner for WPF/WinForms projects. Recipes and their restrictions have been tested; real .NET SDK publishing is still awaiting qualification.
+The publish plan sets `--self-contained true`; keep the complete output directory. Add `--smoke-test` to run a copied publish directory outside the source tree. The included C# example passed actual Windows x64 publishing, runtime/resource checks and SHA-256 qualification. NativeAOT and publishing multiple frameworks need further support; WPF/WinForms require a Windows runner and retain a separate desktop-dependency qualification gate.
 
 ### Project configuration
 
@@ -214,7 +216,7 @@ Qualification records distinguish these results:
 
 Reports state which checks actually ran. An exit code of `0`, an existing file or a passing recipe test alone cannot establish that an application runs on Windows or a phone.
 
-Automatic `--smoke-test` currently supports Python adapter output. Android and .NET retain `not_run` when no suitable runtime scenario is available. If a requested Python runtime check fails or times out, the entire job fails.
+Automatic `--smoke-test` supports Python and native .NET output. A .NET check copies and verifies the complete publish directory before execution. Android requires an explicitly selected device; `scripts/qualify_android.py --serial ...` provides the included example's installation and runtime scenario. If a requested runtime check fails or times out, the entire job fails.
 
 ### Platform and format boundaries
 

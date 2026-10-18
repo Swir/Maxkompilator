@@ -1,0 +1,17 @@
+test_check_detects_drift_without_writing_and_sync_is_idempotent (tests.test_progress.ProgressDocumentTests.test_check_detects_drift_without_writing_and_sync_is_idempotent) ... ok
+test_command_line_exit_codes_support_ci (tests.test_progress.ProgressDocumentTests.test_command_line_exit_codes_support_ci) ... ok
+test_duplicate_and_reversed_markers_are_rejected (tests.test_progress.ProgressDocumentTests.test_duplicate_and_reversed_markers_are_rejected) ... ok
+test_invalid_marker_in_second_document_prevents_partial_write (tests.test_progress.ProgressDocumentTests.test_invalid_marker_in_second_document_prevents_partial_write) ... ok
+test_repository_source_has_valid_fixed_scope (tests.test_progress.ProgressDocumentTests.test_repository_source_has_valid_fixed_scope) ... ok
+test_complete_requires_evidence (tests.test_progress.ProgressScoringTests.test_complete_requires_evidence) ... ok
+test_duplicate_criteria_cannot_inflate_completion (tests.test_progress.ProgressScoringTests.test_duplicate_criteria_cannot_inflate_completion) ... ok
+test_regression_removes_points_without_reweighting (tests.test_progress.ProgressScoringTests.test_regression_removes_points_without_reweighting) ... ok
+test_rejects_malformed_status_date_and_evidence (tests.test_progress.ProgressScoringTests.test_rejects_malformed_status_date_and_evidence) ... ok
+test_scope_cannot_silently_drop_a_whole_milestone (tests.test_progress.ProgressScoringTests.test_scope_cannot_silently_drop_a_whole_milestone) ... ok
+test_unbalanced_or_noninteger_weights_are_rejected (tests.test_progress.ProgressScoringTests.test_unbalanced_or_noninteger_weights_are_rejected) ... ok
+test_weighted_criteria_not_task_count_or_work_in_progress (tests.test_progress.ProgressScoringTests.test_weighted_criteria_not_task_count_or_work_in_progress) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.793s
+
+OK

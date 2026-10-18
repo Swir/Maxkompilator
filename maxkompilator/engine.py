@@ -23,6 +23,8 @@ from pathlib import Path
 from typing import Callable
 
 from .environment import check_environment, process_options, spawn_external, stop_process
+from .android_qualification import qualify_debug_apk
+from .android_bundle_qualification import qualify_debug_aab
 from .models import BuildPlan, MaxkompilatorError, serializable
 
 
@@ -138,7 +140,8 @@ def build_zipapp(plan: BuildPlan, event: threading.Event, log: Callable[[str], N
 
 def run_command(command: tuple[str, ...] | list[str], cwd: Path, event: threading.Event,
                 log: Callable[[str], None], *, timeout: float = 1800.0,
-                extra_env: dict[str, str] | None = None) -> dict:
+                extra_env: dict[str, str] | None = None,
+                capture_prefixes: tuple[str, ...] = ()) -> dict:
     """Stream child output without a shell, honour timeout and cancellation."""
     _check_cancel(event)
     started = time.monotonic()
@@ -162,6 +165,7 @@ def run_command(command: tuple[str, ...] | list[str], cwd: Path, event: threadin
     reader = threading.Thread(target=pump, name="maxkompilator-output", daemon=True)
     reader.start()
     excerpt: list[str] = []
+    matched_lines: list[str] = []
     ended = False
     try:
         while not ended or process.poll() is None:
@@ -180,6 +184,9 @@ def run_command(command: tuple[str, ...] | list[str], cwd: Path, event: threadin
             else:
                 text = item.decode("utf-8", errors="replace").rstrip("\r\n")
                 log(text)
+                if (capture_prefixes and len(matched_lines) < 32
+                        and any(text.startswith(prefix) for prefix in capture_prefixes)):
+                    matched_lines.append(text[:1024])
                 excerpt.append(text)
                 if len(excerpt) > 30:
                     excerpt.pop(0)
@@ -190,8 +197,11 @@ def run_command(command: tuple[str, ...] | list[str], cwd: Path, event: threadin
         reader.join(timeout=1)
         if process.stdout:
             process.stdout.close()
-    return {"command": list(command), "returncode": code,
-            "duration_seconds": round(time.monotonic() - started, 3), "output_tail": "\n".join(excerpt)}
+    outcome = {"command": list(command), "returncode": code,
+               "duration_seconds": round(time.monotonic() - started, 3), "output_tail": "\n".join(excerpt)}
+    if capture_prefixes:
+        outcome["matching_lines"] = matched_lines
+    return outcome
 
 
 def identify_file(path: Path) -> str:
@@ -323,6 +333,32 @@ def collect_artifacts(plan: BuildPlan) -> list[dict]:
 def _smoke_command(plan: BuildPlan, artifacts: list[dict], python_executable: str) -> list[str] | None:
     if plan.format == "zipapp":
         return [python_executable, next(item["path"] for item in artifacts if item["format"] == "pyz")]
+    if plan.project.kind == "dotnet" and plan.format == "directory":
+        # Execute only on a native worker. A successful cross-RID publish
+        # must not be mistaken for a runtime qualification.
+        from .adapters.python_adapter import native_target
+        host_target = native_target().replace("macos-", "osx-", 1)
+        if plan.target != host_target:
+            return None
+        suffix = ".exe" if plan.target.startswith("win-") else ""
+        family, architecture = plan.target.split("-", 1)
+        prefix = {"win": "pe-", "linux": "elf-", "osx": "mach-o"}[family]
+        expected_format = prefix if family == "osx" else prefix + architecture
+        candidates: list[Path] = []
+        for item in artifacts:
+            if item.get("format") != expected_format or item.get("verified") is not True:
+                continue
+            executable = Path(str(item["path"])).resolve()
+            if executable.parent != plan.output_dir.resolve():
+                continue
+            if suffix and executable.suffix.lower() != suffix:
+                continue
+            name = executable.name.removesuffix(suffix) if suffix else executable.name
+            # Runtime configuration ties this apphost to a managed application.
+            # Never execute an arbitrary DLL, hostfxr, or output from a prior run.
+            if (executable.parent / f"{name}.runtimeconfig.json").is_file():
+                candidates.append(executable)
+        return [str(candidates[0])] if len(candidates) == 1 else None
     if plan.project.kind != "python" or plan.format != "executable":
         return None
     expected_name = plan.project.name + (".exe" if os.name == "nt" else "")
@@ -403,21 +439,36 @@ def execute_build(plan: BuildPlan, *, cancel_event: threading.Event | None = Non
                 if plan.project.kind == "android" and plan.format == "apk":
                     sdk_check = next(item for item in environment["checks"] if item["name"] == "Android SDK")
                     sdk = Path(sdk_check["version"])
-                    name = "apksigner.bat" if os.name == "nt" else "apksigner"
-                    signers = sorted((sdk / "build-tools").glob(f"*/{name}"))
-                    if not signers:
-                        raise MaxkompilatorError("Brakuje apksigner w Android SDK; podpis APK nie został zweryfikowany.")
-                    signer = signers[-1]
-                    prefix = ["cmd.exe", "/d", "/c"] if os.name == "nt" else ["sh"]
+
+                    def run_android_tool(command: list[str]) -> dict:
+                        return run_command(
+                            command, plan.project.root, event, log, timeout=30,
+                            capture_prefixes=("package:", "application-debuggable", "Signer #"),
+                        )
+
                     for artifact in report["artifacts"]:
                         if artifact["format"] != "apk":
                             continue
-                        check = run_command(prefix + [str(signer), "verify", "--verbose", artifact["path"]], plan.project.root, event, log, timeout=30)
-                        artifact["signature_check"] = check
-                        if check["returncode"] != 0:
-                            raise MaxkompilatorError("Sprawdzenie podpisu APK zakończyło się błędem.")
-                        artifact["verified"] = True
-                        artifact["verification"] = "container_and_signature; installation_not_tested"
+                        # Only grant verified=True after output metadata, package,
+                        # debug variant and signer certificate all agree.
+                        artifact.update(qualify_debug_apk(
+                            plan, execution_plan.output_dir, artifact, sdk, run_android_tool,
+                        ))
+                if plan.project.kind == "android" and plan.format == "aab":
+                    def run_bundle_tool(command: list[str]) -> dict:
+                        return run_command(
+                            command, plan.project.root, event, log, timeout=60,
+                            capture_prefixes=("\t SHA256:", " SHA256:", "SHA256:",
+                                              "jar verified.", "jar is unsigned.",
+                                              "This jar contains unsigned entries"),
+                        )
+
+                    for artifact in report["artifacts"]:
+                        if artifact["format"] != "aab":
+                            continue
+                        artifact.update(qualify_debug_aab(
+                            plan, execution_plan.output_dir, artifact, run_bundle_tool,
+                        ))
                 report["status"] = "built"
                 if smoke_test:
                     command = _smoke_command(execution_plan, report["artifacts"], python_executable)
@@ -429,8 +480,28 @@ def execute_build(plan: BuildPlan, *, cancel_event: threading.Event | None = Non
                         try:
                             with tempfile.TemporaryDirectory(prefix="maxkompilator-smoke-") as temp:
                                 smoke_env = {"PYTHONIOENCODING": "utf-8"} if execution_plan.format == "zipapp" else None
-                                outcome = run_command(command, Path(temp), event, log,
+                                smoke_cwd = Path(temp) / "cwd"
+                                smoke_cwd.mkdir()
+                                # A foreign working directory alone is not enough:
+                                # an apphost still points into a publish tree within
+                                # the source checkout. Copy the *whole* runtime first.
+                                relocation = None
+                                if execution_plan.project.kind == "dotnet":
+                                    from .runtime_portability import stage_dotnet_runtime
+                                    original_command = list(command)
+                                    staged = stage_dotnet_runtime(execution_plan.output_dir, Path(command[0]), Path(temp))
+                                    command = [str(staged.executable)]
+                                    relocation = {
+                                        "mode": "copied_publish_tree",
+                                        "source_sha256": staged.source_sha256,
+                                        "staged_sha256": staged.staged_sha256,
+                                        "copied_files": staged.copied_files,
+                                    }
+                                outcome = run_command(command, smoke_cwd, event, log,
                                                       timeout=smoke_timeout, extra_env=smoke_env)
+                                if relocation is not None:
+                                    outcome["source_command"] = original_command
+                                    outcome["relocation"] = relocation
                         except Cancelled:
                             report["smoke_test"] = {"status": "cancelled", "reason": "Test uruchomienia anulowano."}
                             raise

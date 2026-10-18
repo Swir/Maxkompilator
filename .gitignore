@@ -16,3 +16,7 @@ Thumbs.db
 *.p12
 *.pfx
 .env
+.gradle/
+local.properties
+obj/
+bin/

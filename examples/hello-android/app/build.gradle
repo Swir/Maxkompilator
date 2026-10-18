@@ -1,0 +1,22 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.swir.maxkompilator.fixture'
+    compileSdk 35
+    buildToolsVersion '35.0.0'
+    defaultConfig {
+        applicationId 'com.swir.maxkompilator.fixture'
+        minSdk 23
+        targetSdk 35
+        versionCode 1
+        versionName '1.0'
+    }
+    // Only Android's development debug key is used. Release keys are not configured.
+    buildTypes {
+        debug {
+            debuggable true
+        }
+    }
+}

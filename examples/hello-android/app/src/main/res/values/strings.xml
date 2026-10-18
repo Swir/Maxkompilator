@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_marker">MAXKOMPILATOR_ANDROID_RUNTIME_OK</string>
+</resources>

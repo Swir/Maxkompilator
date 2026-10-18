@@ -49,7 +49,7 @@ def create_parser() -> argparse.ArgumentParser:
             item.add_argument("--output", type=Path, help="Katalog wynikowy; względnie do folderu projektu.")
             item.add_argument("--python", dest="python_executable", help="Interpreter używany przez adapter Python.")
         if command == "build":
-            item.add_argument("--smoke-test", action="store_true", help="Uruchom utworzony program Python (wykonuje kod projektu).")
+            item.add_argument("--smoke-test", action="store_true", help="Uruchom utworzony program Python lub .NET (wykonuje kod projektu).")
             item.add_argument("--timeout", type=_positive, default=1800.0, help="Limit pojedynczego etapu w sekundach.")
             item.add_argument("--smoke-timeout", type=_positive, default=30.0, help="Limit testu uruchomienia w sekundach.")
     commands.add_parser("gui", help="Otwórz interfejs PySide6.")

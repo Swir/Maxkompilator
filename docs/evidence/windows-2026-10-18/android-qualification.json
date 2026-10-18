@@ -1,0 +1,184 @@
+{
+  "status": "passed",
+  "scope": "hello-android debug example",
+  "checks": [
+    {
+      "command": [
+        "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.8-hotspot\\bin\\java.exe",
+        "-jar",
+        "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\tools\\bundletool-all-1.18.2.jar",
+        "validate",
+        "--bundle=D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\aab\\artifacts\\app\\build\\outputs\\bundle\\debug\\app-debug.aab"
+      ],
+      "returncode": 0,
+      "output": "App Bundle information\n------------\nFeature modules:\n\tFeature module: base\n\t\tFile: dex/classes.dex\n\t\tFile: dex/classes2.dex\n\t\tFile: root/META-INF/com/android/build/gradle/app-metadata.properties\n"
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.8-hotspot\\bin\\java.exe",
+        "-jar",
+        "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\tools\\bundletool-all-1.18.2.jar",
+        "dump",
+        "manifest",
+        "--bundle=D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\aab\\artifacts\\app\\build\\outputs\\bundle\\debug\\app-debug.aab",
+        "--module=base"
+      ],
+      "returncode": 0,
+      "output": "<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\" android:compileSdkVersion=\"35\" android:compileSdkVersionCodename=\"15\" android:versionCode=\"1\" android:versionName=\"1.0\" package=\"com.swir.maxkompilator.fixture\" platformBuildVersionCode=\"35\" platformBuildVersionName=\"15\">\n      \n  <uses-sdk android:minSdkVersion=\"23\" android:targetSdkVersion=\"35\"/>\n      \n  <application android:allowBackup=\"false\" android:debuggable=\"true\" android:extractNativeLibs=\"false\" android:label=\"Maxkompilator test\" android:theme=\"@android:style/Theme.Material.Light.NoActionBar\">\n            \n    <activity android:exported=\"true\" android:name=\"com.swir.maxkompilator.fixture.MainActivity\">\n                  \n      <intent-filter>\n                        \n        <action android:name=\"android.intent.action.MAIN\"/>\n                        \n        <category android:name=\"android.intent.category.LAUNCHER\"/>\n                    \n      </intent-filter>\n              \n    </activity>\n        \n  </application>\n  \n</manifest>\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+        "-s",
+        "emulator-5580",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "returncode": 0,
+      "output": "1\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+        "-s",
+        "emulator-5580",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "returncode": 0,
+      "output": "36\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+        "-s",
+        "emulator-5580",
+        "install",
+        "-r",
+        "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\maxkompilator\\artifacts\\app\\build\\outputs\\apk\\debug\\app-debug.apk"
+      ],
+      "returncode": 0,
+      "output": "Performing Streamed Install\nSuccess\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+        "-s",
+        "emulator-5580",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-S",
+        "-n",
+        "com.swir.maxkompilator.fixture/.MainActivity"
+      ],
+      "returncode": 0,
+      "output": "Stopping: com.swir.maxkompilator.fixture\nStarting: Intent { cmp=com.swir.maxkompilator.fixture/.MainActivity }\nStatus: ok\nLaunchState: COLD\nActivity: com.swir.maxkompilator.fixture/.MainActivity\nTotalTime: 3358\nWaitTime: 3371\nComplete\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+        "-s",
+        "emulator-5580",
+        "shell",
+        "pidof",
+        "com.swir.maxkompilator.fixture"
+      ],
+      "returncode": 0,
+      "output": "2539\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+        "-s",
+        "emulator-5580",
+        "logcat",
+        "-d",
+        "--pid=2539",
+        "-s",
+        "MaxkompilatorFixture:I",
+        "*:S"
+      ],
+      "returncode": 0,
+      "output": "--------- beginning of main\n10-18 17:08:52.487  2539  2539 I MaxkompilatorFixture: MAXKOMPILATOR_ANDROID_RUNTIME_OK\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+        "-s",
+        "emulator-5580",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-S",
+        "-n",
+        "com.swir.maxkompilator.fixture/.MainActivity"
+      ],
+      "returncode": 0,
+      "output": "Stopping: com.swir.maxkompilator.fixture\nStarting: Intent { cmp=com.swir.maxkompilator.fixture/.MainActivity }\nStatus: ok\nLaunchState: COLD\nActivity: com.swir.maxkompilator.fixture/.MainActivity\nTotalTime: 4336\nWaitTime: 4340\nComplete\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+        "-s",
+        "emulator-5580",
+        "shell",
+        "pidof",
+        "com.swir.maxkompilator.fixture"
+      ],
+      "returncode": 0,
+      "output": "2713\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+        "-s",
+        "emulator-5580",
+        "logcat",
+        "-d",
+        "--pid=2713",
+        "-s",
+        "MaxkompilatorFixture:I",
+        "*:S"
+      ],
+      "returncode": 0,
+      "output": "--------- beginning of main\n10-18 17:08:58.326  2713  2713 I MaxkompilatorFixture: MAXKOMPILATOR_ANDROID_RUNTIME_OK\n"
+    }
+  ],
+  "device": {
+    "status": "passed",
+    "serial": "emulator-5580",
+    "api": "36",
+    "installation": "passed",
+    "launches": [
+      {
+        "pid": "2539",
+        "resource_marker": "MAXKOMPILATOR_ANDROID_RUNTIME_OK",
+        "status": "passed"
+      },
+      {
+        "pid": "2713",
+        "resource_marker": "MAXKOMPILATOR_ANDROID_RUNTIME_OK",
+        "status": "passed"
+      }
+    ]
+  },
+  "release_signing": "not_configured_or_qualified",
+  "apk_sha256": "7d1f6c654d1075b8ee94732f21687d6988c944b8edaa01551c80193b0218f4c7",
+  "aab_sha256": "b6b303606863ee49910aa4f4b3ea66a246576389ded209af6220daa5cd97bd6f",
+  "apk_run_id": "713a35eff3c343929f1ed66cc55dbc82",
+  "aab_run_id": "1436d3b7ba434701a94bf66ae28b6707",
+  "aab_signature_status": "unsigned",
+  "bundletool_sha256": "378b5434cd1378bef6b2bc527b8c7f0ff2584b273830335bce54d6d0813c8584",
+  "bundletool_validation": "passed",
+  "bundle_manifest": {
+    "package": "com.swir.maxkompilator.fixture",
+    "version_code": 1,
+    "version_name": "1.0",
+    "debuggable": true
+  }
+}

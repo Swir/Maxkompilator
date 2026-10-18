@@ -26,7 +26,7 @@ The CLI engine does not import PySide6. Both interfaces use the same planning an
 3. **Plan.** Describe concrete steps, arguments, working directories and expected output. `plan --json` exposes this data for inspection and automation. Planning does not execute build commands.
 4. **Build.** Run the plan in the selected directory and forward progress to the interface. Record exit codes and logs.
 5. **Validate.** Check that expected new files were produced. Format-specific validators add structure, metadata and signature checks.
-6. **Report.** Record the build result and the tests actually performed. `--smoke-test` runs Python output from a separate temporary directory; other adapters need an appropriate runtime scenario or device.
+6. **Report.** Record the build result and the tests actually performed. `--smoke-test` runs Python output from a separate temporary directory and .NET output from a verified copy of the complete publish tree. Android device tests require an explicit device and scenario; the example's qualification script records installation and two independent launches separately.
 
 ## Design contracts
 
@@ -49,7 +49,7 @@ Commands are constructed as an executable and an argument list. Arbitrary projec
 
 A runner has a defined working directory, a timeout and cancellation handling for the worker and its children. Cancellation or timeout cannot become success merely because an old output file remains on disk. Native Python and .NET builds use `BASE/runs/UUID`; reports preserve both the requested plan and the execution plan with its adjusted paths. A PYZ is created in a temporary directory and atomically installed as `BASE/name.pyz`. Android runs `:app:clean` before its debug task, then copies module output into `BASE/artifacts`.
 
-Every job writes its own `build.log` and `build-report.json` under `BASE/.maxkompilator/UUID`. `BASE/build-report.json` holds the most recent job report. An output-directory lock prevents competing jobs from writing concurrently. Artifacts receive SHA-256 checksums, and format checks inspect content rather than only the filename extension. The APK path also calls `apksigner verify`, which must succeed. Qualification of this complete path with a real Android SDK remains open.
+Every job writes its own `build.log` and `build-report.json` under `BASE/.maxkompilator/UUID`. `BASE/build-report.json` holds the most recent job report. An output-directory lock prevents competing jobs from writing concurrently. Artifacts receive SHA-256 checksums, and format checks inspect content rather than only the filename extension. APK qualification binds Gradle metadata to `aapt` manifest output and successful `apksigner` verification. AAB checks record unsigned or JAR-signed output without claiming release approval. Real Android SDK and .NET evidence is recorded in [INTEGRATION_2026-10-18.md](INTEGRATION_2026-10-18.md).
 
 Detection and planning do not import application sources or execute project configuration. Building can execute project code through Python hooks, Gradle/MSBuild scripts and dependency tools. A local subprocess has the user's privileges. Isolating untrusted projects requires a separate container, virtual machine or otherwise restricted runner.
 

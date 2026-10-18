@@ -1,5 +1,10 @@
 # GitHub Actions results — 0.1.0.dev2
 
+The integrated 2026-10-18 candidate adds .NET Windows/Linux publishing and an
+Android APK/AAB build plus bundletool job. Those updated jobs have not yet run
+on GitHub. [Local Windows evidence](INTEGRATION_2026-10-18.md) is separate from
+the historical CI results below.
+
 **Verified on 2026-10-17: 10/10 jobs SUCCESS.** This record covers [run 39034556183](https://github.com/Swir/Maxkompilator/actions/runs/39034556183) in [Swir/Maxkompilator](https://github.com/Swir/Maxkompilator), at commit [`044e32bebc13e87cf147868e497a2096ab2709f6`](https://github.com/Swir/Maxkompilator/commit/044e32bebc13e87cf147868e497a2096ab2709f6).
 
 The actual packaged Windows GUI passed **10/10 checks on each of two independent launches**, including its compiled CLI worker, readable interface text, a real PYZ build, cancellation and reopening. Both downloaded captures were also reviewed for readable labels, Polish characters, build output and the 3D icon. Full job metadata, artifact metadata, process evidence, font checks and report hashes are stored in [ci-evidence-dev2.json](ci-evidence-dev2.json).

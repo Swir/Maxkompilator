@@ -16,7 +16,7 @@ The verified [dev2 run 39034556183](https://github.com/Swir/Maxkompilator/action
 
 <!-- MAXKOMPILATOR:PROGRESS:START -->
 
-**v1.0 progress: 58% — 58 / 100 points.**
+**v1.0 progress: 78% — 78 / 100 points.**
 
 Only completed criteria with recorded evidence earn points. Work in progress does not increase the percentage.
 
@@ -25,16 +25,16 @@ Only completed criteria with recorded evidence earn points. Work in progress doe
 | Project foundation and CI | 8 pts | 8 / 8 pts | 100% |
 | Project and environment discovery | 12 pts | 12 / 12 pts | 100% |
 | Python and Windows builds | 16 pts | 6 / 16 pts | 37.5% |
-| Android: APK and AAB | 14 pts | 2 / 14 pts | 14.3% |
-| .NET and Windows publishing | 12 pts | 2 / 12 pts | 16.7% |
+| Android: APK and AAB | 14 pts | 14 / 14 pts | 100% |
+| .NET and Windows publishing | 12 pts | 10 / 12 pts | 83.3% |
 | Desktop interface | 12 pts | 12 / 12 pts | 100% |
 | Profiles and repeatable output | 10 pts | 5 / 10 pts | 50% |
 | Reliability and release qualification | 10 pts | 8 / 10 pts | 80% |
 | Linux and macOS runners | 4 pts | 3 / 4 pts | 75% |
 | Extensibility and additional architectures | 2 pts | 0 / 2 pts | 0% |
-| **Total** | **100 pts** | **58 / 100 pts** | **58%** |
+| **Total** | **100 pts** | **78 / 100 pts** | **78%** |
 
-Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-17**.
+Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**.
 
 ### Criteria and evidence
 
@@ -62,15 +62,15 @@ Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-17**
 #### Android: APK and AAB — 14 points
 
 - [x] **Gradle recipes for debug APK/AAB and wrapper-based projects — 2 points.** Evidence: tests/test_adapters.py: test_android_debug_apk_plan_does_not_execute_wrapper and test_android_artifact_patterns_select_only_debug_outputs — PASS; recipes checked, real APK/AAB qualification pending. ID: `android.gradle`.
-- [ ] **Real APK: manifest, package, variant and signature verification — 4 points.** In progress; points are awarded after the full criterion is met. ID: `android.apk`.
-- [ ] **Install and launch an APK on an emulator or phone — 5 points.** Planned. ID: `android.device`.
-- [ ] **Real AAB and explicit debug/release signing distinction — 3 points.** Planned. ID: `android.aab`.
+- [x] **Real APK: manifest, package, variant and signature verification — 4 points.** Evidence: Actual Gradle 8.11.1 / AGP 8.9.2 APK build; SDK aapt manifest/package/version/debug and apksigner certificate/SHA-256 checks PASS; docs/evidence/windows-2026-10-18/apk-build-report.json. ID: `android.apk`.
+- [x] **Install and launch an APK on an emulator or phone — 5 points.** Evidence: APK installed and launched twice on the Android API 36 x86_64 emulator; independent PIDs 2539/2713 each read the compiled resource and logged MAXKOMPILATOR_ANDROID_RUNTIME_OK; docs/evidence/windows-2026-10-18/android-qualification.json. ID: `android.device`.
+- [x] **Real AAB and explicit debug/release signing distinction — 3 points.** Evidence: Actual Gradle debug AAB built; unsigned state explicitly distinguished from production signing; bundletool 1.18.2 validate and decoded package/version/debug manifest comparison PASS; docs/evidence/windows-2026-10-18/android-qualification.json and aab-build-report.json. ID: `android.aab`.
 
 #### .NET and Windows publishing — 12 points
 
 - [x] **dotnet publish adapter with an explicit project and target — 2 points.** Evidence: tests/test_adapters.py: test_dotnet_publish_includes_runtime_and_concrete_project and WPF/NativeAOT restrictions — PASS; recipe verified, real .NET SDK publishing pending. ID: `dotnet.recipe`.
-- [ ] **Publish a real .NET project and verify its output — 4 points.** Planned. ID: `dotnet.publish`.
-- [ ] **Run the published application on Windows — 4 points.** Planned. ID: `dotnet.windows-runtime`.
+- [x] **Publish a real .NET project and verify its output — 4 points.** Evidence: Actual Windows self-contained net8.0 build through Maxkompilator; PE x64 apphost, resource, runtime DLLs and hashes PASS; docs/evidence/windows-2026-10-18/dotnet-build-report.json and dotnet-qualification.json. ID: `dotnet.publish`.
+- [x] **Run the published application on Windows — 4 points.** Evidence: Published 188-file application copied outside the sources and executed on Windows x64; MAXKOMPILATOR_DOTNET_RUNTIME_OK and matching copied-tree hashes PASS; docs/INTEGRATION_2026-10-18.md. ID: `dotnet.windows-runtime`.
 - [ ] **Verify desktop application dependencies and distribution mode — 2 points.** Planned. ID: `dotnet.desktop`.
 
 #### Desktop interface — 12 points

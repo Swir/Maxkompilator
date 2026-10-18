@@ -11,6 +11,7 @@ import sys
 import tomllib
 
 from ..models import BuildPlan, BuildStep, PlanError, Project, ToolRequirement
+from ..python_profile import resolve_python_profile
 
 
 def native_target() -> str:
@@ -143,9 +144,10 @@ def create_python_plan(
     if selected_format == "zipapp":
         if target not in {"native", "python", "any", "portable"}:
             raise PlanError("zipapp is Python source packaging; use --target python or native.")
+        profile_plan = resolve_python_profile(project, "zipapp", None, output_dir, executable)
         return BuildPlan(
-            project, "python", "zipapp", output_dir,
-            artifact_patterns=(f"{project.name}.pyz",),
+            profile_plan.project, "python", "zipapp", output_dir,
+            artifact_patterns=(f"{profile_plan.project.name}.pyz",),
             notes=(
                 "A .pyz requires a compatible Python installation on the destination computer.",
                 "Third-party dependencies and a Python runtime are not bundled. Install dependencies separately.",
@@ -164,15 +166,17 @@ def create_python_plan(
         )
     if selected_format == "exe" and not selected_target.startswith("win-"):
         raise PlanError(".exe output requires a Windows worker. Use executable for the native system.")
+    profile_plan = resolve_python_profile(project, "executable", selected_target, output_dir, executable)
+    project = profile_plan.project
     command = (
         executable, "-m", "PyInstaller", "--noconfirm", "--clean", "--onedir",
         "--distpath", str(output_dir), "--workpath", str(output_dir / ".work"),
         "--specpath", str(output_dir / ".work"), "--name", project.name,
-        *data_arguments, str(entry),
+        *profile_plan.pyinstaller_arguments, *data_arguments, str(entry),
     )
     return BuildPlan(
         project, selected_target, "executable", output_dir,
-        steps=(BuildStep("Build native application with PyInstaller", command, project.root),),
+        steps=(*profile_plan.steps, BuildStep("Build native application with PyInstaller", command, project.root)),
         requirements=(_interpreter_requirement(executable, selected_target), ToolRequirement(
             "PyInstaller", (executable, "-m", "PyInstaller", "--version"),
             f"Install PyInstaller in the selected interpreter: {executable} -m pip install pyinstaller",

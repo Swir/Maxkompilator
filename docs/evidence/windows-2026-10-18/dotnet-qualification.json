@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "host": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-dotnet\\dist\\maxkompilator\\runs\\e60463da42e14950a5302ada99e3879d\\HelloDotnet.exe",
+  "host_format": "pe-x64",
+  "host_sha256": "5bf96191a88a50268a7d05083309a2def248c67ad54e8b8a9044305718e8d21f",
+  "resource_sha256": "521e36538b0c234f593dbbf60707810034fe8a6af9ba94863a55534149cd946b",
+  "self_contained_runtime_files": [
+    "hostfxr.dll",
+    "hostpolicy.dll",
+    "coreclr.dll"
+  ],
+  "smoke_test": "passed_outside_source_directory",
+  "report_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-dotnet\\dist\\maxkompilator\\build-report.json"
+}

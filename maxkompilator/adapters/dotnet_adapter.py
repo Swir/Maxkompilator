@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
+from ..app_profile import load_app_profile, native_icon
 from ..models import BuildPlan, BuildStep, PlanError, Project, ToolRequirement
 from .python_adapter import native_target, normalize_target
 
@@ -49,10 +51,24 @@ def create_dotnet_plan(
         not selected_target.startswith("win-") or not native_target().startswith("win-")
     ):
         raise PlanError("Windows desktop/WPF/WinForms projects require a Windows worker and a Windows target in v0.1.")
+    profile = load_app_profile(project.root, project.name)
+    if profile.icon is not None and not selected_target.startswith("win-"):
+        raise PlanError(".NET ApplicationIcon embedding is currently supported only for Windows publish targets.")
+    icon = native_icon(profile, selected_target)
+    profile_arguments: list[str] = []
+    if profile.explicit_name:
+        profile_arguments.append(f"-p:AssemblyName={profile.name}")
+        project = replace(project, name=profile.name)
+    if profile.version:
+        profile_arguments.append(f"-p:Version={profile.version}")
+    if icon is not None:
+        # An absolute path avoids ambiguity when a .csproj lives below the root.
+        # The profile loader rejects MSBuild property separators and symlink escapes.
+        profile_arguments.append(f"-p:ApplicationIcon={icon}")
     rid = selected_target.replace("macos-", "osx-", 1)
     command = (
         "dotnet", "publish", str(csproject), "-c", "Release", "-r", rid,
-        "--self-contained", "true", "-o", str(output_dir),
+        "--self-contained", "true", *profile_arguments, "-o", str(output_dir),
     )
     return BuildPlan(
         project, rid, "directory", output_dir,

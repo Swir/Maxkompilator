@@ -1,0 +1,69 @@
+{
+  "base_commit": "989b9ba773f5a07686a5143ba0c141c2a6c8151d",
+  "date": "2026-10-18",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "unit_tests": {
+    "run": 184,
+    "passed": 180,
+    "skipped": 4,
+    "failures": 0,
+    "errors": 0
+  },
+  "candidate_progress": 78,
+  "remote_baseline_progress": 58,
+  "github_writes_attempted": 0,
+  "candidate_ci": "not_run",
+  "automation_changes": 0,
+  "handoff_manifest": {
+    "algorithm": "sha256",
+    "files": [
+      {
+        "path": "START_HERE.md",
+        "size_bytes": 7159,
+        "sha256": "013707598129cf5666fbce7bef3863a1c1e9e32bcf3de6b0835b72ac56e72346"
+      },
+      {
+        "path": "STATUS.json",
+        "size_bytes": 3820,
+        "sha256": "f9b3e3d95d2e0e4a777d2d6947c162150564394facf46481afd20af0dd20e759"
+      },
+      {
+        "path": "patches/maxkompilator-v6-consolidated.patch",
+        "size_bytes": 65668,
+        "sha256": "431192418c152f1653734922646ab22f66bb2f79f846853d722c9b5c86fd21f1"
+      },
+      {
+        "path": "patches/maxkompilator-v7-android-validation-on-v6.patch",
+        "size_bytes": 27824,
+        "sha256": "dac4d75e51f94e7cdd3fdfe29c53d2151e8c8425678eda899ecf0646de22ac1e"
+      },
+      {
+        "path": "patches/maxkompilator-v8-aab-signature-on-v7.patch",
+        "size_bytes": 22927,
+        "sha256": "dbc85be5d22ed86f85f6e8d7b38f4c3988a4520ea151ef910b05b008a9cba5c6"
+      },
+      {
+        "path": "verify_transfer.py",
+        "size_bytes": 1496,
+        "sha256": "0f87732ab34f47d33523ee22e31453c06cdacecbb9794aec52db92718daf9120"
+      }
+    ]
+  },
+  "evidence_sha256": {
+    "aab-build-report.json": "df5c312eb6cf7b4ef441865a8363edef6f7319ca7fa0998cdee2bbf10af45397",
+    "android-qualification.json": "ae68434b6d48c7d882ba0255c020df53126813cc384728fc599e2c6b4cd29b7d",
+    "apk-build-report.json": "d10c7ff107a85ad8e71dc05b516626fd6a64b2419c8137488df7f73ba0566cbc",
+    "dotnet-build-report.json": "0bddc5ffd8c54ca475ff3c0cc6de7c7d4cc8fc85ea05b11fce4b7cc520dd4d26",
+    "dotnet-qualification.json": "c22c068f90502dffb1a4cc863a3631fb28f30535bed4629492cc6c5f1ca43b12",
+    "unittest.log": "7e8bb80a59227a7398eabde0d7899fe7b5795b391931e6414885734b6afa690a",
+    "progress-tests.log": "d97d849e5080789b64a76e9a9a8be2e933bd5960090ee9e70aa85788026052c7"
+  },
+  "progress_tests": {
+    "failures": 0,
+    "errors": 0,
+    "passed": 12,
+    "run": 12
+  },
+  "workflow_yaml": "parsed; new jobs present; remote execution not run",
+  "emulator_cleanup": "test emulator closed after qualification"
+}

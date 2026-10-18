@@ -1,0 +1,213 @@
+{
+  "run_id": "713a35eff3c343929f1ed66cc55dbc82",
+  "started_at": "2026-10-18T17:06:02.323021+00:00",
+  "status": "built",
+  "output_dir": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\maxkompilator",
+  "project": {
+    "root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android",
+    "kind": "android",
+    "name": "hello-android",
+    "entrypoint": null,
+    "project_file": "build.gradle"
+  },
+  "plan": {
+    "project": {
+      "root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android",
+      "kind": "android",
+      "name": "hello-android",
+      "entrypoint": null,
+      "project_file": "build.gradle"
+    },
+    "target": "android",
+    "format": "apk",
+    "output_dir": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\maxkompilator",
+    "steps": [
+      {
+        "name": "Clean and build Android debug APK",
+        "command": [
+          "cmd.exe",
+          "/d",
+          "/c",
+          "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\gradlew.bat",
+          ":app:clean",
+          ":app:assembleDebug",
+          "--console=plain"
+        ],
+        "cwd": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android"
+      }
+    ],
+    "requirements": [
+      {
+        "name": "Java (JDK)",
+        "command": [
+          "java",
+          "-version"
+        ],
+        "hint": "Install the JDK required by the project's Gradle and Android Gradle Plugin versions."
+      }
+    ],
+    "artifact_patterns": [
+      "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\app\\build\\outputs\\apk\\**\\debug\\*.apk"
+    ],
+    "notes": [
+      "The app module's generated build results are cleaned before building to exclude older APK/AAB files.",
+      "Requires an Android SDK configured through ANDROID_HOME or sdk.dir in local.properties.",
+      "The project's Gradle Wrapper may download its configured Gradle distribution and dependencies.",
+      "This is a debug build signed for testing. Store-ready release signing is not configured by v0.1.",
+      "An AAB cannot be installed directly on a phone; choose APK for device tests."
+    ],
+    "internal_builder": null
+  },
+  "execution_plan": {
+    "project": {
+      "root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android",
+      "kind": "android",
+      "name": "hello-android",
+      "entrypoint": null,
+      "project_file": "build.gradle"
+    },
+    "target": "android",
+    "format": "apk",
+    "output_dir": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\maxkompilator",
+    "steps": [
+      {
+        "name": "Clean and build Android debug APK",
+        "command": [
+          "cmd.exe",
+          "/d",
+          "/c",
+          "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\gradlew.bat",
+          ":app:clean",
+          ":app:assembleDebug",
+          "--console=plain"
+        ],
+        "cwd": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android"
+      }
+    ],
+    "requirements": [
+      {
+        "name": "Java (JDK)",
+        "command": [
+          "java",
+          "-version"
+        ],
+        "hint": "Install the JDK required by the project's Gradle and Android Gradle Plugin versions."
+      }
+    ],
+    "artifact_patterns": [
+      "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\app\\build\\outputs\\apk\\**\\debug\\*.apk"
+    ],
+    "notes": [
+      "The app module's generated build results are cleaned before building to exclude older APK/AAB files.",
+      "Requires an Android SDK configured through ANDROID_HOME or sdk.dir in local.properties.",
+      "The project's Gradle Wrapper may download its configured Gradle distribution and dependencies.",
+      "This is a debug build signed for testing. Store-ready release signing is not configured by v0.1.",
+      "An AAB cannot be installed directly on a phone; choose APK for device tests."
+    ],
+    "internal_builder": null
+  },
+  "artifact_directory": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\maxkompilator",
+  "artifacts": [
+    {
+      "path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\maxkompilator\\artifacts\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+      "size_bytes": 10004,
+      "sha256": "7d1f6c654d1075b8ee94732f21687d6988c944b8edaa01551c80193b0218f4c7",
+      "format": "apk",
+      "verified": true,
+      "verification": "gradle_debug_metadata+aapt_manifest+apksigner_signature; device_install_not_tested",
+      "variant": "debug",
+      "package": "com.swir.maxkompilator.fixture",
+      "version_code": 1,
+      "version_name": "1.0",
+      "signer_cert_sha256": [
+        "99d4b2dc50819ca13dc82da0c548a7dadabb12d74d803271ad6b9c9b2435819e"
+      ],
+      "manifest_check": {
+        "command": [
+          "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk\\build-tools\\36.1.0\\aapt.exe",
+          "dump",
+          "badging",
+          "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\maxkompilator\\artifacts\\app\\build\\outputs\\apk\\debug\\app-debug.apk"
+        ],
+        "returncode": 0,
+        "duration_seconds": 0.203,
+        "output_tail": "package: name='com.swir.maxkompilator.fixture' versionCode='1' versionName='1.0' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'\nsdkVersion:'23'\ntargetSdkVersion:'35'\napplication-label:'Maxkompilator test'\napplication: label='Maxkompilator test' icon=''\napplication-debuggable\nlaunchable-activity: name='com.swir.maxkompilator.fixture.MainActivity'  label='' icon=''\nfeature-group: label=''\n  uses-feature: name='android.hardware.faketouch'\n  uses-implied-feature: name='android.hardware.faketouch' reason='default feature for all apps'\nmain\nsupports-screens: 'small' 'normal' 'large' 'xlarge'\nsupports-any-density: 'true'\nlocales: '--_--'\ndensities: '160'",
+        "matching_lines": [
+          "package: name='com.swir.maxkompilator.fixture' versionCode='1' versionName='1.0' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+          "application-debuggable"
+        ]
+      },
+      "signature_check": {
+        "command": [
+          "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.8-hotspot\\bin\\java.exe",
+          "-jar",
+          "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk\\build-tools\\36.1.0\\lib\\apksigner.jar",
+          "verify",
+          "--verbose",
+          "--print-certs",
+          "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\maxkompilator\\artifacts\\app\\build\\outputs\\apk\\debug\\app-debug.apk"
+        ],
+        "returncode": 0,
+        "duration_seconds": 0.625,
+        "output_tail": "Verifies\nVerified using v1 scheme (JAR signing): true\nVerified using v2 scheme (APK Signature Scheme v2): true\nVerified using v3 scheme (APK Signature Scheme v3): false\nVerified using v3.1 scheme (APK Signature Scheme v3.1): false\nVerified using v4 scheme (APK Signature Scheme v4): false\nVerified for SourceStamp: false\nNumber of signers: 1\nSigner #1 certificate DN: C=US, O=Android, CN=Android Debug\nSigner #1 certificate SHA-256 digest: 99d4b2dc50819ca13dc82da0c548a7dadabb12d74d803271ad6b9c9b2435819e\nSigner #1 certificate SHA-1 digest: 5e09abda2ac07689156d39a400811c7983160f68\nSigner #1 certificate MD5 digest: 934ca04432824fb9a677eff2bb6da55d\nSigner #1 key algorithm: RSA\nSigner #1 key size (bits): 2048\nSigner #1 public key SHA-256 digest: b74389d20af2a8f6d8c927fffa0340a2399a6240554cf7b517ede77ae7a9e794\nSigner #1 public key SHA-1 digest: bdd827d4c163b9e70c164985d7ecffce99dff6af\nSigner #1 public key MD5 digest: 6d40aa19f4e406de401f1ce8eda9811d\nWARNING: META-INF/com/android/build/gradle/app-metadata.properties not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.",
+        "matching_lines": [
+          "Signer #1 certificate DN: C=US, O=Android, CN=Android Debug",
+          "Signer #1 certificate SHA-256 digest: 99d4b2dc50819ca13dc82da0c548a7dadabb12d74d803271ad6b9c9b2435819e",
+          "Signer #1 certificate SHA-1 digest: 5e09abda2ac07689156d39a400811c7983160f68",
+          "Signer #1 certificate MD5 digest: 934ca04432824fb9a677eff2bb6da55d",
+          "Signer #1 key algorithm: RSA",
+          "Signer #1 key size (bits): 2048",
+          "Signer #1 public key SHA-256 digest: b74389d20af2a8f6d8c927fffa0340a2399a6240554cf7b517ede77ae7a9e794",
+          "Signer #1 public key SHA-1 digest: bdd827d4c163b9e70c164985d7ecffce99dff6af",
+          "Signer #1 public key MD5 digest: 6d40aa19f4e406de401f1ce8eda9811d"
+        ]
+      }
+    }
+  ],
+  "steps": [
+    {
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\gradlew.bat",
+        ":app:clean",
+        ":app:assembleDebug",
+        "--console=plain"
+      ],
+      "returncode": 0,
+      "duration_seconds": 89.625,
+      "output_tail": "> Task :app:processDebugMainManifest\n> Task :app:processDebugManifest\n> Task :app:mergeDebugShaders\n> Task :app:compileDebugShaders NO-SOURCE\n> Task :app:generateDebugAssets UP-TO-DATE\n> Task :app:mergeDebugAssets\n> Task :app:compressDebugAssets\n> Task :app:processDebugJavaRes NO-SOURCE\n> Task :app:processDebugManifestForPackage\n> Task :app:mergeDebugJavaResource\n> Task :app:checkDebugDuplicateClasses\n> Task :app:desugarDebugFileDependencies\n> Task :app:processDebugResources\n> Task :app:mergeExtDexDebug\n> Task :app:compileDebugJavaWithJavac\n> Task :app:mergeLibDexDebug\n> Task :app:dexBuilderDebug\n> Task :app:mergeDebugJniLibFolders\n> Task :app:mergeDebugNativeLibs NO-SOURCE\n> Task :app:stripDebugDebugSymbols NO-SOURCE\n> Task :app:mergeProjectDexDebug\n> Task :app:validateSigningDebug\n> Task :app:writeDebugAppMetadata\n> Task :app:writeDebugSigningConfigVersions\n> Task :app:packageDebug\n> Task :app:createDebugApkListingFileRedirect\n> Task :app:assembleDebug\n\nBUILD SUCCESSFUL in 1m 29s\n32 actionable tasks: 31 executed, 1 up-to-date"
+    }
+  ],
+  "smoke_test": {
+    "status": "not_run",
+    "reason": "Test uruchomienia nie został zlecony."
+  },
+  "log_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\maxkompilator\\.maxkompilator\\713a35eff3c343929f1ed66cc55dbc82\\build.log",
+  "report_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\examples\\hello-android\\dist\\maxkompilator\\.maxkompilator\\713a35eff3c343929f1ed66cc55dbc82\\build-report.json",
+  "error": null,
+  "environment": {
+    "ready": true,
+    "checks": [
+      {
+        "name": "Java (JDK)",
+        "command": [
+          "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.8-hotspot\\bin\\java.exe",
+          "-version"
+        ],
+        "available": true,
+        "version": "openjdk version \"17.0.20\" 2026-07-21\r\nOpenJDK Runtime Environment Temurin-17.0.20+8 (build 17.0.20+8)\r\nOpenJDK 64-Bit Server VM Temurin-17.0.20+8 (build 17.0.20+8, mixed mode, sharing)",
+        "hint": "Install the JDK required by the project's Gradle and Android Gradle Plugin versions."
+      },
+      {
+        "name": "Android SDK",
+        "available": true,
+        "version": "C:\\Users\\Konop\\AppData\\Local\\Android\\Sdk",
+        "hint": ""
+      }
+    ]
+  },
+  "finished_at": "2026-10-18T17:07:32.956331+00:00",
+  "duration_seconds": 90.625
+}
