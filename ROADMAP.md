@@ -16,7 +16,7 @@ The verified [dev2 run 39034556183](https://github.com/Swir/Maxkompilator/action
 
 <!-- MAXKOMPILATOR:PROGRESS:START -->
 
-**v1.0 progress: 98% — 98 / 100 points.**
+**v1.0 progress: 100% — 100 / 100 points.**
 
 Only completed criteria with recorded evidence earn points. Work in progress does not increase the percentage.
 
@@ -29,10 +29,10 @@ Only completed criteria with recorded evidence earn points. Work in progress doe
 | .NET and Windows publishing | 12 pts | 12 / 12 pts | 100% |
 | Desktop interface | 12 pts | 12 / 12 pts | 100% |
 | Profiles and repeatable output | 10 pts | 10 / 10 pts | 100% |
-| Reliability and release qualification | 10 pts | 8 / 10 pts | 80% |
+| Reliability and release qualification | 10 pts | 10 / 10 pts | 100% |
 | Linux and macOS runners | 4 pts | 4 / 4 pts | 100% |
 | Extensibility and additional architectures | 2 pts | 2 / 2 pts | 100% |
-| **Total** | **100 pts** | **98 / 100 pts** | **98%** |
+| **Total** | **100 pts** | **100 / 100 pts** | **100%** |
 
 Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**.
 
@@ -42,8 +42,8 @@ Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**
 
 - [x] **v1 scope, instructions and measurable completion criteria — 2 points.** Evidence: README.md and ROADMAP.md: scope, limitations and fixed v1 weights. ID: `foundation.scope`.
 - [x] **Engine, adapter and runner boundaries — 2 points.** Evidence: docs/ARCHITECTURE.md: job workflow, responsibilities and result model. ID: `foundation.architecture`.
-- [x] **Installable package and working CLI entry point — 2 points.** Evidence: Wheel and sdist built; wheel installed without an index or dependencies outside the repository; CLI, packaged icon resources, real PYZ with data and smoke test PASS  -  docs/VALIDATION.md and docs/validation-local.json. ID: `foundation.package`.
-- [x] **Working CI with quality and progress consistency checks — 2 points.** Evidence: GitHub Actions run 39028988975 for commit aea4aa811f139edab7b167ab86f1518a283a7302: six Core jobs across Linux/Windows/macOS and Python 3.11/3.13 SUCCESS, including tests, roadmap validation and a real PYZ with a smoke test  -  docs/CI.md; https://github.com/Swir/Maxkompilator/actions/runs/39028988975. ID: `foundation.ci`.
+- [x] **Installable package and working CLI entry point — 2 points.** Evidence: Version 1.0.0 wheel and sdist built; source archive includes .NET/Android fixtures and wrapper, excludes generated outputs; installed wheel built a real PYZ and passed resource/runtime testing outside the checkout; docs/evidence/windows-2026-10-18/installed-wheel-v1.json. ID: `foundation.package`.
+- [x] **Working CI with quality and progress consistency checks — 2 points.** Evidence: All 15 jobs passed, including six Core matrix jobs, three native Python builds, packaged Windows GUI, Windows/Linux .NET builds, real Android APK/AAB, Windows profiles and Python-free execution, and aggregate release gate; https://github.com/Swir/Maxkompilator/actions/runs/39152793026; docs/evidence/windows-2026-10-18/ci-release-v1.json. ID: `foundation.ci`.
 
 #### Project and environment discovery — 12 points
 
@@ -75,9 +75,9 @@ Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**
 
 #### Desktop interface — 12 points
 
-- [x] **Dark interface, original icon and by Swir attribution — 3 points.** Evidence: maxkompilator/gui.py; scripts/gui_smoke.py: initial_window_icon_and_controls  -  PASS on Linux with Qt 6.12 offscreen in the 0.1.0.dev1 qualification. ID: `gui.design`.
-- [x] **Project selection, diagnostics, planning and building from the GUI — 3 points.** Evidence: scripts/gui_smoke.py: inspect_and_plan_unicode_path_auto_defaults, environment_doctor_and_smoke_flag_scoping, zipapp_build_real_runtime_and_persisted_report  -  PASS on Linux. ID: `gui.workflow`.
-- [x] **Responsive logs, background work and job cancellation — 3 points.** Evidence: scripts/gui_smoke.py: open_results_and_copy_log_buttons, cancel_button_stops_running_build, cancelled_worker_and_descendant_are_stopped  -  PASS on Linux. ID: `gui.responsiveness`.
+- [x] **Dark interface, original icon and by Swir attribution — 3 points.** Evidence: Original multicolor 3D icon SHA-256 03ee456da8263cf1ed476a05c60d719948aaf41f8d81316798b73717893f381a preserved in final GUI; actual interactive Windows review and two final packaged launches passed; docs/images/gui-windows-v1.png and docs/evidence/windows-2026-10-18/packaged-gui/qualification.json. ID: `gui.design`.
+- [x] **Project selection, diagnostics, planning and building from the GUI — 3 points.** Evidence: Interactive Windows rc1 review selected and diagnosed a real WinForms project, built 465 published files and passed runtime/resource testing. Final 1.0.0 GUI additionally passed automated inspect, plan, doctor, PYZ build, cancellation and reopening; docs/evidence/windows-2026-10-18/interactive-gui.json and packaged-gui/qualification.json. ID: `gui.workflow`.
+- [x] **Responsive logs, background work and job cancellation — 3 points.** Evidence: Final 1.0.0 GUI: background jobs, streamed logs, output/log controls, cancellation and descendant termination passed on both launches; docs/evidence/windows-2026-10-18/packaged-gui/qualification.json. ID: `gui.responsiveness`.
 - [x] **Complete Windows GUI workflow and relaunch test — 3 points.** Evidence: Final 1.0.0 Windows bundle: two independent relocated GUI launches, 10 checks and 5 compiled workers per launch PASS; docs/evidence/windows-2026-10-18/packaged-gui/qualification.json. Interactive rc1 Windows review built and ran a real WinForms project and reopened the interface; interactive-gui.json records exact version and scope.. ID: `gui.windows-test`.
 
 #### Profiles and repeatable output — 10 points
@@ -92,14 +92,14 @@ Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**
 - [x] **Errors, timeouts and cancellation never report false success — 3 points.** Evidence: tests/test_engine.py: test_zero_exit_without_artifact_is_failure, test_running_process_can_be_cancelled, test_process_timeout, test_failed_smoke_is_not_reported_as_success  -  PASS. ID: `reliability.failures`.
 - [x] **Spaces, Unicode and input/output path boundary checks — 2 points.** Evidence: tests/test_detection.py: test_explicit_entry_cannot_escape_project; tests/test_engine.py: test_output_cannot_overwrite_project_root_or_parent; real GUI smoke with spaces and Unicode  -  PASS. ID: `reliability.paths`.
 - [x] **Automated integration tests using known projects — 3 points.** Evidence: tests/test_engine.py: CLI integration, a real PYZ build, resources and runtime checks; scripts/gui_smoke.py: GUI integration with subprocesses  -  local PASS. ID: `reliability.integration`.
-- [ ] **Windows release passes mandatory CI qualification — 2 points.** In progress; points are awarded after the full criterion is met. ID: `reliability.release-gate`.
+- [x] **Windows release passes mandatory CI qualification — 2 points.** Evidence: All 15 mandatory CI jobs passed for 1.0.0 source commit c39e1f1f3cc32d41a01d57aead1ae88158e3a009; https://github.com/Swir/Maxkompilator/actions/runs/39152793026; docs/evidence/windows-2026-10-18/ci-release-v1.json. Local final packaged GUI passed twice; interactive rc1 Windows workflow and real WinForms build/reopening passed; Python-free Windows execution passed independently.. ID: `reliability.release-gate`.
 
 #### Linux and macOS runners — 4 points
 
 - [x] **Explicit OS and architecture compatibility in build plans — 1 point.** Evidence: tests/test_adapters.py: test_pyinstaller_rejects_cross_os_and_architecture and test_dotnet_windows_desktop_rejects_linux_target  -  PASS; target selection enforces supported build environments. ID: `runners.targets`.
-- [x] **Build and run output on a Linux runner — 1 point.** Evidence: Real Linux x86_64 application built with PyInstaller 6.22.3 and run with its resource; scripts/qualify_native.py  -  PASS, docs/VALIDATION.md. ID: `runners.linux`.
+- [x] **Build and run output on a Linux runner — 1 point.** Evidence: Real native application build, relocated execution and bundled resource verification passed in v1 CI; https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749927410; docs/evidence/windows-2026-10-18/ci-release-v1.json. ID: `runners.linux`.
 - [x] **Implemented remote runner protocol and capability reporting — 1 point.** Evidence: Implemented JSON-lines worker v1 and strict SSH client, capability reporting, build, cancel and hash-verified downloads; tests/test_remote.py real-process integration PASS; docs/REMOTE_WORKER.md. ID: `runners.remote-contract`.
-- [x] **Build and run output on a macOS runner — 1 point.** Evidence: GitHub Actions job 117385587229: real macos-arm64 Mach-O, build/resource/smoke and qualification outside the sources with a restricted PATH PASS; archive preserved 4 symlinks, docs/CI.md and docs/ci-evidence.json; https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587229. ID: `runners.macos`.
+- [x] **Build and run output on a macOS runner — 1 point.** Evidence: Real native application build, relocated execution and bundled resource verification passed in v1 CI; https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749927413; docs/evidence/windows-2026-10-18/ci-release-v1.json. ID: `runners.macos`.
 
 #### Extensibility and additional architectures — 2 points
 

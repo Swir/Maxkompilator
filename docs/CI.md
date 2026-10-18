@@ -4,11 +4,38 @@ The v1 workflow has 15 required jobs: six engine matrix jobs, three native Pytho
 builds, the packaged Windows GUI, two .NET builds, Android APK/AAB with bundletool,
 Windows profiles with Python-free execution, and the mandatory aggregate gate.
 
-Run 39151908070 passed every group except Android and the aggregate gate. Android
-SDK 37 changed its certificate output; the final candidate adds support for that
-format without accepting a public-key digest in place of a certificate digest.
-The complete rerun is pending. [Release qualification](RELEASE_1.0.md) records
-the current local and container evidence. The following dev2 record is historical.
+**Version 1.0.0: all 15 jobs SUCCESS** in [run 39152793026](https://github.com/Swir/Maxkompilator/actions/runs/39152793026)
+for source commit `c39e1f1f3cc32d41a01d57aead1ae88158e3a009`. The final documentation-only commit records
+these results without changing the qualified application source.
+
+| Job | Result | Evidence |
+|---|---|---|
+| Core / ubuntu-latest / Python 3.13 | SUCCESS | [Job 117749692797](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749692797) |
+| Core / macos-latest / Python 3.11 | SUCCESS | [Job 117749692971](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749692971) |
+| Core / windows-latest / Python 3.13 | SUCCESS | [Job 117749693030](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749693030) |
+| Core / ubuntu-latest / Python 3.11 | SUCCESS | [Job 117749693079](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749693079) |
+| Core / windows-latest / Python 3.11 | SUCCESS | [Job 117749693087](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749693087) |
+| Core / macos-latest / Python 3.13 | SUCCESS | [Job 117749693097](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749693097) |
+| Native Python / windows-latest | SUCCESS | [Job 117749927338](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749927338) |
+| Windows desktop bundle | SUCCESS | [Job 117749927385](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749927385) |
+| Real .NET publish and runtime / windows-latest | SUCCESS | [Job 117749927390](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749927390) |
+| Real .NET publish and runtime / ubuntu-latest | SUCCESS | [Job 117749927399](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749927399) |
+| Native Python / ubuntu-latest | SUCCESS | [Job 117749927410](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749927410) |
+| Real Android APK and AAB | SUCCESS | [Job 117749927412](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749927412) |
+| Native Python / macos-latest | SUCCESS | [Job 117749927413](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749927413) |
+| Windows profiles and Python-free runtime | SUCCESS | [Job 117749927467](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749927467) |
+| Mandatory release qualification | SUCCESS | [Job 117750831160](https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117750831160) |
+
+The complete run metadata is preserved in
+`evidence/windows-2026-10-18/ci-release-v1.json`. Earlier failed runs exposed real
+portability issues in temporary paths, JDK Unicode paths and Android SDK output;
+the corrected source passed the complete matrix. Python-free Windows execution
+also passed in the earlier dedicated job 117747360918, whose downloaded evidence
+is preserved under `evidence/windows-2026-10-18/ci-profile/`.
+
+[Release qualification](RELEASE_1.0.md) records local package, interactive desktop,
+Android emulator and actual compiled-artifact evidence. The following dev2 record
+is historical and is not the v1 download recommendation.
 
 ## Historical 0.1.0.dev2 qualification
 

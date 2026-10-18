@@ -2,7 +2,7 @@
 
 The release continues the existing repository and preserves the original v6, v7
 and v8 handoff changes. Its defined scope is tracked in `progress.json` using the
-original 100-point weights. Final aggregate CI qualification is still pending.
+original 100-point weights. All 15 mandatory CI jobs passed for commit `c39e1f1f3cc32d41a01d57aead1ae88158e3a009` in [run 39152793026](https://github.com/Swir/Maxkompilator/actions/runs/39152793026). All original v1 criteria are complete: 100/100 points.
 
 ## What is delivered
 
@@ -36,7 +36,7 @@ All local records below are under `evidence/windows-2026-10-18/`.
 
 The Python-free container result is from CI job 117747360918 in run 39151908070;
 that job passed, but the whole run failed on the Android SDK 37 output change.
-The final source fixes that compatibility issue and is awaiting a complete rerun.
+The final source fixed that compatibility issue. Run 39152793026 then passed all 15 jobs, including real Android APK/AAB builds and their independent qualification. `ci-release-v1.json` records the exact commit and jobs.
 The local Sandbox trial was blocked by existing App Control policy; that policy
 was left unchanged. The independent container test supplied the required evidence.
 

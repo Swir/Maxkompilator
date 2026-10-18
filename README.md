@@ -10,13 +10,13 @@
 
 Maxkompilator takes a project from its source folder through detection, environment checks, a build plan, execution and verified output. The first implementation covers **Python, Android and .NET**, with Windows and Android as the main delivery targets.
 
-**Version `1.0.0` is in final release qualification.** The engine and desktop interface integrate the preserved v6–v8 work, real .NET/Android builds, application profiles, exact tool pins, adapter API v1 and a tested remote worker protocol. Documentation is English; interface labels and build reports remain Polish. The original multicolor 3D icon is preserved.
+**Version `1.0.0`: all defined v1 criteria completed and qualified.** The engine and desktop interface integrate the preserved v6–v8 work, real .NET/Android builds, application profiles, exact tool pins, adapter API v1 and a tested remote worker protocol. Documentation is English; interface labels and build reports remain Polish. The original multicolor 3D icon is preserved.
 
 **Verified locally:** 200 tests (196 passed, four platform-specific skips), two launches of the final packaged GUI with ten checks and five compiled workers each, real .NET console and WinForms applications, real APK/AAB builds, bundletool validation, and two APK launches on an Android emulator. An interactive Windows review also completed an actual WinForms build and reopening. Exact versions, hashes and boundaries are recorded in [release qualification](docs/RELEASE_1.0.md).
 
-**Verified without an installed Python:** the profiled Windows EXE ran twice in an independent Windows Server Core container and read its bundled resource. Both executable hashes match the inspected build. [CI job 117747360918](https://github.com/Swir/Maxkompilator/actions/runs/39151908070/job/117747360918) passed. That run's full release gate failed on a newly changed Android SDK 37 certificate format; the compatibility fix is now being qualified.
+**Verified without an installed Python:** the profiled Windows EXE ran twice in an independent Windows Server Core container and read its bundled resource. Both executable hashes match the inspected build. [CI job 117747360918](https://github.com/Swir/Maxkompilator/actions/runs/39151908070/job/117747360918) passed. The Android SDK 37 compatibility fix subsequently passed the complete [15-job release workflow](https://github.com/Swir/Maxkompilator/actions/runs/39152793026).
 
-**Remaining gate:** a completely successful 15-job CI run. Production signing and additional language adapters remain outside the defined v1 scope.
+**Release gate passed:** all 15 jobs succeeded for source commit `c39e1f1`. Production signing and additional language adapters remain outside the defined v1 scope.
 
 [Roadmap and percentages](ROADMAP.md) · [Architecture](docs/ARCHITECTURE.md) · [Validation results](docs/VALIDATION.md) · [Verified CI jobs](docs/CI.md) · [GitHub Actions](https://github.com/Swir/Maxkompilator/actions)
 
@@ -24,7 +24,7 @@ Maxkompilator takes a project from its source folder through detection, environm
 
 <!-- MAXKOMPILATOR:PROGRESS:START -->
 
-**v1.0 progress: 98% — 98 / 100 points.**
+**v1.0 progress: 100% — 100 / 100 points.**
 
 Only completed criteria with recorded evidence earn points. Work in progress does not increase the percentage.
 
@@ -37,10 +37,10 @@ Only completed criteria with recorded evidence earn points. Work in progress doe
 | .NET and Windows publishing | 12 pts | 12 / 12 pts | 100% |
 | Desktop interface | 12 pts | 12 / 12 pts | 100% |
 | Profiles and repeatable output | 10 pts | 10 / 10 pts | 100% |
-| Reliability and release qualification | 10 pts | 8 / 10 pts | 80% |
+| Reliability and release qualification | 10 pts | 10 / 10 pts | 100% |
 | Linux and macOS runners | 4 pts | 4 / 4 pts | 100% |
 | Extensibility and additional architectures | 2 pts | 2 / 2 pts | 100% |
-| **Total** | **100 pts** | **98 / 100 pts** | **98%** |
+| **Total** | **100 pts** | **100 / 100 pts** | **100%** |
 
 Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**.
 
@@ -50,7 +50,7 @@ Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**
 
 ## Download and run the Windows application
 
-The Windows distribution contains the GUI, its compiled CLI worker and shared runtime. In a successful v1 [GitHub Actions run](https://github.com/Swir/Maxkompilator/actions), download **`Maxkompilator-Windows-x64`**, extract the archive, and open `dist/Maxkompilator/Maxkompilator.exe`. Keep `Maxkompilator.exe`, `MaxkompilatorCLI.exe` and `_internal` together. The separately delivered portable ZIP has a top-level `Maxkompilator` folder.
+The Windows distribution contains the GUI, its compiled CLI worker and shared runtime. In the verified v1 [GitHub Actions run](https://github.com/Swir/Maxkompilator/actions/runs/39152793026), download **`Maxkompilator-Windows-x64`**, extract the archive, and open `dist/Maxkompilator/Maxkompilator.exe`. Keep `Maxkompilator.exe`, `MaxkompilatorCLI.exe` and `_internal` together. The separately delivered portable ZIP has a top-level `Maxkompilator` folder.
 
 The application bundle includes its Python runtime. Building your own project still requires its compiler, SDK and dependencies. The native example archives contain test applications; the GUI qualification archive contains diagnostic reports and screenshots.
 
@@ -61,7 +61,7 @@ The application bundle includes its Python runtime. Building your own project st
 | Python | A `.py` script or project folder | `.pyz` through zipapp; native application through PyInstaller | Python 3.11+; PyInstaller and application dependencies for native packaging |
 | Android | Gradle project with an application configuration | Debug `.apk` or `.aab` | Compatible JDK, Android SDK, Gradle configuration and available project dependencies |
 | .NET | A concrete `.csproj` file | `dotnet publish` output directory | A .NET SDK compatible with the project and its libraries |
-| Maxkompilator GUI | Optional desktop interface | Project selection, diagnostics, plans, builds, logs and cancellation | Source GUI tested on Linux and Windows; actual packaged Windows GUI tested offscreen with readable text, its compiled worker and reopening |
+| Maxkompilator GUI | Optional desktop interface | Project selection, diagnostics, plans, builds, logs and cancellation | Source GUI tested on Linux and Windows; packaged Windows GUI passed two complete launch scenarios and an interactive Windows workflow review |
 
 Full support for C/C++, Rust, Go, Java, Flutter, Electron/Tauri and game engines is **planned**. [Remote worker v1](docs/REMOTE_WORKER.md) supports authenticated SSH, capability discovery, existing-project builds, cancellation and verified downloads. [Adapter API v1](docs/EXTENSIONS.md) supports explicitly registered trusted extensions.
 

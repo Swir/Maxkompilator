@@ -34,7 +34,7 @@
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "Wheel and sdist built; wheel installed without an index or dependencies outside the repository; CLI, packaged icon resources, real PYZ with data and smoke test PASS  -  docs/VALIDATION.md and docs/validation-local.json"
+            "Version 1.0.0 wheel and sdist built; source archive includes .NET/Android fixtures and wrapper, excludes generated outputs; installed wheel built a real PYZ and passed resource/runtime testing outside the checkout; docs/evidence/windows-2026-10-18/installed-wheel-v1.json"
           ]
         },
         {
@@ -43,7 +43,7 @@
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "GitHub Actions run 39028988975 for commit aea4aa811f139edab7b167ab86f1518a283a7302: six Core jobs across Linux/Windows/macOS and Python 3.11/3.13 SUCCESS, including tests, roadmap validation and a real PYZ with a smoke test  -  docs/CI.md; https://github.com/Swir/Maxkompilator/actions/runs/39028988975"
+            "All 15 jobs passed, including six Core matrix jobs, three native Python builds, packaged Windows GUI, Windows/Linux .NET builds, real Android APK/AAB, Windows profiles and Python-free execution, and aggregate release gate; https://github.com/Swir/Maxkompilator/actions/runs/39152793026; docs/evidence/windows-2026-10-18/ci-release-v1.json"
           ]
         }
       ]
@@ -231,7 +231,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "maxkompilator/gui.py; scripts/gui_smoke.py: initial_window_icon_and_controls  -  PASS on Linux with Qt 6.12 offscreen in the 0.1.0.dev1 qualification"
+            "Original multicolor 3D icon SHA-256 03ee456da8263cf1ed476a05c60d719948aaf41f8d81316798b73717893f381a preserved in final GUI; actual interactive Windows review and two final packaged launches passed; docs/images/gui-windows-v1.png and docs/evidence/windows-2026-10-18/packaged-gui/qualification.json"
           ]
         },
         {
@@ -240,7 +240,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "scripts/gui_smoke.py: inspect_and_plan_unicode_path_auto_defaults, environment_doctor_and_smoke_flag_scoping, zipapp_build_real_runtime_and_persisted_report  -  PASS on Linux"
+            "Interactive Windows rc1 review selected and diagnosed a real WinForms project, built 465 published files and passed runtime/resource testing. Final 1.0.0 GUI additionally passed automated inspect, plan, doctor, PYZ build, cancellation and reopening; docs/evidence/windows-2026-10-18/interactive-gui.json and packaged-gui/qualification.json"
           ]
         },
         {
@@ -249,7 +249,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "scripts/gui_smoke.py: open_results_and_copy_log_buttons, cancel_button_stops_running_build, cancelled_worker_and_descendant_are_stopped  -  PASS on Linux"
+            "Final 1.0.0 GUI: background jobs, streamed logs, output/log controls, cancellation and descendant termination passed on both launches; docs/evidence/windows-2026-10-18/packaged-gui/qualification.json"
           ]
         },
         {
@@ -342,9 +342,9 @@
           "id": "release-gate",
           "title": "Windows release passes mandatory CI qualification",
           "weight": 2,
-          "status": "in_progress",
+          "status": "complete",
           "evidence": [
-            "Interactive Windows review, 200 local tests (196 passed; 4 platform skips), final 1.0.0 packaged GUI and Python-free runtime checks passed. Full 15-job CI is pending the Android SDK 37 certificate-output compatibility fix; no points awarded yet."
+            "All 15 mandatory CI jobs passed for 1.0.0 source commit c39e1f1f3cc32d41a01d57aead1ae88158e3a009; https://github.com/Swir/Maxkompilator/actions/runs/39152793026; docs/evidence/windows-2026-10-18/ci-release-v1.json. Local final packaged GUI passed twice; interactive rc1 Windows workflow and real WinForms build/reopening passed; Python-free Windows execution passed independently."
           ]
         }
       ]
@@ -369,7 +369,7 @@
           "weight": 1,
           "status": "complete",
           "evidence": [
-            "Real Linux x86_64 application built with PyInstaller 6.22.3 and run with its resource; scripts/qualify_native.py  -  PASS, docs/VALIDATION.md"
+            "Real native application build, relocated execution and bundled resource verification passed in v1 CI; https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749927410; docs/evidence/windows-2026-10-18/ci-release-v1.json"
           ]
         },
         {
@@ -387,7 +387,7 @@
           "weight": 1,
           "status": "complete",
           "evidence": [
-            "GitHub Actions job 117385587229: real macos-arm64 Mach-O, build/resource/smoke and qualification outside the sources with a restricted PATH PASS; archive preserved 4 symlinks, docs/CI.md and docs/ci-evidence.json; https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587229"
+            "Real native application build, relocated execution and bundled resource verification passed in v1 CI; https://github.com/Swir/Maxkompilator/actions/runs/39152793026/job/117749927413; docs/evidence/windows-2026-10-18/ci-release-v1.json"
           ]
         }
       ]
