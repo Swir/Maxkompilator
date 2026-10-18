@@ -1,9 +1,14 @@
 include README.md ROADMAP.md constraints-ci.txt launcher.py
-recursive-include docs *.md *.json
-recursive-include scripts *.py
+recursive-include docs *.md *.json *.png *.log
+recursive-include scripts *.py *.ps1
 recursive-include assets *.png
-recursive-include examples *.py *.json *.toml
+recursive-include examples *.py *.json *.toml *.cs *.csproj *.txt *.Config *.xml *.java *.gradle *.properties *.bat *.jar *.ico README.md gradlew
 recursive-include tests *.py
-prune examples/hello-python/dist
-prune examples/hello-python/build
+prune examples/*/dist
+prune examples/*/build
+prune examples/*/bin
+prune examples/*/obj
+prune examples/*/.gradle
+prune examples/hello-android/app/build
+exclude examples/hello-android/local.properties
 global-exclude __pycache__ *.py[cod]

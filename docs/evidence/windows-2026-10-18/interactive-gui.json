@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "date": "2026-10-18",
+  "scope": "Agent-operated interactive review of the ordinary packaged window on the user's Windows desktop, using native UI controls; separate from offscreen automation.",
+  "application_version": "1.0.0rc1",
+  "desktop_sha256": "c27ab5a768381eda246f8d91363d607b5c17a698bbfae422ab6184fd1d44b0ef",
+  "worker_sha256": "c48877208cddcd2c89102c11bebc3040755e035b3691e8691c013adfcfc33837",
+  "first_window_id": 189793328,
+  "reopened_window_id": 189858864,
+  "checks": [
+    "Readable Polish labels, original multicolor 3D icon and by Swir attribution",
+    "Project folder entered through native editable control",
+    "Inspect button detected WinForms project and displayed the actual publish plan",
+    "Environment button found .NET SDK 10.0.402",
+    "Runtime test enabled through the checkbox",
+    "Build button published 465 real files and ran the relocated application",
+    "Visible success status: Zbudowano — test uruchomienia zaliczony",
+    "Actual runtime output: MAXKOMPILATOR_DESKTOP_RUNTIME_OK",
+    "Window closed and a new independent window reopened with readable controls"
+  ],
+  "build_run_id": "ef09e6ba0f254c3d973cd7b8d7b9f49f",
+  "build_report": "interactive-desktop-build.json",
+  "screenshots": ["../../images/gui-windows-v1.png", "../../images/gui-windows-v1-reopened.png"],
+  "limitations": ["This is an agent-operated interactive review, not a claim of human acceptance or Python-free desktop qualification."]
+}

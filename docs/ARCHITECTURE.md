@@ -53,7 +53,12 @@ Every job writes its own `build.log` and `build-report.json` under `BASE/.maxkom
 
 Detection and planning do not import application sources or execute project configuration. Building can execute project code through Python hooks, Gradle/MSBuild scripts and dependency tools. A local subprocess has the user's privileges. Isolating untrusted projects requires a separate container, virtual machine or otherwise restricted runner.
 
-Jobs in the future remote protocol will have unique identifiers. Runners must declare their OS, architecture and available tools; a server must not accept arbitrary host paths as artifacts. Source upload, authentication and result downloads must respect the environment's boundaries. Signing keys belong in the runner's secret store or signing profile, outside ordinary configuration, logs and source archives.
+[Remote protocol v1](REMOTE_WORKER.md) uses unique request/job identifiers,
+capability reporting, an operator-selected workspace and manifest-scoped artifact
+downloads with checksum checks. The SSH client requires configured authentication
+and known-host verification. Source upload and worker deployment remain operator
+responsibilities. Signing keys belong outside ordinary configuration, logs and
+source archives.
 
 ## States and evidence
 
@@ -69,4 +74,7 @@ Product weights and completion evidence are stored in [progress.json](progress.j
 
 A new adapter should declare supported inputs and targets, tool requirements, a plan and output verification. It should include a small fixture project with expected behavior. Each additional OS or architecture requires its own build and runtime evidence rather than inheriting qualification from another platform.
 
-Basic `maxkompilator.toml` configuration stores the project type, entry point, format, target and Python data files. Full profiles, a dependency manager, a job queue and API/MCP integration are future extensions. They must preserve one engine shared by every interface.
+`maxkompilator.toml` stores the project type, entry point, format, target, bundled
+data, application name/version/icon and exact tool pins. [Adapter API v1](EXTENSIONS.md)
+accepts explicit trusted factories and validates their build-plan contracts.
+A dependency manager, job queue and API/MCP service remain future extensions.

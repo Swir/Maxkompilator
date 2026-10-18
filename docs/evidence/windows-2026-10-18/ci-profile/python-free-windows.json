@@ -1,0 +1,32 @@
+﻿{
+    "status":  "passed",
+    "environment":  "Windows Server Core container",
+    "pythonInstalled":  false,
+    "checks":  [
+                   {
+                       "attempt":  1,
+                       "sha256":  "90319c7562330509cbea5d35f68fdc5fbf82b2f8db6164852f9157eb4d372a96",
+                       "exitCode":  0,
+                       "stdout":  "Maxkompilator: build and resource check OK",
+                       "passed":  true
+                   },
+                   {
+                       "attempt":  2,
+                       "sha256":  "90319c7562330509cbea5d35f68fdc5fbf82b2f8db6164852f9157eb4d372a96",
+                       "exitCode":  0,
+                       "stdout":  "Maxkompilator: build and resource check OK",
+                       "passed":  true
+                   }
+               ],
+    "osVersion":  "Microsoft Windows NT 10.0.20348.0",
+    "pythonCommands":  [
+
+                       ],
+    "pythonRegistry":  [
+
+                       ],
+    "pythonExecutables":  [
+
+                          ],
+    "completedUtc":  "2026-10-18T18:02:24.1964888Z"
+}

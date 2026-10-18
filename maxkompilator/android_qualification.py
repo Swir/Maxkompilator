@@ -20,7 +20,7 @@ from .models import BuildPlan, MaxkompilatorError
 
 
 _PACKAGE = re.compile(r"^package:\s+name='([^']+)'\s+versionCode='(\d+)'\s+versionName='([^']*)'", re.MULTILINE)
-_CERT = re.compile(r"Signer #\d+ certificate SHA-256 digest:\s*([0-9a-fA-F]{64})(?![0-9a-fA-F])")
+_CERT = re.compile(r"^(?:Signer #\d+|V[1-4](?:\.\d+)? Signer:) certificate SHA-256 digest:\s*([0-9a-fA-F]{64})\s*$", re.MULTILINE)
 _IDENTIFIER = re.compile(r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)+\Z")
 _MAX_METADATA_BYTES = 1024 * 1024
 

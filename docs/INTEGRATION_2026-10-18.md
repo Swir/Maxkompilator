@@ -1,7 +1,9 @@
 # Handoff integration and real toolchain evidence
 
-Checked locally on Windows x64 on 18 October 2026. This is an integrated
-development candidate, not a new release or a claim of successful candidate CI.
+Historical 78-point checkpoint, checked locally on Windows x64 on 18 October
+2026 before the subsequent v1 completion work. Statements about remote state,
+open criteria and unavailable GUI qualification below apply to that checkpoint.
+Consult README and docs/progress.json for the current status.
 
 ## Source continuity
 

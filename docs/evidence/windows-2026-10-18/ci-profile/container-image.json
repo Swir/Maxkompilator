@@ -1,0 +1,37 @@
+[
+    {
+        "Id": "sha256:989c0c403272170b1dc41adfaa1d4d341030bee5119496fba1acf32938a17aec",
+        "RepoTags": [
+            "mcr.microsoft.com/windows/servercore:ltsc2022"
+        ],
+        "RepoDigests": [
+            "mcr.microsoft.com/windows/servercore@sha256:593cf4a5ef08cfff00a03637e45eba073b8fe9dc90b80af4449bc5f427c7cdcd"
+        ],
+        "Created": "2026-10-13T04:45:55.2557758Z",
+        "Config": {
+            "Cmd": [
+                "c:\\windows\\system32\\cmd.exe"
+            ]
+        },
+        "Architecture": "amd64",
+        "Os": "windows",
+        "OsVersion": "10.0.20348.5761",
+        "Size": 5049625121,
+        "GraphDriver": {
+            "Data": {
+                "dir": "C:\\ProgramData\\docker\\windowsfilter\\986ddb32fe5202723151c080706e8aae08c52d0db3d411296fc3915c3ee0fdad"
+            },
+            "Name": "windowsfilter"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:636e121f90b0401f3bff3d93ff78cc731b1e7e852c0e4699a3688b8cb14aa7e5",
+                "sha256:99f19d45c5ad1a5129f2ca0a1e2caafb34631fa744bef290c4a27cebc8f22987"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "0001-01-01T00:00:00Z"
+        }
+    }
+]

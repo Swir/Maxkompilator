@@ -95,6 +95,17 @@ class AndroidQualificationTests(unittest.TestCase):
             self.qualify()
         self.assertEqual(self.commands, [])
 
+    def test_sdk37_scheme_specific_certificate_output_is_supported(self) -> None:
+        self.signers = f"Verifies\nV2 Signer: certificate SHA-256 digest: {_CERT}\nV2 Signer: public key SHA-256 digest: {'cd'*32}"
+        result = self.qualify()
+        self.assertTrue(result['verified'])
+        self.assertEqual(result['signer_cert_sha256'], [_CERT])
+
+    def test_public_key_digest_cannot_replace_certificate_digest(self) -> None:
+        self.signers = f"Verifies\nV2 Signer: public key SHA-256 digest: {_CERT}"
+        with self.assertRaisesRegex(MaxkompilatorError, 'no signer certificate'):
+            self.qualify()
+
     def test_rejects_report_checksum_mismatch(self) -> None:
         self.record["sha256"] = "0" * 64
         with self.assertRaisesRegex(MaxkompilatorError, "checksum"):

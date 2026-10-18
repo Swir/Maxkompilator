@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "scope": "Automated offscreen qualification of a relocated, fully frozen Windows x64 GUI and its compiled console worker, with two independent GUI launches.",
+  "limitations": [
+    "The hosted runner has Python installed for the generated PYZ runtime.",
+    "This is not a manual interactive Windows 11 test or a clean machine without Python."
+  ],
+  "executables": {
+    "desktop": {
+      "path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\dist\\Maxkompilator\\Maxkompilator.exe",
+      "size_bytes": 2286836,
+      "sha256": "7814fe371fbfcf197c6e762d2e69ee48b991aac0e1ab587140f474487a8c3bba",
+      "format": "PE",
+      "architecture": "x64",
+      "subsystem": "windows_gui"
+    },
+    "worker": {
+      "path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\dist\\Maxkompilator\\MaxkompilatorCLI.exe",
+      "size_bytes": 2291956,
+      "sha256": "fdba2514b92adc70a1043e210ab7e2595261a7104b01892296459d3635679d55",
+      "format": "PE",
+      "architecture": "x64",
+      "subsystem": "windows_console"
+    }
+  },
+  "launches": [
+    {
+      "run_id": "5aa6e429260043cda2613fa86347e8df",
+      "process_id": 49324,
+      "return_code": 0,
+      "duration_seconds": 4.625,
+      "report": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\build\\packaged-gui-v1\\first-launch.json",
+      "screenshot": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\build\\packaged-gui-v1\\first-launch.png",
+      "status": "passed",
+      "checks": [
+        "frozen_gui_imports_and_portable_worker_present",
+        "initial_window_icon_and_controls",
+        "readable_interface_text_glyphs",
+        "inspect_and_plan_unicode_path_auto_defaults",
+        "environment_doctor_and_smoke_flag_scoping",
+        "zipapp_build_real_runtime_and_persisted_report",
+        "open_results_and_copy_log_buttons",
+        "cancel_button_stops_running_build",
+        "cancelled_worker_and_descendant_are_stopped",
+        "all_five_tasks_used_verified_frozen_console_worker"
+      ],
+      "worker_count": 5,
+      "screenshot_sha256": "09557334084fed4a87dfd3340ea75b7bf893b0b4fbcb2c8289740ba837fe6e8f"
+    },
+    {
+      "run_id": "c8d64c8591af42dd997a30789b7fa050",
+      "process_id": 20836,
+      "return_code": 0,
+      "duration_seconds": 4.078,
+      "report": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\build\\packaged-gui-v1\\reopened.json",
+      "screenshot": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\build\\packaged-gui-v1\\reopened.png",
+      "status": "passed",
+      "checks": [
+        "frozen_gui_imports_and_portable_worker_present",
+        "initial_window_icon_and_controls",
+        "readable_interface_text_glyphs",
+        "inspect_and_plan_unicode_path_auto_defaults",
+        "environment_doctor_and_smoke_flag_scoping",
+        "zipapp_build_real_runtime_and_persisted_report",
+        "open_results_and_copy_log_buttons",
+        "cancel_button_stops_running_build",
+        "cancelled_worker_and_descendant_are_stopped",
+        "all_five_tasks_used_verified_frozen_console_worker"
+      ],
+      "worker_count": 5,
+      "screenshot_sha256": "9705990d37815c06b2bb50b59df10d6b8ff1b25ced2924febb969daefde9f452"
+    }
+  ],
+  "checks": [
+    "x64_pe_gui_and_console_subsystems",
+    "relocated_bundle_outside_checkout",
+    "frozen_module_and_process_origins",
+    "real_gui_workflow_and_cancellation",
+    "clean_close_and_independent_reopen"
+  ],
+  "error": null,
+  "icon": {
+    "path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\dist\\Maxkompilator\\_internal\\maxkompilator\\assets\\maxkompilator.png",
+    "sha256": "03ee456da8263cf1ed476a05c60d719948aaf41f8d81316798b73717893f381a",
+    "size_bytes": 334341
+  },
+  "environment": {
+    "relocated_bundle": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator",
+    "working_directory": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\unrelated working directory",
+    "pythonpath_removed": true,
+    "pythonhome_removed": true,
+    "external_python": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\release-venv\\Scripts\\python.EXE"
+  },
+  "duration_seconds": 10.766
+}

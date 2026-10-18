@@ -16,7 +16,7 @@ The verified [dev2 run 39034556183](https://github.com/Swir/Maxkompilator/action
 
 <!-- MAXKOMPILATOR:PROGRESS:START -->
 
-**v1.0 progress: 93% — 93 / 100 points.**
+**v1.0 progress: 98% — 98 / 100 points.**
 
 Only completed criteria with recorded evidence earn points. Work in progress does not increase the percentage.
 
@@ -24,7 +24,7 @@ Only completed criteria with recorded evidence earn points. Work in progress doe
 |---|---:|---:|---:|
 | Project foundation and CI | 8 pts | 8 / 8 pts | 100% |
 | Project and environment discovery | 12 pts | 12 / 12 pts | 100% |
-| Python and Windows builds | 16 pts | 11 / 16 pts | 68.8% |
+| Python and Windows builds | 16 pts | 16 / 16 pts | 100% |
 | Android: APK and AAB | 14 pts | 14 / 14 pts | 100% |
 | .NET and Windows publishing | 12 pts | 12 / 12 pts | 100% |
 | Desktop interface | 12 pts | 12 / 12 pts | 100% |
@@ -32,7 +32,7 @@ Only completed criteria with recorded evidence earn points. Work in progress doe
 | Reliability and release qualification | 10 pts | 8 / 10 pts | 80% |
 | Linux and macOS runners | 4 pts | 4 / 4 pts | 100% |
 | Extensibility and additional architectures | 2 pts | 2 / 2 pts | 100% |
-| **Total** | **100 pts** | **93 / 100 pts** | **93%** |
+| **Total** | **100 pts** | **98 / 100 pts** | **98%** |
 
 Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**.
 
@@ -42,62 +42,62 @@ Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**
 
 - [x] **v1 scope, instructions and measurable completion criteria — 2 points.** Evidence: README.md and ROADMAP.md: scope, limitations and fixed v1 weights. ID: `foundation.scope`.
 - [x] **Engine, adapter and runner boundaries — 2 points.** Evidence: docs/ARCHITECTURE.md: job workflow, responsibilities and result model. ID: `foundation.architecture`.
-- [x] **Installable package and working CLI entry point — 2 points.** Evidence: Wheel and sdist built; wheel installed without an index or dependencies outside the repository; CLI, packaged icon resources, real PYZ with data and smoke test PASS â€” docs/VALIDATION.md and docs/validation-local.json. ID: `foundation.package`.
-- [x] **Working CI with quality and progress consistency checks — 2 points.** Evidence: GitHub Actions run 39028988975 for commit aea4aa811f139edab7b167ab86f1518a283a7302: six Core jobs across Linux/Windows/macOS and Python 3.11/3.13 SUCCESS, including tests, roadmap validation and a real PYZ with a smoke test â€” docs/CI.md; https://github.com/Swir/Maxkompilator/actions/runs/39028988975. ID: `foundation.ci`.
+- [x] **Installable package and working CLI entry point — 2 points.** Evidence: Wheel and sdist built; wheel installed without an index or dependencies outside the repository; CLI, packaged icon resources, real PYZ with data and smoke test PASS  -  docs/VALIDATION.md and docs/validation-local.json. ID: `foundation.package`.
+- [x] **Working CI with quality and progress consistency checks — 2 points.** Evidence: GitHub Actions run 39028988975 for commit aea4aa811f139edab7b167ab86f1518a283a7302: six Core jobs across Linux/Windows/macOS and Python 3.11/3.13 SUCCESS, including tests, roadmap validation and a real PYZ with a smoke test  -  docs/CI.md; https://github.com/Swir/Maxkompilator/actions/runs/39028988975. ID: `foundation.ci`.
 
 #### Project and environment discovery — 12 points
 
-- [x] **Detect Python, Android and .NET projects — 3 points.** Evidence: tests/test_detection.py: scripts, Python projects, Android projects and concrete csproj detection; local suite PASS â€” docs/VALIDATION.md. ID: `discovery.detection`.
-- [x] **Explicit project type and entry point selection when ambiguous — 3 points.** Evidence: tests/test_detection.py: test_multiple_python_scripts_need_explicit_entry, test_mixed_directory_requires_explicit_kind, test_multiple_csprojects_require_concrete_project_path â€” PASS. ID: `discovery.ambiguity`.
-- [x] **Required tool diagnostics with actionable missing-tool messages — 3 points.** Evidence: tests/test_engine.py: test_missing_tool_yields_failed_report_without_build; scripts/gui_smoke.py: environment_doctor_and_smoke_flag_scoping â€” local PASS. ID: `discovery.doctor`.
-- [x] **CLI and JSON build plans without running the build — 3 points.** Evidence: tests/test_engine.py: test_inspect_and_plan_are_read_only_and_json_is_parseable; tests/test_adapters.py: test_pyinstaller_plan_is_native_structured_and_has_no_side_effects â€” PASS. ID: `discovery.plan`.
+- [x] **Detect Python, Android and .NET projects — 3 points.** Evidence: tests/test_detection.py: scripts, Python projects, Android projects and concrete csproj detection; local suite PASS  -  docs/VALIDATION.md. ID: `discovery.detection`.
+- [x] **Explicit project type and entry point selection when ambiguous — 3 points.** Evidence: tests/test_detection.py: test_multiple_python_scripts_need_explicit_entry, test_mixed_directory_requires_explicit_kind, test_multiple_csprojects_require_concrete_project_path  -  PASS. ID: `discovery.ambiguity`.
+- [x] **Required tool diagnostics with actionable missing-tool messages — 3 points.** Evidence: tests/test_engine.py: test_missing_tool_yields_failed_report_without_build; scripts/gui_smoke.py: environment_doctor_and_smoke_flag_scoping  -  local PASS. ID: `discovery.doctor`.
+- [x] **CLI and JSON build plans without running the build — 3 points.** Evidence: tests/test_engine.py: test_inspect_and_plan_are_read_only_and_json_is_parseable; tests/test_adapters.py: test_pyinstaller_plan_is_native_structured_and_has_no_side_effects  -  PASS. ID: `discovery.plan`.
 
 #### Python and Windows builds — 16 points
 
-- [x] **Build and run a real PYZ from a simple project — 4 points.** Evidence: tests/test_engine.py: test_zipapp_builds_and_runs_with_resources_outside_source; real examples/hello-python PYZ and smoke test PASS on Linux â€” docs/VALIDATION.md. ID: `python.zipapp`.
-- [x] **Native build adapter using PyInstaller — 2 points.** Evidence: maxkompilator/adapters/python_adapter.py and a real example built and run with PyInstaller 6.22.3 on Linux â€” docs/VALIDATION.md. ID: `python.pyinstaller`.
+- [x] **Build and run a real PYZ from a simple project — 4 points.** Evidence: tests/test_engine.py: test_zipapp_builds_and_runs_with_resources_outside_source; real examples/hello-python PYZ and smoke test PASS on Linux  -  docs/VALIDATION.md. ID: `python.zipapp`.
+- [x] **Native build adapter using PyInstaller — 2 points.** Evidence: maxkompilator/adapters/python_adapter.py and a real example built and run with PyInstaller 6.22.3 on Linux  -  docs/VALIDATION.md. ID: `python.pyinstaller`.
 - [x] **Real EXE with a valid format, resources and the built application's icon — 5 points.** Evidence: Actual profiled Windows PE x64 with seven matching embedded icon payloads, version 1.0.0.0, resource and runtime PASS; docs/evidence/windows-2026-10-18/profile-qualification.json. ID: `python.exe`.
-- [ ] **Run a built EXE on Windows without installing Python — 5 points.** In progress; points are awarded after the full criterion is met. ID: `python.windows-runtime`.
+- [x] **Run a built EXE on Windows without installing Python — 5 points.** Evidence: Actual profiled EXE ran twice in a Windows Server Core container with no installed Python, no Python commands, executables or registry entries, and networking disabled. Both SHA-256 values match the inspected PE. CI job 117747360918 PASS; docs/evidence/windows-2026-10-18/ci-profile/python-free-windows.json and source.json. ID: `python.windows-runtime`.
 
 #### Android: APK and AAB — 14 points
 
-- [x] **Gradle recipes for debug APK/AAB and wrapper-based projects — 2 points.** Evidence: tests/test_adapters.py: test_android_debug_apk_plan_does_not_execute_wrapper and test_android_artifact_patterns_select_only_debug_outputs â€” PASS; recipes checked, real APK/AAB qualification pending. ID: `android.gradle`.
+- [x] **Gradle recipes for debug APK/AAB and wrapper-based projects — 2 points.** Evidence: Actual Gradle 8.11.1 / AGP 8.9.2 APK and AAB builds through Maxkompilator; docs/evidence/windows-2026-10-18/apk-build-report.json and aab-build-report.json. ID: `android.gradle`.
 - [x] **Real APK: manifest, package, variant and signature verification — 4 points.** Evidence: Actual Gradle 8.11.1 / AGP 8.9.2 APK build; SDK aapt manifest/package/version/debug and apksigner certificate/SHA-256 checks PASS; docs/evidence/windows-2026-10-18/apk-build-report.json. ID: `android.apk`.
 - [x] **Install and launch an APK on an emulator or phone — 5 points.** Evidence: APK installed and launched twice on the Android API 36 x86_64 emulator; independent PIDs 2539/2713 each read the compiled resource and logged MAXKOMPILATOR_ANDROID_RUNTIME_OK; docs/evidence/windows-2026-10-18/android-qualification.json. ID: `android.device`.
 - [x] **Real AAB and explicit debug/release signing distinction — 3 points.** Evidence: Actual Gradle debug AAB built; unsigned state explicitly distinguished from production signing; bundletool 1.18.2 validate and decoded package/version/debug manifest comparison PASS; docs/evidence/windows-2026-10-18/android-qualification.json and aab-build-report.json. ID: `android.aab`.
 
 #### .NET and Windows publishing — 12 points
 
-- [x] **dotnet publish adapter with an explicit project and target — 2 points.** Evidence: tests/test_adapters.py: test_dotnet_publish_includes_runtime_and_concrete_project and WPF/NativeAOT restrictions â€” PASS; recipe verified, real .NET SDK publishing pending. ID: `dotnet.recipe`.
+- [x] **dotnet publish adapter with an explicit project and target — 2 points.** Evidence: Actual Windows and Linux self-contained .NET publishing passed in CI run 39151908070, plus local console and WinForms builds; docs/evidence/windows-2026-10-18/dotnet-build-report.json and desktop-qualification.json. ID: `dotnet.recipe`.
 - [x] **Publish a real .NET project and verify its output — 4 points.** Evidence: Actual Windows self-contained net8.0 build through Maxkompilator; PE x64 apphost, resource, runtime DLLs and hashes PASS; docs/evidence/windows-2026-10-18/dotnet-build-report.json and dotnet-qualification.json. ID: `dotnet.publish`.
 - [x] **Run the published application on Windows — 4 points.** Evidence: Published 188-file application copied outside the sources and executed on Windows x64; MAXKOMPILATOR_DOTNET_RUNTIME_OK and matching copied-tree hashes PASS; docs/INTEGRATION_2026-10-18.md. ID: `dotnet.windows-runtime`.
 - [x] **Verify desktop application dependencies and distribution mode — 2 points.** Evidence: Real self-contained WinForms application painted a window, read its resource and exited successfully after relocation; 465 published files include WindowsDesktop dependencies; docs/evidence/windows-2026-10-18/desktop-qualification.json. ID: `dotnet.desktop`.
 
 #### Desktop interface — 12 points
 
-- [x] **Dark interface, original icon and by Swir attribution — 3 points.** Evidence: maxkompilator/gui.py; scripts/gui_smoke.py: initial_window_icon_and_controls â€” PASS on Linux with Qt 6.12 offscreen in the 0.1.0.dev1 qualification. ID: `gui.design`.
-- [x] **Project selection, diagnostics, planning and building from the GUI — 3 points.** Evidence: scripts/gui_smoke.py: inspect_and_plan_unicode_path_auto_defaults, environment_doctor_and_smoke_flag_scoping, zipapp_build_real_runtime_and_persisted_report â€” PASS on Linux. ID: `gui.workflow`.
-- [x] **Responsive logs, background work and job cancellation — 3 points.** Evidence: scripts/gui_smoke.py: open_results_and_copy_log_buttons, cancel_button_stops_running_build, cancelled_worker_and_descendant_are_stopped â€” PASS on Linux. ID: `gui.responsiveness`.
-- [x] **Complete Windows GUI workflow and relaunch test — 3 points.** Evidence: GitHub Actions run 39034556183, job 117401756236, commit 044e32bebc13e87cf147868e497a2096ab2709f6: actual packaged Windows x64 GUI completed two independent launches (PIDs 3492 and 1524), each with 10 passing checks, 5 verified compiled CLI workers and a clean exit â€” docs/CI.md and docs/ci-evidence-dev2.json; https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756236; Relocated bundle outside the checkout; real PYZ/resource test, cancellation, descendant termination and reopening PASS; 17 font roles passed the 96-character glyph check in each launch, and both downloaded captures were visually checked for readable text. This completes automated GUI qualification; manual interactive and Python-free Windows release gates remain open. ID: `gui.windows-test`.
+- [x] **Dark interface, original icon and by Swir attribution — 3 points.** Evidence: maxkompilator/gui.py; scripts/gui_smoke.py: initial_window_icon_and_controls  -  PASS on Linux with Qt 6.12 offscreen in the 0.1.0.dev1 qualification. ID: `gui.design`.
+- [x] **Project selection, diagnostics, planning and building from the GUI — 3 points.** Evidence: scripts/gui_smoke.py: inspect_and_plan_unicode_path_auto_defaults, environment_doctor_and_smoke_flag_scoping, zipapp_build_real_runtime_and_persisted_report  -  PASS on Linux. ID: `gui.workflow`.
+- [x] **Responsive logs, background work and job cancellation — 3 points.** Evidence: scripts/gui_smoke.py: open_results_and_copy_log_buttons, cancel_button_stops_running_build, cancelled_worker_and_descendant_are_stopped  -  PASS on Linux. ID: `gui.responsiveness`.
+- [x] **Complete Windows GUI workflow and relaunch test — 3 points.** Evidence: Final 1.0.0 Windows bundle: two independent relocated GUI launches, 10 checks and 5 compiled workers per launch PASS; docs/evidence/windows-2026-10-18/packaged-gui/qualification.json. Interactive rc1 Windows review built and ran a real WinForms project and reopened the interface; interactive-gui.json records exact version and scope.. ID: `gui.windows-test`.
 
 #### Profiles and repeatable output — 10 points
 
-- [x] **Saved project profiles and configuration validation — 3 points.** Evidence: maxkompilator/config.py and examples/hello-python/maxkompilator.toml; tests/test_engine.py: test_invalid_config_has_actionable_error and a real build using the example configuration â€” PASS. ID: `profiles.configuration`.
+- [x] **Saved project profiles and configuration validation — 3 points.** Evidence: maxkompilator/config.py and examples/hello-python/maxkompilator.toml; tests/test_engine.py: test_invalid_config_has_actionable_error and a real build using the example configuration  -  PASS. ID: `profiles.configuration`.
 - [x] **Application name, version, icon and bundled resource settings — 2 points.** Evidence: Name, version, icon and data verified in actual Python and WinForms PE artifacts; scripts/qualify_windows_profile.py and recorded qualification JSON. ID: `profiles.resources`.
 - [x] **Pinned tools and repeat builds from a selected profile — 3 points.** Evidence: Two separate pinned Python 3.12.14 / PyInstaller 6.22.3 builds have identical SHA-256 for every one of 56 payload files; docs/evidence/windows-2026-10-18/profile-qualification.json. ID: `profiles.repeatability`.
-- [x] **Separate job output, logs and reports with checksums — 2 points.** Evidence: maxkompilator/engine.py writes per-run reports, logs and SHA-256 checksums; tests/test_engine.py: test_build_json_stdout_is_single_report and test_nonzero_exit_is_logged_and_reported â€” PASS. ID: `profiles.reports`.
+- [x] **Separate job output, logs and reports with checksums — 2 points.** Evidence: maxkompilator/engine.py writes per-run reports, logs and SHA-256 checksums; tests/test_engine.py: test_build_json_stdout_is_single_report and test_nonzero_exit_is_logged_and_reported  -  PASS. ID: `profiles.reports`.
 
 #### Reliability and release qualification — 10 points
 
-- [x] **Errors, timeouts and cancellation never report false success — 3 points.** Evidence: tests/test_engine.py: test_zero_exit_without_artifact_is_failure, test_running_process_can_be_cancelled, test_process_timeout, test_failed_smoke_is_not_reported_as_success â€” PASS. ID: `reliability.failures`.
-- [x] **Spaces, Unicode and input/output path boundary checks — 2 points.** Evidence: tests/test_detection.py: test_explicit_entry_cannot_escape_project; tests/test_engine.py: test_output_cannot_overwrite_project_root_or_parent; real GUI smoke with spaces and Unicode â€” PASS. ID: `reliability.paths`.
-- [x] **Automated integration tests using known projects — 3 points.** Evidence: tests/test_engine.py: CLI integration, a real PYZ build, resources and runtime checks; scripts/gui_smoke.py: GUI integration with subprocesses â€” local PASS. ID: `reliability.integration`.
+- [x] **Errors, timeouts and cancellation never report false success — 3 points.** Evidence: tests/test_engine.py: test_zero_exit_without_artifact_is_failure, test_running_process_can_be_cancelled, test_process_timeout, test_failed_smoke_is_not_reported_as_success  -  PASS. ID: `reliability.failures`.
+- [x] **Spaces, Unicode and input/output path boundary checks — 2 points.** Evidence: tests/test_detection.py: test_explicit_entry_cannot_escape_project; tests/test_engine.py: test_output_cannot_overwrite_project_root_or_parent; real GUI smoke with spaces and Unicode  -  PASS. ID: `reliability.paths`.
+- [x] **Automated integration tests using known projects — 3 points.** Evidence: tests/test_engine.py: CLI integration, a real PYZ build, resources and runtime checks; scripts/gui_smoke.py: GUI integration with subprocesses  -  local PASS. ID: `reliability.integration`.
 - [ ] **Windows release passes mandatory CI qualification — 2 points.** In progress; points are awarded after the full criterion is met. ID: `reliability.release-gate`.
 
 #### Linux and macOS runners — 4 points
 
-- [x] **Explicit OS and architecture compatibility in build plans — 1 point.** Evidence: tests/test_adapters.py: test_pyinstaller_rejects_cross_os_and_architecture and test_dotnet_windows_desktop_rejects_linux_target â€” PASS; target selection enforces supported build environments. ID: `runners.targets`.
-- [x] **Build and run output on a Linux runner — 1 point.** Evidence: Real Linux x86_64 application built with PyInstaller 6.22.3 and run with its resource; scripts/qualify_native.py â€” PASS, docs/VALIDATION.md. ID: `runners.linux`.
+- [x] **Explicit OS and architecture compatibility in build plans — 1 point.** Evidence: tests/test_adapters.py: test_pyinstaller_rejects_cross_os_and_architecture and test_dotnet_windows_desktop_rejects_linux_target  -  PASS; target selection enforces supported build environments. ID: `runners.targets`.
+- [x] **Build and run output on a Linux runner — 1 point.** Evidence: Real Linux x86_64 application built with PyInstaller 6.22.3 and run with its resource; scripts/qualify_native.py  -  PASS, docs/VALIDATION.md. ID: `runners.linux`.
 - [x] **Implemented remote runner protocol and capability reporting — 1 point.** Evidence: Implemented JSON-lines worker v1 and strict SSH client, capability reporting, build, cancel and hash-verified downloads; tests/test_remote.py real-process integration PASS; docs/REMOTE_WORKER.md. ID: `runners.remote-contract`.
 - [x] **Build and run output on a macOS runner — 1 point.** Evidence: GitHub Actions job 117385587229: real macos-arm64 Mach-O, build/resource/smoke and qualification outside the sources with a restricted PATH PASS; archive preserved 4 symlinks, docs/CI.md and docs/ci-evidence.json; https://github.com/Swir/Maxkompilator/actions/runs/39028988975/job/117385587229. ID: `runners.macos`.
 

@@ -36,8 +36,10 @@ class ExtensionTests(unittest.TestCase):
         self.assertFalse(report['environment']['checks'][0]['available'])
 
     def test_version_probe_does_not_accept_a_prefix(self):
-        requirement = ToolRequirement('example', (sys.executable, '-c', "print('Tool 6.22.30')"), '', '6.22.3')
-        self.assertFalse(probe_tool(requirement)['available'])
+        for actual in ('6.22.30', '6.22.3-rc1', '6.22.3+custom'):
+            requirement = ToolRequirement('example', (sys.executable, '-c', f"print('Tool {actual}')"), '', '6.22.3')
+            with self.subTest(actual=actual):
+                self.assertFalse(probe_tool(requirement)['available'])
 
     def test_wrong_tool_pin_is_rejected_while_planning(self):
         (self.root / 'maxkompilator.toml').write_text('[tools]\ndotnet="8.0.1"\n', encoding='utf-8')

@@ -443,7 +443,9 @@ def execute_build(plan: BuildPlan, *, cancel_event: threading.Event | None = Non
                     def run_android_tool(command: list[str]) -> dict:
                         return run_command(
                             command, plan.project.root, event, log, timeout=30,
-                            capture_prefixes=("package:", "application-debuggable", "Signer #"),
+                            capture_prefixes=("package:", "application-debuggable", "Signer #",
+                                              "V1 Signer:", "V2 Signer:", "V3 Signer:",
+                                              "V3.1 Signer:", "V3.2 Signer:", "V4 Signer:"),
                         )
 
                     for artifact in report["artifacts"]:

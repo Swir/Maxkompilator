@@ -34,7 +34,7 @@
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "Wheel and sdist built; wheel installed without an index or dependencies outside the repository; CLI, packaged icon resources, real PYZ with data and smoke test PASS â€” docs/VALIDATION.md and docs/validation-local.json"
+            "Wheel and sdist built; wheel installed without an index or dependencies outside the repository; CLI, packaged icon resources, real PYZ with data and smoke test PASS  -  docs/VALIDATION.md and docs/validation-local.json"
           ]
         },
         {
@@ -43,7 +43,7 @@
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "GitHub Actions run 39028988975 for commit aea4aa811f139edab7b167ab86f1518a283a7302: six Core jobs across Linux/Windows/macOS and Python 3.11/3.13 SUCCESS, including tests, roadmap validation and a real PYZ with a smoke test â€” docs/CI.md; https://github.com/Swir/Maxkompilator/actions/runs/39028988975"
+            "GitHub Actions run 39028988975 for commit aea4aa811f139edab7b167ab86f1518a283a7302: six Core jobs across Linux/Windows/macOS and Python 3.11/3.13 SUCCESS, including tests, roadmap validation and a real PYZ with a smoke test  -  docs/CI.md; https://github.com/Swir/Maxkompilator/actions/runs/39028988975"
           ]
         }
       ]
@@ -59,7 +59,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "tests/test_detection.py: scripts, Python projects, Android projects and concrete csproj detection; local suite PASS â€” docs/VALIDATION.md"
+            "tests/test_detection.py: scripts, Python projects, Android projects and concrete csproj detection; local suite PASS  -  docs/VALIDATION.md"
           ]
         },
         {
@@ -68,7 +68,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "tests/test_detection.py: test_multiple_python_scripts_need_explicit_entry, test_mixed_directory_requires_explicit_kind, test_multiple_csprojects_require_concrete_project_path â€” PASS"
+            "tests/test_detection.py: test_multiple_python_scripts_need_explicit_entry, test_mixed_directory_requires_explicit_kind, test_multiple_csprojects_require_concrete_project_path  -  PASS"
           ]
         },
         {
@@ -77,7 +77,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "tests/test_engine.py: test_missing_tool_yields_failed_report_without_build; scripts/gui_smoke.py: environment_doctor_and_smoke_flag_scoping â€” local PASS"
+            "tests/test_engine.py: test_missing_tool_yields_failed_report_without_build; scripts/gui_smoke.py: environment_doctor_and_smoke_flag_scoping  -  local PASS"
           ]
         },
         {
@@ -86,7 +86,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "tests/test_engine.py: test_inspect_and_plan_are_read_only_and_json_is_parseable; tests/test_adapters.py: test_pyinstaller_plan_is_native_structured_and_has_no_side_effects â€” PASS"
+            "tests/test_engine.py: test_inspect_and_plan_are_read_only_and_json_is_parseable; tests/test_adapters.py: test_pyinstaller_plan_is_native_structured_and_has_no_side_effects  -  PASS"
           ]
         }
       ]
@@ -102,7 +102,7 @@
           "weight": 4,
           "status": "complete",
           "evidence": [
-            "tests/test_engine.py: test_zipapp_builds_and_runs_with_resources_outside_source; real examples/hello-python PYZ and smoke test PASS on Linux â€” docs/VALIDATION.md"
+            "tests/test_engine.py: test_zipapp_builds_and_runs_with_resources_outside_source; real examples/hello-python PYZ and smoke test PASS on Linux  -  docs/VALIDATION.md"
           ]
         },
         {
@@ -111,7 +111,7 @@
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "maxkompilator/adapters/python_adapter.py and a real example built and run with PyInstaller 6.22.3 on Linux â€” docs/VALIDATION.md"
+            "maxkompilator/adapters/python_adapter.py and a real example built and run with PyInstaller 6.22.3 on Linux  -  docs/VALIDATION.md"
           ]
         },
         {
@@ -127,9 +127,9 @@
           "id": "windows-runtime",
           "title": "Run a built EXE on Windows without installing Python",
           "weight": 5,
-          "status": "in_progress",
+          "status": "complete",
           "evidence": [
-            "Job 117385587290: EXE ran outside the sources with a restricted PATH; the runner has Python installed, so qualification on a clean machine without Python remains open â€” docs/CI.md"
+            "Actual profiled EXE ran twice in a Windows Server Core container with no installed Python, no Python commands, executables or registry entries, and networking disabled. Both SHA-256 values match the inspected PE. CI job 117747360918 PASS; docs/evidence/windows-2026-10-18/ci-profile/python-free-windows.json and source.json"
           ]
         }
       ]
@@ -145,7 +145,7 @@
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "tests/test_adapters.py: test_android_debug_apk_plan_does_not_execute_wrapper and test_android_artifact_patterns_select_only_debug_outputs â€” PASS; recipes checked, real APK/AAB qualification pending"
+            "Actual Gradle 8.11.1 / AGP 8.9.2 APK and AAB builds through Maxkompilator; docs/evidence/windows-2026-10-18/apk-build-report.json and aab-build-report.json"
           ]
         },
         {
@@ -188,7 +188,7 @@
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "tests/test_adapters.py: test_dotnet_publish_includes_runtime_and_concrete_project and WPF/NativeAOT restrictions â€” PASS; recipe verified, real .NET SDK publishing pending"
+            "Actual Windows and Linux self-contained .NET publishing passed in CI run 39151908070, plus local console and WinForms builds; docs/evidence/windows-2026-10-18/dotnet-build-report.json and desktop-qualification.json"
           ]
         },
         {
@@ -231,7 +231,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "maxkompilator/gui.py; scripts/gui_smoke.py: initial_window_icon_and_controls â€” PASS on Linux with Qt 6.12 offscreen in the 0.1.0.dev1 qualification"
+            "maxkompilator/gui.py; scripts/gui_smoke.py: initial_window_icon_and_controls  -  PASS on Linux with Qt 6.12 offscreen in the 0.1.0.dev1 qualification"
           ]
         },
         {
@@ -240,7 +240,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "scripts/gui_smoke.py: inspect_and_plan_unicode_path_auto_defaults, environment_doctor_and_smoke_flag_scoping, zipapp_build_real_runtime_and_persisted_report â€” PASS on Linux"
+            "scripts/gui_smoke.py: inspect_and_plan_unicode_path_auto_defaults, environment_doctor_and_smoke_flag_scoping, zipapp_build_real_runtime_and_persisted_report  -  PASS on Linux"
           ]
         },
         {
@@ -249,7 +249,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "scripts/gui_smoke.py: open_results_and_copy_log_buttons, cancel_button_stops_running_build, cancelled_worker_and_descendant_are_stopped â€” PASS on Linux"
+            "scripts/gui_smoke.py: open_results_and_copy_log_buttons, cancel_button_stops_running_build, cancelled_worker_and_descendant_are_stopped  -  PASS on Linux"
           ]
         },
         {
@@ -258,8 +258,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "GitHub Actions run 39034556183, job 117401756236, commit 044e32bebc13e87cf147868e497a2096ab2709f6: actual packaged Windows x64 GUI completed two independent launches (PIDs 3492 and 1524), each with 10 passing checks, 5 verified compiled CLI workers and a clean exit â€” docs/CI.md and docs/ci-evidence-dev2.json; https://github.com/Swir/Maxkompilator/actions/runs/39034556183/job/117401756236",
-            "Relocated bundle outside the checkout; real PYZ/resource test, cancellation, descendant termination and reopening PASS; 17 font roles passed the 96-character glyph check in each launch, and both downloaded captures were visually checked for readable text. This completes automated GUI qualification; manual interactive and Python-free Windows release gates remain open"
+            "Final 1.0.0 Windows bundle: two independent relocated GUI launches, 10 checks and 5 compiled workers per launch PASS; docs/evidence/windows-2026-10-18/packaged-gui/qualification.json. Interactive rc1 Windows review built and ran a real WinForms project and reopened the interface; interactive-gui.json records exact version and scope."
           ]
         }
       ]
@@ -275,7 +274,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "maxkompilator/config.py and examples/hello-python/maxkompilator.toml; tests/test_engine.py: test_invalid_config_has_actionable_error and a real build using the example configuration â€” PASS"
+            "maxkompilator/config.py and examples/hello-python/maxkompilator.toml; tests/test_engine.py: test_invalid_config_has_actionable_error and a real build using the example configuration  -  PASS"
           ]
         },
         {
@@ -302,7 +301,7 @@
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "maxkompilator/engine.py writes per-run reports, logs and SHA-256 checksums; tests/test_engine.py: test_build_json_stdout_is_single_report and test_nonzero_exit_is_logged_and_reported â€” PASS"
+            "maxkompilator/engine.py writes per-run reports, logs and SHA-256 checksums; tests/test_engine.py: test_build_json_stdout_is_single_report and test_nonzero_exit_is_logged_and_reported  -  PASS"
           ]
         }
       ]
@@ -318,7 +317,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "tests/test_engine.py: test_zero_exit_without_artifact_is_failure, test_running_process_can_be_cancelled, test_process_timeout, test_failed_smoke_is_not_reported_as_success â€” PASS"
+            "tests/test_engine.py: test_zero_exit_without_artifact_is_failure, test_running_process_can_be_cancelled, test_process_timeout, test_failed_smoke_is_not_reported_as_success  -  PASS"
           ]
         },
         {
@@ -327,7 +326,7 @@
           "weight": 2,
           "status": "complete",
           "evidence": [
-            "tests/test_detection.py: test_explicit_entry_cannot_escape_project; tests/test_engine.py: test_output_cannot_overwrite_project_root_or_parent; real GUI smoke with spaces and Unicode â€” PASS"
+            "tests/test_detection.py: test_explicit_entry_cannot_escape_project; tests/test_engine.py: test_output_cannot_overwrite_project_root_or_parent; real GUI smoke with spaces and Unicode  -  PASS"
           ]
         },
         {
@@ -336,7 +335,7 @@
           "weight": 3,
           "status": "complete",
           "evidence": [
-            "tests/test_engine.py: CLI integration, a real PYZ build, resources and runtime checks; scripts/gui_smoke.py: GUI integration with subprocesses â€” local PASS"
+            "tests/test_engine.py: CLI integration, a real PYZ build, resources and runtime checks; scripts/gui_smoke.py: GUI integration with subprocesses  -  local PASS"
           ]
         },
         {
@@ -345,7 +344,7 @@
           "weight": 2,
           "status": "in_progress",
           "evidence": [
-            "CI run 39028988975: 10/10 jobs SUCCESS and a development Windows bundle available; complete interactive Windows release qualification remains open â€” docs/CI.md"
+            "Interactive Windows review, 200 local tests (196 passed; 4 platform skips), final 1.0.0 packaged GUI and Python-free runtime checks passed. Full 15-job CI is pending the Android SDK 37 certificate-output compatibility fix; no points awarded yet."
           ]
         }
       ]
@@ -361,7 +360,7 @@
           "weight": 1,
           "status": "complete",
           "evidence": [
-            "tests/test_adapters.py: test_pyinstaller_rejects_cross_os_and_architecture and test_dotnet_windows_desktop_rejects_linux_target â€” PASS; target selection enforces supported build environments"
+            "tests/test_adapters.py: test_pyinstaller_rejects_cross_os_and_architecture and test_dotnet_windows_desktop_rejects_linux_target  -  PASS; target selection enforces supported build environments"
           ]
         },
         {
@@ -370,7 +369,7 @@
           "weight": 1,
           "status": "complete",
           "evidence": [
-            "Real Linux x86_64 application built with PyInstaller 6.22.3 and run with its resource; scripts/qualify_native.py â€” PASS, docs/VALIDATION.md"
+            "Real Linux x86_64 application built with PyInstaller 6.22.3 and run with its resource; scripts/qualify_native.py  -  PASS, docs/VALIDATION.md"
           ]
         },
         {

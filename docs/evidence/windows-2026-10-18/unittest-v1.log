@@ -46,6 +46,7 @@ test_regular_command_preserves_preexisting_result_shape (test_android_engine_cap
 test_retain_manifest_header_when_tool_emits_large_output (test_android_engine_capture.AndroidManifestCaptureTests.test_retain_manifest_header_when_tool_emits_large_output) ... ok
 test_does_not_accept_missing_signature_in_empty_success (test_android_qualification.AndroidQualificationTests.test_does_not_accept_missing_signature_in_empty_success) ... ok
 test_metadata_manifest_and_signature_all_verified (test_android_qualification.AndroidQualificationTests.test_metadata_manifest_and_signature_all_verified) ... ok
+test_public_key_digest_cannot_replace_certificate_digest (test_android_qualification.AndroidQualificationTests.test_public_key_digest_cannot_replace_certificate_digest) ... ok
 test_rejects_bad_aapt_exit (test_android_qualification.AndroidQualificationTests.test_rejects_bad_aapt_exit) ... ok
 test_rejects_bad_signature (test_android_qualification.AndroidQualificationTests.test_rejects_bad_signature) ... ok
 test_rejects_bool_version_code_even_though_bool_is_an_int (test_android_qualification.AndroidQualificationTests.test_rejects_bool_version_code_even_though_bool_is_an_int) ... ok
@@ -66,6 +67,7 @@ test_rejects_untrusted_gradle_task (test_android_qualification.AndroidQualificat
 test_rejects_version_code_mismatch (test_android_qualification.AndroidQualificationTests.test_rejects_version_code_mismatch) ... ok
 test_rejects_version_name_mismatch (test_android_qualification.AndroidQualificationTests.test_rejects_version_name_mismatch) ... ok
 test_rejects_wrong_apk_format (test_android_qualification.AndroidQualificationTests.test_rejects_wrong_apk_format) ... ok
+test_sdk37_scheme_specific_certificate_output_is_supported (test_android_qualification.AndroidQualificationTests.test_sdk37_scheme_specific_certificate_output_is_supported) ... ok
 test_tool_versions_are_sorted_numerically (test_android_qualification.AndroidQualificationTests.test_tool_versions_are_sorted_numerically) ... ok
 test_bad_names_rejected (test_app_profile.ApplicationProfileTests.test_bad_names_rejected) ... ok
 test_bad_versions_rejected (test_app_profile.ApplicationProfileTests.test_bad_versions_rejected) ... ok
@@ -200,6 +202,6 @@ test_rejects_unexpected_runtime_asset_after_copy (test_runtime_portability.Dotne
 test_staged_application_runs_without_original_publish_tree (test_runtime_portability.DotnetRuntimeRelocationTests.test_staged_application_runs_without_original_publish_tree) ... skipped 'Windows fixture only validates file staging, not a fake EXE'
 
 ----------------------------------------------------------------------
-Ran 198 tests in 39.790s
+Ran 200 tests in 45.371s
 
 OK (skipped=4)

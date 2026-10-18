@@ -1,0 +1,649 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "version": "1.0.0",
+  "run_id": "c8d64c8591af42dd997a30789b7fa050",
+  "mode": "packaged",
+  "frozen": true,
+  "process_id": 20836,
+  "executable": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\Maxkompilator.exe",
+  "bundle_root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+  "module_files": {
+    "gui": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\_internal\\maxkompilator\\gui.py",
+    "qualification": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\_internal\\maxkompilator\\gui_qualification.py"
+  },
+  "python_search_path": [
+    "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\_internal\\base_library.zip",
+    "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\_internal\\python3.12\\lib-dynload",
+    "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\_internal"
+  ],
+  "working_directory": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\unrelated working directory",
+  "qt_platform": "offscreen",
+  "icon": {
+    "path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\_internal\\maxkompilator\\assets\\maxkompilator.png",
+    "size_bytes": 334341,
+    "sha256": "03ee456da8263cf1ed476a05c60d719948aaf41f8d81316798b73717893f381a"
+  },
+  "fonts": {
+    "setup": {
+      "status": "registered",
+      "strategy": "host_system_fonts_for_windows_offscreen",
+      "fonts": [
+        {
+          "path": "C:\\Windows\\Fonts\\segoeui.ttf",
+          "expected_family": "Segoe UI",
+          "id": 0,
+          "families": [
+            "Segoe UI"
+          ]
+        },
+        {
+          "path": "C:\\Windows\\Fonts\\segoeuib.ttf",
+          "expected_family": "Segoe UI",
+          "id": 1,
+          "families": [
+            "Segoe UI"
+          ]
+        },
+        {
+          "path": "C:\\Windows\\Fonts\\consola.ttf",
+          "expected_family": "Consolas",
+          "id": 2,
+          "families": [
+            "Consolas"
+          ]
+        }
+      ],
+      "directory": "C:\\Windows\\Fonts"
+    },
+    "glyphs": {
+      "status": "passed",
+      "sample": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ĄĆĘŁŃÓŚŹŻąćęłńóśźż.,:;!?-_/()[]{}",
+      "controls": [
+        {
+          "control": "projectRoot",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Regular",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 636
+        },
+        {
+          "control": "entrypoint",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Regular",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 636
+        },
+        {
+          "control": "projectKind",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Regular",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 636
+        },
+        {
+          "control": "targetPlatform",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Regular",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 636
+        },
+        {
+          "control": "outputFormat",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Regular",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 636
+        },
+        {
+          "control": "smokeTestCheck",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Regular",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 15,
+          "sample_width_pixels": 529
+        },
+        {
+          "control": "inspectButton",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Bold",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 681
+        },
+        {
+          "control": "doctorButton",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Bold",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 681
+        },
+        {
+          "control": "buildButton",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Bold",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 681
+        },
+        {
+          "control": "cancelButton",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Bold",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 681
+        },
+        {
+          "control": "openResultsButton",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Bold",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 681
+        },
+        {
+          "control": "logView",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Regular",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 636
+        },
+        {
+          "control": "logView.document",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Regular",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 636
+        },
+        {
+          "control": "summaryView",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Regular",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 636
+        },
+        {
+          "control": "summaryView.document",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Regular",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 17,
+          "sample_width_pixels": 636
+        },
+        {
+          "control": "statusLabel",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Regular",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 16,
+          "sample_width_pixels": 582
+        },
+        {
+          "control": "appTitle",
+          "requested_families": [
+            "Segoe UI",
+            "Noto Sans",
+            "sans-serif"
+          ],
+          "resolved_family": "Segoe UI",
+          "raw_family": "Segoe UI",
+          "raw_style": "Bold",
+          "raw_font_valid": true,
+          "glyph_count": 96,
+          "missing_glyphs": [],
+          "missing_metrics": [],
+          "height_pixels": 41,
+          "sample_width_pixels": 1633
+        }
+      ]
+    }
+  },
+  "checks": [
+    "frozen_gui_imports_and_portable_worker_present",
+    "initial_window_icon_and_controls",
+    "readable_interface_text_glyphs",
+    "inspect_and_plan_unicode_path_auto_defaults",
+    "environment_doctor_and_smoke_flag_scoping",
+    "zipapp_build_real_runtime_and_persisted_report",
+    "open_results_and_copy_log_buttons",
+    "cancel_button_stops_running_build",
+    "cancelled_worker_and_descendant_are_stopped",
+    "all_five_tasks_used_verified_frozen_console_worker"
+  ],
+  "worker_processes": [
+    {
+      "action": "inspect",
+      "program": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+      "arguments": [
+        "--cli",
+        "inspect",
+        "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź",
+        "--entry",
+        "main.py",
+        "--json"
+      ],
+      "working_directory": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+      "pid": 20328,
+      "image_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+      "exit_code": 0,
+      "exit_status": "NormalExit"
+    },
+    {
+      "action": "plan",
+      "program": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+      "arguments": [
+        "--cli",
+        "plan",
+        "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź",
+        "--entry",
+        "main.py",
+        "--target",
+        "native",
+        "--json"
+      ],
+      "working_directory": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+      "pid": 34828,
+      "image_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+      "exit_code": 0,
+      "exit_status": "NormalExit"
+    },
+    {
+      "action": "doctor",
+      "program": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+      "arguments": [
+        "--cli",
+        "doctor",
+        "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź",
+        "--entry",
+        "main.py",
+        "--target",
+        "native",
+        "--format",
+        "zipapp",
+        "--json"
+      ],
+      "working_directory": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+      "pid": 29980,
+      "image_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+      "exit_code": 0,
+      "exit_status": "NormalExit"
+    },
+    {
+      "action": "build",
+      "program": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+      "arguments": [
+        "--cli",
+        "build",
+        "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź",
+        "--entry",
+        "main.py",
+        "--target",
+        "native",
+        "--format",
+        "zipapp",
+        "--smoke-test",
+        "--json"
+      ],
+      "working_directory": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+      "pid": 32780,
+      "image_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+      "exit_code": 0,
+      "exit_status": "NormalExit"
+    },
+    {
+      "action": "build",
+      "program": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+      "arguments": [
+        "--cli",
+        "build",
+        "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź",
+        "--entry",
+        "main.py",
+        "--target",
+        "native",
+        "--format",
+        "zipapp",
+        "--smoke-test",
+        "--json"
+      ],
+      "working_directory": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\_internal",
+      "pid": 46628,
+      "image_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-packaged-eyzbuml2\\portable ze spacją Łódź\\Maxkompilator\\MaxkompilatorCLI.exe",
+      "exit_code": 130,
+      "exit_status": "NormalExit"
+    }
+  ],
+  "build_report": {
+    "run_id": "b094448653bf420b9bbf1a0667c6e2c8",
+    "started_at": "2026-10-18T18:03:13.202172+00:00",
+    "status": "built",
+    "output_dir": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator",
+    "project": {
+      "root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź",
+      "kind": "python",
+      "name": "projekt-ze-spacj-d",
+      "entrypoint": "main.py",
+      "project_file": null
+    },
+    "plan": {
+      "project": {
+        "root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź",
+        "kind": "python",
+        "name": "projekt-ze-spacj-d",
+        "entrypoint": "main.py",
+        "project_file": null
+      },
+      "target": "python",
+      "format": "zipapp",
+      "output_dir": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator",
+      "steps": [],
+      "requirements": [],
+      "artifact_patterns": [
+        "projekt-ze-spacj-d.pyz"
+      ],
+      "notes": [
+        "A .pyz requires a compatible Python installation on the destination computer.",
+        "Third-party dependencies and a Python runtime are not bundled. Install dependencies separately.",
+        "Packaging does not make operating-system-specific code portable."
+      ],
+      "internal_builder": "zipapp"
+    },
+    "execution_plan": {
+      "project": {
+        "root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź",
+        "kind": "python",
+        "name": "projekt-ze-spacj-d",
+        "entrypoint": "main.py",
+        "project_file": null
+      },
+      "target": "python",
+      "format": "zipapp",
+      "output_dir": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator",
+      "steps": [],
+      "requirements": [],
+      "artifact_patterns": [
+        "projekt-ze-spacj-d.pyz"
+      ],
+      "notes": [
+        "A .pyz requires a compatible Python installation on the destination computer.",
+        "Third-party dependencies and a Python runtime are not bundled. Install dependencies separately.",
+        "Packaging does not make operating-system-specific code portable."
+      ],
+      "internal_builder": "zipapp"
+    },
+    "artifact_directory": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator",
+    "artifacts": [
+      {
+        "path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator\\projekt-ze-spacj-d.pyz",
+        "size_bytes": 957,
+        "sha256": "7ce64dc67ab687cadec32a7874c184e950fe96e8c0d634d67e6d5ceb22546fe0",
+        "format": "pyz",
+        "verified": true
+      }
+    ],
+    "steps": [],
+    "smoke_test": {
+      "status": "passed",
+      "command": [
+        "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\release-venv\\Scripts\\python.EXE",
+        "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator\\projekt-ze-spacj-d.pyz"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.344,
+      "output_tail": "GUI_SMOKE_OK Zażółć gęślą jaźń"
+    },
+    "log_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator\\.maxkompilator\\b094448653bf420b9bbf1a0667c6e2c8\\build.log",
+    "report_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator\\.maxkompilator\\b094448653bf420b9bbf1a0667c6e2c8\\build-report.json",
+    "error": null,
+    "environment": {
+      "ready": true,
+      "checks": []
+    },
+    "finished_at": "2026-10-18T18:03:13.628295+00:00",
+    "duration_seconds": 0.438
+  },
+  "cancel_report": {
+    "run_id": "6b656a3659ff48ab808da604224315ea",
+    "started_at": "2026-10-18T18:03:14.222642+00:00",
+    "status": "cancelled",
+    "output_dir": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator",
+    "project": {
+      "root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź",
+      "kind": "python",
+      "name": "projekt-ze-spacj-d",
+      "entrypoint": "main.py",
+      "project_file": null
+    },
+    "plan": {
+      "project": {
+        "root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź",
+        "kind": "python",
+        "name": "projekt-ze-spacj-d",
+        "entrypoint": "main.py",
+        "project_file": null
+      },
+      "target": "python",
+      "format": "zipapp",
+      "output_dir": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator",
+      "steps": [],
+      "requirements": [],
+      "artifact_patterns": [
+        "projekt-ze-spacj-d.pyz"
+      ],
+      "notes": [
+        "A .pyz requires a compatible Python installation on the destination computer.",
+        "Third-party dependencies and a Python runtime are not bundled. Install dependencies separately.",
+        "Packaging does not make operating-system-specific code portable."
+      ],
+      "internal_builder": "zipapp"
+    },
+    "execution_plan": {
+      "project": {
+        "root": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź",
+        "kind": "python",
+        "name": "projekt-ze-spacj-d",
+        "entrypoint": "main.py",
+        "project_file": null
+      },
+      "target": "python",
+      "format": "zipapp",
+      "output_dir": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator",
+      "steps": [],
+      "requirements": [],
+      "artifact_patterns": [
+        "projekt-ze-spacj-d.pyz"
+      ],
+      "notes": [
+        "A .pyz requires a compatible Python installation on the destination computer.",
+        "Third-party dependencies and a Python runtime are not bundled. Install dependencies separately.",
+        "Packaging does not make operating-system-specific code portable."
+      ],
+      "internal_builder": "zipapp"
+    },
+    "artifact_directory": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator",
+    "artifacts": [
+      {
+        "path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator\\projekt-ze-spacj-d.pyz",
+        "size_bytes": 1016,
+        "sha256": "f09dc80bbd9cf5e367659f8d8e32d84f2af61c3244e1e7a31625ee3101e0e5dc",
+        "format": "pyz",
+        "verified": true
+      }
+    ],
+    "steps": [],
+    "smoke_test": {
+      "status": "cancelled",
+      "reason": "Test uruchomienia anulowano."
+    },
+    "log_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator\\.maxkompilator\\6b656a3659ff48ab808da604224315ea\\build.log",
+    "report_path": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\test-temp\\maxkompilator-gui-epzc447f\\projekt ze spacją Łódź\\dist\\maxkompilator\\.maxkompilator\\6b656a3659ff48ab808da604224315ea\\build-report.json",
+    "error": "Budowanie zostało anulowane; procesy zadania zatrzymano.",
+    "environment": {
+      "ready": true,
+      "checks": []
+    },
+    "finished_at": "2026-10-18T18:03:14.854091+00:00",
+    "duration_seconds": 0.656
+  },
+  "build_log": "Budowanie projektu…\nUtworzono projekt-ze-spacj-d.pyz; dołączono 3 plików. PYZ wymaga zgodnego Pythona i zależności.\n$ [\"D:\\\\Codex\\\\2026-10-18\\\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\\\work\\\\release-venv\\\\Scripts\\\\python.EXE\", \"D:\\\\Codex\\\\2026-10-18\\\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\\\work\\\\test-temp\\\\maxkompilator-gui-epzc447f\\\\projekt ze spacją Łódź\\\\dist\\\\maxkompilator\\\\projekt-ze-spacj-d.pyz\"]\nGUI_SMOKE_OK Zażółć gęślą jaźń\nWynik: built; pliki: 1; test: passed\nZbudowano — test uruchomienia zaliczony.",
+  "cancel_log": "Budowanie projektu…\nUtworzono projekt-ze-spacj-d.pyz; dołączono 3 plików. PYZ wymaga zgodnego Pythona i zależności.\n$ [\"D:\\\\Codex\\\\2026-10-18\\\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\\\work\\\\release-venv\\\\Scripts\\\\python.EXE\", \"D:\\\\Codex\\\\2026-10-18\\\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\\\work\\\\test-temp\\\\maxkompilator-gui-epzc447f\\\\projekt ze spacją Łódź\\\\dist\\\\maxkompilator\\\\projekt-ze-spacj-d.pyz\"]\nGUI_CANCEL_READY\nWysłano prośbę o anulowanie. Czekam na zakończenie procesów budowania…\nBudowanie zostało anulowane; procesy zadania zatrzymano.\nZadanie anulowane.",
+  "window_closed": true,
+  "duration_seconds": 3.5,
+  "cancellation_seconds": 0.437,
+  "screenshot": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\build\\packaged-gui-v1\\reopened.png",
+  "error": null
+}

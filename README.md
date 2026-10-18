@@ -10,15 +10,13 @@
 
 Maxkompilator takes a project from its source folder through detection, environment checks, a build plan, execution and verified output. The first implementation covers **Python, Android and .NET**, with Windows and Android as the main delivery targets.
 
-**Release candidate: `1.0.0rc1`.** The engine and desktop interface integrate the preserved v6–v8 work, real .NET/Android builds, application profiles, exact tool pins, adapter API v1 and a tested remote worker protocol. Documentation is English; interface labels and build reports remain Polish. The original multicolor 3D icon is preserved.
+**Version `1.0.0` is in final release qualification.** The engine and desktop interface integrate the preserved v6–v8 work, real .NET/Android builds, application profiles, exact tool pins, adapter API v1 and a tested remote worker protocol. Documentation is English; interface labels and build reports remain Polish. The original multicolor 3D icon is preserved.
 
-**Verified CI: 10/10 jobs successful for `0.1.0.dev2`.** Six jobs checked the engine on Linux, Windows and macOS with Python 3.11 and 3.13. Three built and ran a native example with its resource on **Windows x64, Linux x64 and macOS ARM64**. The desktop job built the **Windows Maxkompilator bundle** and exercised its actual packaged GUI twice: **10 checks and 5 verified compiled CLI workers per launch**, including readable text, a real PYZ build, cancellation and reopening. See [CI run 39034556183](https://github.com/Swir/Maxkompilator/actions/runs/39034556183) and its [qualification record](docs/CI.md).
+**Verified locally:** 200 tests (196 passed, four platform-specific skips), two launches of the final packaged GUI with ten checks and five compiled workers each, real .NET console and WinForms applications, real APK/AAB builds, bundletool validation, and two APK launches on an Android emulator. An interactive Windows review also completed an actual WinForms build and reopening. Exact versions, hashes and boundaries are recorded in [release qualification](docs/RELEASE_1.0.md).
 
-**Local integration checked on 2026-10-18:** real self-contained .NET Windows publishing and relocated execution; real Gradle APK/AAB builds; Android SDK signature/manifest checks; independent bundletool validation; APK installation and two launches on an Android emulator. See [integration evidence](docs/INTEGRATION_2026-10-18.md). These local results do not imply that the updated CI has run.
+**Verified without an installed Python:** the profiled Windows EXE ran twice in an independent Windows Server Core container and read its bundled resource. Both executable hashes match the inspected build. [CI job 117747360918](https://github.com/Swir/Maxkompilator/actions/runs/39151908070/job/117747360918) passed. That run's full release gate failed on a newly changed Android SDK 37 certificate format; the compatibility fix is now being qualified.
 
-**Latest local qualification:** a real WinForms window and its self-contained runtime passed; profiled Python EXEs contain the selected name, version, all seven icon images and bundled data. Two pinned builds produced identical hashes for all 56 files. Extension/remote-worker integration and architecture-selection tests pass. See [extension contracts](docs/EXTENSIONS.md), [remote worker](docs/REMOTE_WORKER.md) and the records under `docs/evidence/windows-2026-10-18/`.
-
-**Open release gates:** Python-free Windows execution and final CI/interactive Windows review. The local Windows Sandbox had no Python, but App Control blocked the unsigned fixture; no policy was changed. CI now includes an independent Windows Server Core container test. Production signing and additional language adapters remain outside the defined v1 scope.
+**Remaining gate:** a completely successful 15-job CI run. Production signing and additional language adapters remain outside the defined v1 scope.
 
 [Roadmap and percentages](ROADMAP.md) · [Architecture](docs/ARCHITECTURE.md) · [Validation results](docs/VALIDATION.md) · [Verified CI jobs](docs/CI.md) · [GitHub Actions](https://github.com/Swir/Maxkompilator/actions)
 
@@ -26,7 +24,7 @@ Maxkompilator takes a project from its source folder through detection, environm
 
 <!-- MAXKOMPILATOR:PROGRESS:START -->
 
-**v1.0 progress: 93% — 93 / 100 points.**
+**v1.0 progress: 98% — 98 / 100 points.**
 
 Only completed criteria with recorded evidence earn points. Work in progress does not increase the percentage.
 
@@ -34,7 +32,7 @@ Only completed criteria with recorded evidence earn points. Work in progress doe
 |---|---:|---:|---:|
 | Project foundation and CI | 8 pts | 8 / 8 pts | 100% |
 | Project and environment discovery | 12 pts | 12 / 12 pts | 100% |
-| Python and Windows builds | 16 pts | 11 / 16 pts | 68.8% |
+| Python and Windows builds | 16 pts | 16 / 16 pts | 100% |
 | Android: APK and AAB | 14 pts | 14 / 14 pts | 100% |
 | .NET and Windows publishing | 12 pts | 12 / 12 pts | 100% |
 | Desktop interface | 12 pts | 12 / 12 pts | 100% |
@@ -42,7 +40,7 @@ Only completed criteria with recorded evidence earn points. Work in progress doe
 | Reliability and release qualification | 10 pts | 8 / 10 pts | 80% |
 | Linux and macOS runners | 4 pts | 4 / 4 pts | 100% |
 | Extensibility and additional architectures | 2 pts | 2 / 2 pts | 100% |
-| **Total** | **100 pts** | **93 / 100 pts** | **93%** |
+| **Total** | **100 pts** | **98 / 100 pts** | **98%** |
 
 Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**.
 
@@ -50,18 +48,11 @@ Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**
 
 **100% means completion of the defined v1 release.** Additional languages, installers and integrations have their own future scope. The percentage measures accepted criteria, not time remaining until release.
 
-## Download the Windows development build
+## Download and run the Windows application
 
-The verified `0.1.0.dev2` development build is available from GitHub Actions:
+The Windows distribution contains the GUI, its compiled CLI worker and shared runtime. In a successful v1 [GitHub Actions run](https://github.com/Swir/Maxkompilator/actions), download **`Maxkompilator-Windows-x64`**, extract the archive, and open `dist/Maxkompilator/Maxkompilator.exe`. Keep `Maxkompilator.exe`, `MaxkompilatorCLI.exe` and `_internal` together. The separately delivered portable ZIP has a top-level `Maxkompilator` folder.
 
-1. Open [successful CI run 39034556183](https://github.com/Swir/Maxkompilator/actions/runs/39034556183).
-2. Under **Artifacts**, select **`Maxkompilator-Windows-x64-dev`**.
-3. Extract the entire archive and open its `dist/Maxkompilator` folder.
-4. Keep **`Maxkompilator.exe`, `MaxkompilatorCLI.exe` and `_internal`** together. Launch **`Maxkompilator.exe`**.
-
-GitHub reports an artifact size of **56,049,987 bytes, approximately 53.5 MiB**, with retention until **2026-10-31 at 12:59:08 UTC**. These details describe artifact **12101593136** from the verified dev2 run. The `native-example-*` artifacts contain small test applications; select `Maxkompilator-Windows-x64-dev` for the build tool itself.
-
-The actual bundle was moved outside the checkout and launched from an unrelated directory. Both independent GUI launches passed the full automated workflow, used the packaged console worker for all five tasks and exited cleanly. Font checks and review of both downloaded captures confirmed readable interface text. The separate **`Maxkompilator-Windows-GUI-qualification`** artifact contains reports and diagnostic captures; it is not the application download. [CI results](docs/CI.md) records the exact scope and checksums.
+The application bundle includes its Python runtime. Building your own project still requires its compiler, SDK and dependencies. The native example archives contain test applications; the GUI qualification archive contains diagnostic reports and screenshots.
 
 ## Current technology support
 
@@ -94,9 +85,9 @@ These commands install Maxkompilator. Android SDK, .NET SDK and the dependencies
 
 ### Desktop interface
 
-![Maxkompilator Windows EXE after reopening and building a PYZ](docs/images/gui-windows.png)
+![Maxkompilator after an interactive Windows build of the WinForms example](docs/images/gui-windows-v1.png)
 
-The screenshot shows the actual **`0.1.0.dev2` Windows EXE** after an independent second launch, a real PYZ build and a runtime check in **Qt offscreen** mode. The complete bundle was relocated outside the checkout. This is a CI capture, not a manual Windows 11 desktop session. See [CI qualification](docs/CI.md) for the reports and [local validation](docs/VALIDATION.md) for the separate Linux and installed-wheel records. [Visual identity](docs/DESIGN.md) documents the multicolor 3D icon, illuminated accents and readable dark panels for this project and future Swir applications.
+This is the actual Windows interface after an interactive build and successful runtime test of the self-contained WinForms example. The review used the rc1 interface; the final 1.0.0 package then passed both automated launch scenarios. [Release qualification](docs/RELEASE_1.0.md) records that distinction. [Visual identity](docs/DESIGN.md) describes the original 3D icon and dark interface.
 
 ### Inspect, diagnose and plan
 
@@ -167,7 +158,7 @@ python -m maxkompilator plan ./dotnet-app/App.csproj --kind dotnet --target nati
 python -m maxkompilator build ./dotnet-app/App.csproj --kind dotnet --target native --format directory
 ```
 
-The publish plan sets `--self-contained true`; keep the complete output directory. Add `--smoke-test` to run a copied publish directory outside the source tree. The included C# example passed actual Windows x64 publishing, runtime/resource checks and SHA-256 qualification. NativeAOT and publishing multiple frameworks need further support; WPF/WinForms require a Windows runner and retain a separate desktop-dependency qualification gate.
+The publish plan sets `--self-contained true`; keep the complete output directory. Add `--smoke-test` to run a copied publish directory outside the source tree. The included C# example passed actual Windows x64 publishing, runtime/resource checks and SHA-256 qualification. NativeAOT and publishing multiple frameworks need further support; WPF/WinForms require a Windows runner. The included WinForms example passed actual window, resource and self-contained desktop-dependency qualification.
 
 ### Project configuration
 
@@ -187,6 +178,13 @@ data = ["hello/message.json"]
 ```
 
 Data paths are relative to the project root. Command arguments select settings for an individual job. A complete profile editor, tool version management and signing profiles remain on the roadmap.
+
+Application profiles support `[app]` with `name`, `version` and `icon` for Python
+and Windows .NET output. `[tools]` enforces exact installed versions before build
+commands. See [profile and pin rules](docs/EXTENSIONS.md),
+`examples/hello-python-native/maxkompilator.toml` and
+`examples/hello-desktop/maxkompilator.toml`. Automatic tool installation and
+production signing are separate future features.
 
 ## Output and logs
 

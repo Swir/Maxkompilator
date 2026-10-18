@@ -1,9 +1,16 @@
-# GitHub Actions results — 0.1.0.dev2
+# GitHub Actions qualification
 
-The integrated 2026-10-18 candidate adds .NET Windows/Linux publishing and an
-Android APK/AAB build plus bundletool job. Those updated jobs have not yet run
-on GitHub. [Local Windows evidence](INTEGRATION_2026-10-18.md) is separate from
-the historical CI results below.
+The v1 workflow has 15 required jobs: six engine matrix jobs, three native Python
+builds, the packaged Windows GUI, two .NET builds, Android APK/AAB with bundletool,
+Windows profiles with Python-free execution, and the mandatory aggregate gate.
+
+Run 39151908070 passed every group except Android and the aggregate gate. Android
+SDK 37 changed its certificate output; the final candidate adds support for that
+format without accepting a public-key digest in place of a certificate digest.
+The complete rerun is pending. [Release qualification](RELEASE_1.0.md) records
+the current local and container evidence. The following dev2 record is historical.
+
+## Historical 0.1.0.dev2 qualification
 
 **Verified on 2026-10-17: 10/10 jobs SUCCESS.** This record covers [run 39034556183](https://github.com/Swir/Maxkompilator/actions/runs/39034556183) in [Swir/Maxkompilator](https://github.com/Swir/Maxkompilator), at commit [`044e32bebc13e87cf147868e497a2096ab2709f6`](https://github.com/Swir/Maxkompilator/commit/044e32bebc13e87cf147868e497a2096ab2709f6).
 

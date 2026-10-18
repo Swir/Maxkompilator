@@ -200,7 +200,7 @@ def probe_tool(requirement: ToolRequirement, *, timeout: float = 15.0) -> dict:
             result["version"] = text[:2000]
             if requirement.expected_version is not None:
                 result["expected_version"] = requirement.expected_version
-                version_match = re.search(r"(?<![\w.])" + re.escape(requirement.expected_version) + r"(?![\w.])", text)
+                version_match = re.search(r"(?<![\w.+-])" + re.escape(requirement.expected_version) + r"(?![\w.+-])", text)
                 if process.returncode == 0 and version_match is None:
                     result["available"] = False
                     result["error"] = f"Expected pinned version {requirement.expected_version}; received {text[:200]}."

@@ -1,0 +1,11 @@
+PASS frozen_gui_imports_and_portable_worker_present
+PASS initial_window_icon_and_controls
+PASS readable_interface_text_glyphs
+PASS inspect_and_plan_unicode_path_auto_defaults
+PASS environment_doctor_and_smoke_flag_scoping
+PASS zipapp_build_real_runtime_and_persisted_report
+PASS open_results_and_copy_log_buttons
+PASS cancel_button_stops_running_build
+PASS cancelled_worker_and_descendant_are_stopped
+PASS all_five_tasks_used_verified_frozen_console_worker
+{"status": "passed", "mode": "packaged", "version": "1.0.0", "run_id": "c8d64c8591af42dd997a30789b7fa050", "checks": ["frozen_gui_imports_and_portable_worker_present", "initial_window_icon_and_controls", "readable_interface_text_glyphs", "inspect_and_plan_unicode_path_auto_defaults", "environment_doctor_and_smoke_flag_scoping", "zipapp_build_real_runtime_and_persisted_report", "open_results_and_copy_log_buttons", "cancel_button_stops_running_build", "cancelled_worker_and_descendant_are_stopped", "all_five_tasks_used_verified_frozen_console_worker"], "duration_seconds": 3.5, "cancellation_seconds": 0.437, "screenshot": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\build\\packaged-gui-v1\\reopened.png", "error": null, "worker_count": 5, "report": "D:\\Codex\\2026-10-18\\tak-wir-przygotowa-em-przekazanie-maxkompilatora-3\\work\\Maxkompilator\\build\\packaged-gui-v1\\reopened.json"}
