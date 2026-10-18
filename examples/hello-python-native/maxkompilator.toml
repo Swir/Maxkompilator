@@ -1,0 +1,19 @@
+[project]
+kind = "python"
+entry = "main.py"
+
+[build]
+format = "executable"
+target = "win-x64"
+
+[app]
+name = "SwirProfileDemo"
+version = "1.0.0"
+icon = "branding/app.ico"
+
+[python]
+data = ["assets/message.json"]
+
+[tools]
+python = "3.12.14"
+pyinstaller = "6.22.3"

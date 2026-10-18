@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import errno
 import os
+import re
 import signal
 import subprocess
 import sys
@@ -197,6 +198,13 @@ def probe_tool(requirement: ToolRequirement, *, timeout: float = 15.0) -> dict:
             text = output.decode("utf-8", errors="replace").strip()
             result["available"] = process.returncode == 0
             result["version"] = text[:2000]
+            if requirement.expected_version is not None:
+                result["expected_version"] = requirement.expected_version
+                version_match = re.search(r"(?<![\w.])" + re.escape(requirement.expected_version) + r"(?![\w.])", text)
+                if process.returncode == 0 and version_match is None:
+                    result["available"] = False
+                    result["error"] = f"Expected pinned version {requirement.expected_version}; received {text[:200]}."
+                    result["hint"] = result["error"] + " " + requirement.hint
             if process.returncode:
                 result["error"] = f"Narzędzie zakończyło sprawdzenie kodem {process.returncode}."
         except OSError as exc:

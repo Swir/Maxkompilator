@@ -33,6 +33,7 @@ class ToolRequirement:
     name: str
     command: tuple[str, ...]
     hint: str
+    expected_version: str | None = None
 
 
 @dataclass(frozen=True)

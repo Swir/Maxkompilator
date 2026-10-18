@@ -205,3 +205,78 @@ jobs:
             build/android-qualification.json
           if-no-files-found: warn
           retention-days: 14
+
+  windows-profiles:
+    name: Windows profiles and Python-free runtime
+    needs: core
+    runs-on: windows-2022
+    timeout-minutes: 35
+    env:
+      PYTHONHASHSEED: '0'
+      SOURCE_DATE_EPOCH: '1792252800'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.12.14'
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Install pinned native tools
+        run: python -m pip install -c constraints-ci.txt ".[freeze]" pefile==2024.8.26
+      - name: Build the selected profile twice
+        run: |
+          python -m maxkompilator build examples/hello-python-native --smoke-test --output dist/first --json
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m maxkompilator build examples/hello-python-native --smoke-test --output dist/second --json
+      - name: Inspect actual PE version and icon resources and compare every payload hash
+        run: python scripts/qualify_windows_profile.py examples/hello-python-native/dist/first/build-report.json --second examples/hello-python-native/dist/second/build-report.json --output build/profile-qualification.json
+      - name: Build and execute an actual WinForms window with its own runtime
+        run: python -m maxkompilator build examples/hello-desktop --smoke-test --json
+      - name: Verify desktop dependencies and profile metadata
+        run: python scripts/qualify_windows_profile.py examples/hello-desktop/dist/maxkompilator/build-report.json --desktop --output build/desktop-qualification.json
+      - name: Run the EXE twice in an independent Python-free Windows filesystem
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $inputRoot = Join-Path $env:RUNNER_TEMP 'python-free-input'
+          $resultRoot = Join-Path $env:GITHUB_WORKSPACE 'build/python-free'
+          New-Item -ItemType Directory -Path $inputRoot,$resultRoot -Force | Out-Null
+          $report = Get-Content examples/hello-python-native/dist/first/build-report.json -Raw | ConvertFrom-Json
+          $binary = ($report.artifacts | Where-Object { $_.path -like '*SwirProfileDemo.exe' }).path
+          Copy-Item -LiteralPath (Split-Path $binary) -Destination (Join-Path $inputRoot 'Application') -Recurse
+          Copy-Item -LiteralPath scripts/qualify_python_free_windows.ps1 -Destination (Join-Path $inputRoot 'qualify.ps1')
+          $baseImage = 'mcr.microsoft.com/windows/servercore:ltsc2022'
+          docker pull $baseImage
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          docker image inspect $baseImage | Set-Content (Join-Path $resultRoot 'container-image.json')
+          docker run --rm --network none --isolation process --mount "type=bind,source=$inputRoot,target=C:\Inputs,readonly" --mount "type=bind,source=$resultRoot,target=C:\Results" $baseImage powershell.exe -NoLogo -NoProfile -File C:\Inputs\qualify.ps1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $qualification = Get-Content (Join-Path $resultRoot 'python-free-windows.json') -Raw | ConvertFrom-Json
+          if ($qualification.status -ne 'passed' -or $qualification.pythonInstalled) { throw 'Python-free qualification did not pass' }
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: always()
+        with:
+          name: windows-profile-qualification
+          path: |
+            build/profile-qualification.json
+            build/desktop-qualification.json
+            build/python-free/
+            examples/hello-python-native/dist/first/build-report.json
+            examples/hello-python-native/dist/second/build-report.json
+            examples/hello-desktop/dist/maxkompilator/build-report.json
+          if-no-files-found: error
+          retention-days: 14
+
+  release-gate:
+    name: Mandatory release qualification
+    if: always()
+    needs: [core, native-python, desktop-windows, dotnet-native, android-debug, windows-profiles]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require all qualification groups to succeed
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          python3 -c 'import json,os; jobs=json.loads(os.environ["RESULTS"]); failed=[key for key,value in jobs.items() if value["result"]!="success"]; print(jobs); assert not failed, failed'

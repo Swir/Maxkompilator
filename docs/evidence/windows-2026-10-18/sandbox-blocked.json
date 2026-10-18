@@ -1,0 +1,18 @@
+﻿{
+    "status":  "failed",
+    "environment":  "Windows Sandbox",
+    "pythonInstalled":  false,
+    "checks":  [
+
+               ],
+    "os":  "Microsoft Windows 11 Enterprise",
+    "host":  "BFE198FA-4F25-4",
+    "pythonCommands":  [
+
+                       ],
+    "pythonRegistry":  [
+
+                       ],
+    "error":  "Program \u0027SwirProfileDemo.exe\u0027 failed to run: Zasady kontroli aplikacji zablokowały ten plikAt C:\\Inputs\\sandbox-check.ps1:22 char:19\r\n+         $output = \u0026 $binary 2\u003e\u00261 | Out-String\r\n+                   ~~~~~~~~~~~~~~.",
+    "completedUtc":  "2026-10-18T17:30:18.3233853Z"
+}

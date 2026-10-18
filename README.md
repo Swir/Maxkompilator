@@ -10,13 +10,15 @@
 
 Maxkompilator takes a project from its source folder through detection, environment checks, a build plan, execution and verified output. The first implementation covers **Python, Android and .NET**, with Windows and Android as the main delivery targets.
 
-**Development version: `0.1.0.dev2` — working engine and experimental desktop interface.** This iteration introduces English documentation and a vivid, futuristic 3D visual identity. The interface keeps its Polish labels. Current capabilities and open qualification gates are described below.
+**Release candidate: `1.0.0rc1`.** The engine and desktop interface integrate the preserved v6–v8 work, real .NET/Android builds, application profiles, exact tool pins, adapter API v1 and a tested remote worker protocol. Documentation is English; interface labels and build reports remain Polish. The original multicolor 3D icon is preserved.
 
 **Verified CI: 10/10 jobs successful for `0.1.0.dev2`.** Six jobs checked the engine on Linux, Windows and macOS with Python 3.11 and 3.13. Three built and ran a native example with its resource on **Windows x64, Linux x64 and macOS ARM64**. The desktop job built the **Windows Maxkompilator bundle** and exercised its actual packaged GUI twice: **10 checks and 5 verified compiled CLI workers per launch**, including readable text, a real PYZ build, cancellation and reopening. See [CI run 39034556183](https://github.com/Swir/Maxkompilator/actions/runs/39034556183) and its [qualification record](docs/CI.md).
 
 **Local integration checked on 2026-10-18:** real self-contained .NET Windows publishing and relocated execution; real Gradle APK/AAB builds; Android SDK signature/manifest checks; independent bundletool validation; APK installation and two launches on an Android emulator. See [integration evidence](docs/INTEGRATION_2026-10-18.md). These local results do not imply that the updated CI has run.
 
-**Still awaiting qualification:** a Windows machine without Python, manual interactive Windows release review, .NET desktop dependencies, complete application-profile qualification and production signing. Historical packaged GUI evidence remains scoped to its recorded dev2 commit.
+**Latest local qualification:** a real WinForms window and its self-contained runtime passed; profiled Python EXEs contain the selected name, version, all seven icon images and bundled data. Two pinned builds produced identical hashes for all 56 files. Extension/remote-worker integration and architecture-selection tests pass. See [extension contracts](docs/EXTENSIONS.md), [remote worker](docs/REMOTE_WORKER.md) and the records under `docs/evidence/windows-2026-10-18/`.
+
+**Open release gates:** Python-free Windows execution and final CI/interactive Windows review. The local Windows Sandbox had no Python, but App Control blocked the unsigned fixture; no policy was changed. CI now includes an independent Windows Server Core container test. Production signing and additional language adapters remain outside the defined v1 scope.
 
 [Roadmap and percentages](ROADMAP.md) · [Architecture](docs/ARCHITECTURE.md) · [Validation results](docs/VALIDATION.md) · [Verified CI jobs](docs/CI.md) · [GitHub Actions](https://github.com/Swir/Maxkompilator/actions)
 
@@ -24,7 +26,7 @@ Maxkompilator takes a project from its source folder through detection, environm
 
 <!-- MAXKOMPILATOR:PROGRESS:START -->
 
-**v1.0 progress: 78% — 78 / 100 points.**
+**v1.0 progress: 93% — 93 / 100 points.**
 
 Only completed criteria with recorded evidence earn points. Work in progress does not increase the percentage.
 
@@ -32,15 +34,15 @@ Only completed criteria with recorded evidence earn points. Work in progress doe
 |---|---:|---:|---:|
 | Project foundation and CI | 8 pts | 8 / 8 pts | 100% |
 | Project and environment discovery | 12 pts | 12 / 12 pts | 100% |
-| Python and Windows builds | 16 pts | 6 / 16 pts | 37.5% |
+| Python and Windows builds | 16 pts | 11 / 16 pts | 68.8% |
 | Android: APK and AAB | 14 pts | 14 / 14 pts | 100% |
-| .NET and Windows publishing | 12 pts | 10 / 12 pts | 83.3% |
+| .NET and Windows publishing | 12 pts | 12 / 12 pts | 100% |
 | Desktop interface | 12 pts | 12 / 12 pts | 100% |
-| Profiles and repeatable output | 10 pts | 5 / 10 pts | 50% |
+| Profiles and repeatable output | 10 pts | 10 / 10 pts | 100% |
 | Reliability and release qualification | 10 pts | 8 / 10 pts | 80% |
-| Linux and macOS runners | 4 pts | 3 / 4 pts | 75% |
-| Extensibility and additional architectures | 2 pts | 0 / 2 pts | 0% |
-| **Total** | **100 pts** | **78 / 100 pts** | **78%** |
+| Linux and macOS runners | 4 pts | 4 / 4 pts | 100% |
+| Extensibility and additional architectures | 2 pts | 2 / 2 pts | 100% |
+| **Total** | **100 pts** | **93 / 100 pts** | **93%** |
 
 Source: [docs/progress.json](docs/progress.json) · last updated: **2026-10-18**.
 
@@ -70,7 +72,7 @@ The actual bundle was moved outside the checkout and launched from an unrelated 
 | .NET | A concrete `.csproj` file | `dotnet publish` output directory | A .NET SDK compatible with the project and its libraries |
 | Maxkompilator GUI | Optional desktop interface | Project selection, diagnostics, plans, builds, logs and cancellation | Source GUI tested on Linux and Windows; actual packaged Windows GUI tested offscreen with readable text, its compiled worker and reopening |
 
-Full support for C/C++, Rust, Go, Java, Flutter, Electron/Tauri, extensions and game engines is **planned**. A remote runner protocol for Linux/macOS is also future work. The shared interface will use build environments that are actually available and connected.
+Full support for C/C++, Rust, Go, Java, Flutter, Electron/Tauri and game engines is **planned**. [Remote worker v1](docs/REMOTE_WORKER.md) supports authenticated SSH, capability discovery, existing-project builds, cancellation and verified downloads. [Adapter API v1](docs/EXTENSIONS.md) supports explicitly registered trusted extensions.
 
 ## Run from source
 

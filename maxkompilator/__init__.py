@@ -1,4 +1,4 @@
 """Maxkompilator — a project-aware build workbench by Swir."""
 
-__version__ = "0.1.0.dev2"
+__version__ = "1.0.0rc1"
 

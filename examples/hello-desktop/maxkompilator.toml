@@ -1,0 +1,11 @@
+[project]
+kind = "dotnet"
+
+[build]
+target = "win-x64"
+format = "directory"
+
+[app]
+name = "SwirDesktopDemo"
+version = "1.0.0"
+icon = "branding/app.ico"

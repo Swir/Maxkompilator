@@ -1,0 +1,19 @@
+test_adapter_cannot_shadow_builtins_or_change_output_contract (tests.test_extensions.ExtensionTests.test_adapter_cannot_shadow_builtins_or_change_output_contract) ... ok
+test_dotnet_additional_architecture_rids (tests.test_extensions.ExtensionTests.test_dotnet_additional_architecture_rids) ... ok
+test_pinned_python_version_is_checked_and_mismatch_prevents_build (tests.test_extensions.ExtensionTests.test_pinned_python_version_is_checked_and_mismatch_prevents_build) ... ok
+test_python_additional_architectures_require_matching_workers (tests.test_extensions.ExtensionTests.test_python_additional_architectures_require_matching_workers) ... ok
+test_registered_adapter_builds_a_real_artifact_with_report (tests.test_extensions.ExtensionTests.test_registered_adapter_builds_a_real_artifact_with_report) ... ok
+test_version_probe_does_not_accept_a_prefix (tests.test_extensions.ExtensionTests.test_version_probe_does_not_accept_a_prefix) ... ok
+test_wrong_tool_pin_is_rejected_while_planning (tests.test_extensions.ExtensionTests.test_wrong_tool_pin_is_rejected_while_planning) ... ok
+test_actual_running_smoke_can_be_cancelled_and_connection_reused (tests.test_remote.RemoteTests.test_actual_running_smoke_can_be_cancelled_and_connection_reused) ... ok
+test_client_timeout_closes_worker (tests.test_remote.RemoteTests.test_client_timeout_closes_worker) ... ok
+test_download_rejects_corrupt_content (tests.test_remote.RemoteTests.test_download_rejects_corrupt_content) ... ok
+test_protocol_version_is_explicitly_rejected (tests.test_remote.RemoteTests.test_protocol_version_is_explicitly_rejected) ... ok
+test_real_worker_capabilities_build_download_and_relocated_execution (tests.test_remote.RemoteTests.test_real_worker_capabilities_build_download_and_relocated_execution) ... ok
+test_ssh_rejects_options_and_path_traversal (tests.test_remote.RemoteTests.test_ssh_rejects_options_and_path_traversal) ... ok
+test_worker_rejects_traversal_unknown_fields_and_recovers (tests.test_remote.RemoteTests.test_worker_rejects_traversal_unknown_fields_and_recovers) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 25.022s
+
+OK

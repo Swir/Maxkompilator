@@ -53,6 +53,16 @@ def create_parser() -> argparse.ArgumentParser:
             item.add_argument("--timeout", type=_positive, default=1800.0, help="Limit pojedynczego etapu w sekundach.")
             item.add_argument("--smoke-timeout", type=_positive, default=30.0, help="Limit testu uruchomienia w sekundach.")
     commands.add_parser("gui", help="Otwórz interfejs PySide6.")
+    worker = commands.add_parser("worker", help="Wykonawca JSON dla uwierzytelnionego połączenia SSH.")
+    worker.add_argument("--workspace", type=Path, required=True)
+    remote = commands.add_parser("remote", help="Sprawdź lub uruchom istniejący projekt na wykonawcy SSH.")
+    remote.add_argument("host", help="Skonfigurowany host SSH; klucz hosta musi być znany.")
+    remote.add_argument("workspace", help="Katalog wykonawcy na zdalnym systemie POSIX.")
+    remote.add_argument("--project", help="Projekt względem katalogu wykonawcy; pominięcie pokazuje możliwości.")
+    remote.add_argument("--format")
+    remote.add_argument("--target", default="native")
+    remote.add_argument("--output", type=Path, help="Nowy lokalny katalog na sprawdzone pliki wynikowe.")
+    remote.add_argument("--smoke-test", action="store_true")
     return parser
 
 
@@ -83,6 +93,26 @@ def main(argv: list[str] | None = None) -> int:
         if type(stream) is io.TextIOWrapper and not stream.closed:
             stream.reconfigure(encoding="utf-8", errors="backslashreplace")
     args = create_parser().parse_args(argv)
+    if args.command == "worker":
+        from .worker import serve
+        return serve(args.workspace)
+    if args.command == "remote":
+        from .remote import WorkerClient
+        try:
+            with WorkerClient.ssh(args.host, args.workspace) as client:
+                if not args.project:
+                    _emit(client.request("capabilities"), as_json=True)
+                    return 0
+                result = client.request("build", project=args.project, target=args.target, format=args.format,
+                                        smoke_test=args.smoke_test, wait_timeout=3700,
+                                        on_log=lambda text: print(text, file=sys.stderr, flush=True))
+                if args.output and result["status"] == "built":
+                    result["downloads"] = client.download(result, args.output)
+                _emit(result, as_json=True)
+                return 0 if result["status"] == "built" else 1
+        except (OSError, ValueError, RuntimeError, TimeoutError) as exc:
+            _emit({"status": "error", "error": str(exc)}, as_json=True)
+            return 2
     if args.command == "gui":
         try:
             from .gui import launch_gui
