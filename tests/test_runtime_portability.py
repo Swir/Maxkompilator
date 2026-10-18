@@ -21,7 +21,7 @@ class DotnetRuntimeRelocationTests(unittest.TestCase):
     def setUp(self):
         self.work = tempfile.TemporaryDirectory(prefix="maxkompilator-runtime-stage-")
         self.addCleanup(self.work.cleanup)
-        self.root = Path(self.work.name)
+        self.root = Path(self.work.name).resolve()
         self.publish = self.root / "repo" / "runs" / "job"
         self.publish.mkdir(parents=True)
         self.launcher = self.publish / "Demo.exe" if os.name == "nt" else self.publish / "Demo"

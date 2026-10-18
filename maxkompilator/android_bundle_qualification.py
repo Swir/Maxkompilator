@@ -117,7 +117,10 @@ def qualify_debug_aab(
         raise MaxkompilatorError("AAB SHA-256 does not match the build report.")
     _check_bundle_contents(copied)
 
-    jar_check = run_tool([_java_tool("jarsigner"), "-verify", str(copied)])
+    # JDK diagnostics are localized by the host. The parsed protocol needs a
+    # stable locale on Polish Windows and other non-English workers.
+    locale = ['-J-Duser.language=en', '-J-Duser.country=US']
+    jar_check = run_tool([_java_tool("jarsigner"), *locale, "-verify", str(copied)])
     output = _output(jar_check)
     if jar_check.get("returncode") != 0:
         raise MaxkompilatorError("JDK jarsigner rejected the AAB signature or contents.")
@@ -133,7 +136,7 @@ def qualify_debug_aab(
         raise MaxkompilatorError("jarsigner did not confirm a verified JAR signature.")
     if "unsigned entries" in output.lower():
         raise MaxkompilatorError("AAB has unsigned entries; its whole payload is not integrity-protected.")
-    certificate_check = run_tool([_java_tool("keytool"), "-printcert", "-jarfile", str(copied)])
+    certificate_check = run_tool([_java_tool("keytool"), *locale, "-printcert", "-jarfile", str(copied)])
     if certificate_check.get("returncode") != 0:
         raise MaxkompilatorError("keytool could not read the AAB signing certificate.")
     certs = sorted({digest.replace(":", "").lower() for digest in _FINGERPRINT.findall(_output(certificate_check))})

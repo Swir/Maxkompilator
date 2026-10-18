@@ -12,7 +12,7 @@ class DotnetProfileIntegrationTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
-        self.root = Path(self.tmp.name)
+        self.root = Path(self.tmp.name).resolve()
         (self.root / 'App.csproj').write_text(
             '<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><OutputType>Exe</OutputType>'
             '<TargetFramework>net8.0</TargetFramework></PropertyGroup></Project>', encoding='utf-8')

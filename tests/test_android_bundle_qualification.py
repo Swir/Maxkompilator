@@ -196,7 +196,7 @@ class DebugAabTests(unittest.TestCase):
         keystore = self.output / "debug-test.keystore"
 
         def real_run(command: list[str]) -> dict:
-            result = subprocess.run(command, capture_output=True, text=True, check=False, timeout=20)
+            result = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', errors='replace', check=False, timeout=20)
             stdout = result.stdout + "\n" + result.stderr
             return {"returncode": result.returncode, "output_tail": stdout,
                     "matching_lines": [line for line in stdout.splitlines() if line.lstrip().startswith("SHA256:")]}

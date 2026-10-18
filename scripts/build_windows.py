@@ -70,6 +70,11 @@ def main() -> int:
         encoding="utf-8",
     )
     environment = {**os.environ, "PYINSTALLER_CONFIG_DIR": str(work / "cache")}
+    # Ambient tool suites can put incompatible ICU/UCRT copies on PATH. Only
+    # this interpreter and Windows belong in the frozen GUI's dependency search.
+    system_root = Path(os.environ['SystemRoot'])
+    environment['PATH'] = os.pathsep.join(str(path) for path in (
+        Path(sys.executable).parent, Path(sys.base_prefix), system_root / 'System32', system_root))
     subprocess.run([sys.executable, "-m", "PyInstaller", "--noconfirm", "--clean", "--distpath", str(ROOT / "dist"),
                     "--workpath", str(work / "objects"), str(spec)], cwd=ROOT, env=environment, check=True)
     worker = ROOT / "dist" / "Maxkompilator" / "MaxkompilatorCLI.exe"

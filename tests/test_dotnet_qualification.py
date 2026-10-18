@@ -22,7 +22,7 @@ class DotnetQualificationTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.output = Path(self.temp.name) / "published"
+        self.output = Path(self.temp.name).resolve() / "published"
         self.output.mkdir()
         (self.output / "Assets").mkdir()
         self.host = self.output / ("HelloDotnet.exe" if sys.platform == "win32" else "HelloDotnet")

@@ -13,10 +13,10 @@ class PythonProfileTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name) / 'app'
+        self.root = Path(self.temp.name).resolve() / 'app'
         self.root.mkdir()
         self.project = Project(self.root, 'python', 'source_name', 'main.py')
-        self.output = Path(self.temp.name) / 'results'
+        self.output = Path(self.temp.name).resolve() / 'results'
 
     def config(self, text):
         (self.root / 'maxkompilator.toml').write_text(text, encoding='utf-8')
