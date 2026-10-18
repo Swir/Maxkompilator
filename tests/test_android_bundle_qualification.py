@@ -9,7 +9,6 @@ import shutil
 import subprocess
 import tempfile
 import unittest
-from unittest.mock import patch
 import zipfile
 
 from maxkompilator.android_bundle_qualification import qualify_debug_aab
@@ -53,7 +52,8 @@ class DebugAabTests(unittest.TestCase):
             for name, data in (additions or {}).items():
                 z.writestr(name, data)
 
-    def _runner(self, command: list[str]) -> dict:
+    def _runner(self, command: list[str], cwd: Path) -> dict:
+        self.assertEqual(self._digest(cwd / 'bundle.aab'), self.record['sha256'])
         self.commands.append(command)
         if "jarsigner" in command[0]:
             if self.result_mode == "unsigned":
@@ -95,10 +95,10 @@ class DebugAabTests(unittest.TestCase):
         self.assertEqual(len(self.commands), 1)
 
     def test_missing_certificate_fingerprint_fails(self) -> None:
-        def without_sha256(command: list[str]) -> dict:
+        def without_sha256(command: list[str], cwd: Path) -> dict:
             if "keytool" in command[0]:
                 return {"returncode": 0, "output_tail": "Signer #1: no fingerprint"}
-            return self._runner(command)
+            return self._runner(command, cwd)
         with self.assertRaisesRegex(MaxkompilatorError, "No SHA-256"):
             qualify_debug_aab(self.plan, self.output, self.record, without_sha256)
 
@@ -195,15 +195,9 @@ class DebugAabTests(unittest.TestCase):
     @unittest.skipUnless(all(shutil.which(name) for name in ("keytool", "jarsigner")), "JDK signing tools unavailable")
     def test_real_jdk_jar_signing_and_unsigned_entry_attack(self) -> None:
         keystore = self.output / "debug-test.keystore"
-        # Signing and verification must use the same JDK. Hosted Windows can
-        # expose a different JAVA_HOME from the JDK currently selected on PATH.
-        selected_jdk = Path(shutil.which('keytool')).resolve().parents[1]
-        environment = patch.dict(os.environ, {'JAVA_HOME': str(selected_jdk)})
-        environment.start()
-        self.addCleanup(environment.stop)
-
-        def real_run(command: list[str]) -> dict:
-            result = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', errors='replace', check=False, timeout=20)
+        def real_run(command: list[str], cwd: Path) -> dict:
+            self.assertTrue(all(value.isascii() for value in command[1:]))
+            result = subprocess.run(command, cwd=cwd, capture_output=True, text=True, encoding='utf-8', errors='replace', check=False, timeout=20)
             stdout = result.stdout + "\n" + result.stderr
             return {"returncode": result.returncode, "output_tail": stdout,
                     "matching_lines": [line for line in stdout.splitlines() if line.lstrip().startswith("SHA256:")]}
@@ -214,11 +208,11 @@ class DebugAabTests(unittest.TestCase):
 
         subprocess.run(["keytool", "-genkeypair", "-alias", "test", "-keyalg", "RSA",
                         "-keysize", "2048", "-validity", "30", "-dname", "CN=Maxkompilator CI, C=NO",
-                        "-keystore", str(keystore), "-storepass", "changeit",
-                        "-keypass", "changeit", "-noprompt"], check=True, capture_output=True, timeout=25)
-        subprocess.run(["jarsigner", "-keystore", str(keystore), "-storepass", "changeit",
-                        "-keypass", "changeit", str(self.source), "test"],
-                       check=True, capture_output=True, timeout=25)
+                        "-keystore", keystore.name, "-storepass", "changeit",
+                        "-keypass", "changeit", "-noprompt"], cwd=self.output, check=True, capture_output=True, timeout=25)
+        subprocess.run(["jarsigner", "-keystore", keystore.name, "-storepass", "changeit",
+                        "-keypass", "changeit", os.path.relpath(self.source, self.output), "test"],
+                       cwd=self.output, check=True, capture_output=True, timeout=25)
         self._sync()
 
         signed = qualify_debug_aab(self.plan, self.output, self.record, real_run)

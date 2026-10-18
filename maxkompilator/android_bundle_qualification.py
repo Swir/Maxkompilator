@@ -11,7 +11,9 @@ import hashlib
 import os
 from pathlib import Path
 import re
+import shutil
 import stat
+import tempfile
 import zlib
 from typing import Callable
 import zipfile
@@ -85,7 +87,7 @@ def qualify_debug_aab(
     plan: BuildPlan,
     output_dir: Path,
     artifact: dict,
-    run_tool: Callable[[list[str]], dict],
+    run_tool: Callable[[list[str], Path], dict],
 ) -> dict:
     """Qualify an actual Gradle bundle as signed/unsigned (no device claims).
 
@@ -117,10 +119,23 @@ def qualify_debug_aab(
         raise MaxkompilatorError("AAB SHA-256 does not match the build report.")
     _check_bundle_contents(copied)
 
+    # Older Windows JDK launchers mangle non-ANSI argv paths. A native cwd and
+    # ASCII filename preserve Unicode project paths without OS locale changes.
+    with tempfile.TemporaryDirectory(prefix='.aab-check-', dir=output_dir) as temporary:
+        cwd = Path(temporary)
+        staged = cwd / 'bundle.aab'
+        shutil.copyfile(copied, staged)
+        if _sha256(staged) != artifact['sha256']:
+            raise MaxkompilatorError('AAB changed while staging signature verification.')
+        return _check_signature(cwd, run_tool)
+
+
+def _check_signature(cwd: Path, run_tool: Callable[[list[str], Path], dict]) -> dict:
+
     # JDK diagnostics are localized by the host. The parsed protocol needs a
     # stable locale on Polish Windows and other non-English workers.
     locale = ['-J-Duser.language=en', '-J-Duser.country=US']
-    jar_check = run_tool([_java_tool("jarsigner"), *locale, "-verify", str(copied)])
+    jar_check = run_tool([_java_tool("jarsigner"), *locale, "-verify", 'bundle.aab'], cwd)
     output = _output(jar_check)
     if jar_check.get("returncode") != 0:
         raise MaxkompilatorError("JDK jarsigner rejected the AAB signature or contents: " + output[-2000:])
@@ -136,7 +151,7 @@ def qualify_debug_aab(
         raise MaxkompilatorError("jarsigner did not confirm a verified JAR signature.")
     if "unsigned entries" in output.lower():
         raise MaxkompilatorError("AAB has unsigned entries; its whole payload is not integrity-protected.")
-    certificate_check = run_tool([_java_tool("keytool"), *locale, "-printcert", "-jarfile", str(copied)])
+    certificate_check = run_tool([_java_tool("keytool"), *locale, "-printcert", "-jarfile", 'bundle.aab'], cwd)
     if certificate_check.get("returncode") != 0:
         raise MaxkompilatorError("keytool could not read the AAB signing certificate.")
     certs = sorted({digest.replace(":", "").lower() for digest in _FINGERPRINT.findall(_output(certificate_check))})

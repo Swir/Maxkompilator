@@ -455,9 +455,9 @@ def execute_build(plan: BuildPlan, *, cancel_event: threading.Event | None = Non
                             plan, execution_plan.output_dir, artifact, sdk, run_android_tool,
                         ))
                 if plan.project.kind == "android" and plan.format == "aab":
-                    def run_bundle_tool(command: list[str]) -> dict:
+                    def run_bundle_tool(command: list[str], cwd: Path) -> dict:
                         return run_command(
-                            command, plan.project.root, event, log, timeout=60,
+                            command, cwd, event, log, timeout=60,
                             capture_prefixes=("\t SHA256:", " SHA256:", "SHA256:",
                                               "jar verified.", "jar is unsigned.",
                                               "This jar contains unsigned entries"),
