@@ -123,7 +123,7 @@ def qualify_debug_aab(
     jar_check = run_tool([_java_tool("jarsigner"), *locale, "-verify", str(copied)])
     output = _output(jar_check)
     if jar_check.get("returncode") != 0:
-        raise MaxkompilatorError("JDK jarsigner rejected the AAB signature or contents.")
+        raise MaxkompilatorError("JDK jarsigner rejected the AAB signature or contents: " + output[-2000:])
     if "jar is unsigned." in output:
         return {
             "verified": False,

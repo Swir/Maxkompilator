@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 import zipfile
 
 from maxkompilator.android_bundle_qualification import qualify_debug_aab
@@ -194,6 +195,12 @@ class DebugAabTests(unittest.TestCase):
     @unittest.skipUnless(all(shutil.which(name) for name in ("keytool", "jarsigner")), "JDK signing tools unavailable")
     def test_real_jdk_jar_signing_and_unsigned_entry_attack(self) -> None:
         keystore = self.output / "debug-test.keystore"
+        # Signing and verification must use the same JDK. Hosted Windows can
+        # expose a different JAVA_HOME from the JDK currently selected on PATH.
+        selected_jdk = Path(shutil.which('keytool')).resolve().parents[1]
+        environment = patch.dict(os.environ, {'JAVA_HOME': str(selected_jdk)})
+        environment.start()
+        self.addCleanup(environment.stop)
 
         def real_run(command: list[str]) -> dict:
             result = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', errors='replace', check=False, timeout=20)
