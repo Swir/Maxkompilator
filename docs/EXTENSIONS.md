@@ -44,8 +44,10 @@ Use `global.json` for .NET SDK selection and a checksum-pinned Gradle wrapper fo
 Android. Pins check installed tools; they do not install them. Python dependency
 locking belongs to the project's build environment.
 
-The qualified `hello-python-native` profile pins Python 3.12.14 and PyInstaller
-6.22.3. Repeated qualification uses the same interpreter, dependencies,
+The portable CI `hello-python-native` profile pins Python 3.12.10 and PyInstaller
+6.22.3, matching the official Windows builds available to setup-python. The
+earlier local qualification used an explicit Python 3.12.14 pin and remains
+recorded with that environment. Repeated qualification uses the same interpreter, dependencies,
 `PYTHONHASHSEED=0` and `SOURCE_DATE_EPOCH=1792252800`, and compares every payload
 SHA-256 while excluding per-run reports and paths. This is a measured guarantee
 for that fixture/environment, not universal reproducible builds for arbitrary code.
